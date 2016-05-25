@@ -17,6 +17,9 @@
   },
   "homepage": "https://github.com/SwahiliBox/CodeChallenge1Server#readme",
   "dependencies": {
-    "express": "^4.13.4"
+    "cors": "^2.7.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.19",
+    "socket.io": "^1.4.6"
   }
 }
