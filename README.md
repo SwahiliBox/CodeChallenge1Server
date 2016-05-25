@@ -48,9 +48,14 @@ var server = app.listen(3000, function  () {
 
 ### Contributing
 
-Please read `CONTRIBUTING.md` for details on our code of conduct, and the process for submitting pull requests to us.
+We welcome everyone to contribute to our projects and help us tackle existing issues! To do so, there are a few things you need to know about the code. First, our code is divided in an MVC like structure, all available inside the app folder:
 
-See also the list of contributors who participated in this project.
+`app/models - Contains all our application and business logic`
 
+`app/controllers - Contains everything that happens when requests come in and get dispatched`
 
-This project is licensed under the ***MIT license***.
+This application is a volunteer effort. We encourage you to pitch in and join the team!
+
+This project is licensed under the **_MIT license._**
+
+Thanks
