@@ -1,0 +1,22 @@
+{
+  "name": "codechallenge",
+  "version": "1.0.0",
+  "description": "Swahibox Mobile App Backend",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SwahiliBox/CodeChallenge1Server.git"
+  },
+  "author": "SwahiliBox",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SwahiliBox/CodeChallenge1Server/issues"
+  },
+  "homepage": "https://github.com/SwahiliBox/CodeChallenge1Server#readme",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
