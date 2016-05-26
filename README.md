@@ -11,6 +11,7 @@ It will also allow SwahiliBox to keep tabs on the numbers attending these meetin
 * MongoDB (mongoose)
 * Cordova for Intel XDK
 * Intel XDK
+* Text Editor
 
 
 
