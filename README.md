@@ -1,7 +1,8 @@
 
 ##SwahiliBox Mobile App
 
-An app for [SwahiliBox](swahilibox.co.ke) that will ensure community members have info on any meetings events and new info available to them on their phones at the same time members to be able to RSVP for events and meetings from their phones
+An app for [SwahiliBox](swahilibox.co.ke) that will ensure community members have info on any meetings events and new info available to them on their phones at the same time members to be able to RSVP for events and meetings on their mobile phones
+It will also allow SwahiliBox to keep tabs on the numbers attending these meetings and events while at the same time enable them to keep their members well updated on any issues arising 
 
 ### Prerequisities
 
