@@ -17,11 +17,21 @@
   },
   "homepage": "https://github.com/SwahiliBox/CodeChallenge1Server#readme",
   "dependencies": {
+    "bcryptjs":"*",
     "body-parser": "^1.15.1",
+    "cookie-parser":"*",
     "cors": "^2.7.1",
     "express": "^4.13.4",
+    "express-handlebars":"*",
+    "express-messages":"*",
+    "express-sessions":"*",
+    "express-validator":"*",
+    "mongodb":"*",
     "mongoose": "^4.4.19",
     "node-restful": "^0.2.5",
     "socket.io": "^1.4.6"
+    "passport":"*",
+    "passport-http":"*",
+    "passport-local":"*"
   }
 }
