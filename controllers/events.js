@@ -1,4 +1,4 @@
-var Event = require("../models/events");
+/*var Event = require("../models/events");
 
 exports.getEvents = function(req, res){
 	// body...
@@ -23,5 +23,5 @@ exports.updateEvent = function(req, res) {
 exports.deleteEvent = function(req, res) {
 	// body...
 	res.send("Delete an Event");
-}
+}*/
 
