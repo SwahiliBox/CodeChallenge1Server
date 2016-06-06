@@ -1,4 +1,4 @@
-<!doctype html>
+ <!doctype html>
 <html>
 <head>
     <title>Node Authentication</title>
@@ -15,6 +15,7 @@
         <h1><span class="fa fa-anchor"></span> Profile Page</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
+</div>
 
     <div class="row">
 
@@ -34,24 +35,19 @@
 
     </div>
 
-</div>
-<!-- LOCAL INFORMATION -->
-<div class="col-sm-6">
-    <div class="well">
-        <h3><span class="fa fa-user"></span> Facebook</h3>
+        <!-- FACEBOOK INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
 
-            <p>
-                <strong>id</strong>: <%= facebook.id %><br>
-                <strong>email</strong>: <%= facebook.token %><br>
-                <strong>password</strong>: <%= user.facebook.email %><br>
-                <strong>id</strong>: <%= user.facebook.name %>
-            </p>
+                    <p>
+                        <strong>id</strong>: <%= user.facebook.id %><br>
+                        <strong>token</strong>: <%= user.facebook.token %><br>
+                        <strong>email</strong>: <%= user.facebook.email %><br>
+                        <strong>name</strong>: <%= user.facebook.name %>
+                    </p>
 
-    </div>
-</div>
-
-</div>
-
-</div>
+            </div>
+        </div>
 </body>
 </html>

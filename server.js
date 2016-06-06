@@ -14,7 +14,9 @@ var flash    = require('connect-flash');
 
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url);
+
 require('./config/passport.js')(passport);
+
 app.use(morgan('dev'));
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -22,12 +24,15 @@ app.use(session({secret:'anystringoftext',
                 saveUninitialized:true,
                 resave:true}));
 
-require('./app/routes.js')(app, passport);
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+
 app.set('view engine', 'ejs');
+
+require('./app/routes.js')(app, passport);
 
 app.listen(port);
 console.log('The magic happens on port ' + port);
