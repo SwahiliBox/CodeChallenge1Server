@@ -11,6 +11,7 @@ var mongodb=require('mongodb');
 var passport = require('passport');
 var passportLocal = require('passport-local');
 var flash    = require('connect-flash');
+var MongoStore=require('connect-mongo')(session);
 
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url);
@@ -29,9 +30,24 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
+/*app.use(function(req,res,next){
+	console.log(req.session);
+	console.log("==========");
+	console.log(req.user);
+	next();
+});
+*/
 
 app.set('view engine', 'ejs');
 
+/*var auth=express.Router();
+require('./app/routes/auth.js')(auth,passport);
+app.use('/auth',auth);
+
+var secure=express.Router();
+require('./app/routes/secure.js')(secure,passport);
+app.use('/',secure);
+*/
 require('./app/routes.js')(app, passport);
 
 app.listen(port);

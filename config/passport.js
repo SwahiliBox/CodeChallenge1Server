@@ -1,4 +1,4 @@
-var LocalStrategy   = require('passport-local').Strategy;
+//var LocalStrategy   = require('passport-local').Strategy;
 var FacebookStrategy=require('passport-facebook').Strategy;
 var User            = require('../app/models/user');
 var configAuth      =require('./auth');
@@ -15,58 +15,7 @@ module.exports = function(passport) {
              done(err, user);
          });
      });
-    passport.use('local-signup', new LocalStrategy({
-       // by default, local strategy uses username and password, we will override with email
-       usernameField : 'username',
-       emailField    : 'email',
-       passwordField : 'password',
-       passReqToCallback : true // allows us to pass back the entire request to the callback
-   },
-   function(req, username, email, password, done) {
-            process.nextTick(function() {
-   User.findOne({'local.email' :  email }, function(err, user) {
-       if (err)
-           return done(err);
-       if (user) {
-           return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-       } else {
-           var newUser            = new User();
-           newUser.local.email     =req.body.email;
-           newUser.local.username    = req.body.username;
-           newUser.local.password = req.body.password;
-
-         newUser.save(function(err){
-            if (err)
-              throw err;
-            return (null,newUser);
-          });
-       }
-
-   });
-
-   });
-
-}));
-passport.use('local-login',new LocalStrategy({
-  emailField:'email',
-  passwordField:'password',
-  passReqToCallback:true
-},
-function(req,email,password,done){
-  process.nextTick(function(){
-    User.findOne({'local-username':email},function(err,user){
-      if(err)
-         return done(err);
-      if (!user) {
-         return done(null,false,req.flash('loginMessage','No User found'));
-      }
-      if (user.local.password!=password) {
-        return done(null,false,req.flash('loginMessage','invalid password'));
-      }
-      return done(null,user);
-    });
-  });
-})); 
+  
 
  passport.use(new FacebookStrategy({
 
@@ -107,3 +56,6 @@ function(token,refreshToken,profile,done){
 }));
 
 }
+
+ 
+

@@ -4,11 +4,7 @@ var mongoose = require('mongoose'),
     SALT_WORK_FACTOR = 10;
 
 var UserSchema = new Schema({
-      local: {
-        username: { type: String },
-        email : { type: String, require: true, unique: true },
-        password: { type: String, require:true },
-    },
+     
     facebook: {
         id           : { type: String },
         token        : { type: String },
