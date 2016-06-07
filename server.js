@@ -22,12 +22,14 @@ app.use(session({secret:'anystringoftext',
                 saveUninitialized:true,
                 resave:true}));
 
-require('./app/routes.js')(app, passport);
+
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
 app.set('view engine', 'ejs');
+
+require('./app/routes.js')(app, passport);
 
 app.listen(port);
 console.log('The magic happens on port ' + port);
