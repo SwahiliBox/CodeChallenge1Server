@@ -5,6 +5,7 @@ var mongoose = require('mongoose'),
     SALT_WORK_FACTOR = 10,
     bcrypt   = require('bcrypt-nodejs');
 
+<<<<<<< HEAD
 var userSchema=mongoose.Schema({
   google : {
         id : String,
@@ -13,6 +14,9 @@ var userSchema=mongoose.Schema({
         name : String
     },
      
+=======
+var UserSchema = new Schema({
+>>>>>>> 11b568dcc1ac2cffebba4efd147dbbcc8539bac6
     facebook: {
         id           : { type: String },
         token        : { type: String },
