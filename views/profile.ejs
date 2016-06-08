@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 <!-- views/profile.ejs -->
 <!doctype html>
+=======
+ <!doctype html>
+>>>>>>> 65441380c93e4cfc7d536b5ecf2cbe29656f3949
 <html>
 <head>
     <title>Node Authentication</title>
@@ -16,9 +20,11 @@
         <h1><span class="fa fa-anchor"></span> Profile Page</h1>
         <a href="/logout" class="btn btn-default btn-sm">Logout</a>
     </div>
+</div>
 
     <div class="row">
 
+<<<<<<< HEAD
         <div class="col-sm-6">
             <div class="well">
                 <h3 class="text-danger"><span class="fa fa-google-plus"></span> Google</h3>
@@ -28,12 +34,30 @@
                         <strong>token</strong>: <%= user.google.token %><br>
                         <strong>email</strong>: <%= user.google.email %><br>
                         <strong>name</strong>: <%= user.google.name %>
+=======
+      
+        <!-- FACEBOOK INFORMATION -->
+        <div class="col-sm-6">
+            <div class="well">
+                <h3 class="text-primary"><span class="fa fa-facebook"></span> Facebook</h3>
+
+                    <p>
+                        <strong>id</strong>: <%= user.facebook.id %><br>
+                        <strong>token</strong>: <%= user.facebook.token %><br>
+                        <strong>email</strong>: <%= user.facebook.email %><br>
+                        <strong>name</strong>: <%= user.facebook.name %>
+>>>>>>> 65441380c93e4cfc7d536b5ecf2cbe29656f3949
                     </p>
 
             </div>
         </div>
+<<<<<<< HEAD
     </div>
 
 </div>
+=======
+
+        
+>>>>>>> 65441380c93e4cfc7d536b5ecf2cbe29656f3949
 </body>
 </html>

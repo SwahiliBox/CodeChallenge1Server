@@ -1,19 +1,3 @@
-<<<<<<< HEAD
-var mongoose=require('mongoose');
-var bcrypt   = require('bcrypt-nodejs');
-
-var userSchema=mongoose.Schema({
-  google : {
-        id : String,
-        token : String,
-        email : String,
-        name : String
-    }
-
-});
-
-module.exports = mongoose.model('User',userSchema);
-=======
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     bcrypt = require('bcrypt'),
@@ -57,4 +41,3 @@ UserSchema.methods.comparePassword = function(candidatePassword, cb) {
 };
 
 module.exports = mongoose.model('User', UserSchema);
->>>>>>> 65441380c93e4cfc7d536b5ecf2cbe29656f3949
