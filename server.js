@@ -23,7 +23,8 @@ app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(session({secret:'anystringoftext',
                 saveUninitialized:true,
-                resave:true}));
+                resave:true
+                }));
 
 
 app.use(passport.initialize());
@@ -40,14 +41,7 @@ app.use(flash());
 
 app.set('view engine', 'ejs');
 
-/*var auth=express.Router();
-require('./app/routes/auth.js')(auth,passport);
-app.use('/auth',auth);
 
-var secure=express.Router();
-require('./app/routes/secure.js')(secure,passport);
-app.use('/',secure);
-*/
 require('./app/routes.js')(app, passport);
 
 app.listen(port);

@@ -33,7 +33,8 @@ function(token,refreshToken,profile,done){
           return done(err);
         if (user) {
           return done(null,user);
-        }else{
+        } 
+        else{
           //if no user found
           var newUser=new User();
           //set facebook infomation
