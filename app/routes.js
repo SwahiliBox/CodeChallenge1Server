@@ -1,11 +1,11 @@
 
-var User=require('./models/users');
+var User=require('./models/user');
 module.exports=function(app,passport){
     app.get('/',function(req,res){
       res.render('index.ejs');
     });
 
-    
+
     //route for google+
     app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
 
@@ -23,7 +23,7 @@ module.exports=function(app,passport){
     });
 
 
-    // FACEBOOK ROUTES 
+    // FACEBOOK ROUTES
     // route for facebook authentication and login
     app.get('/auth/facebook',
 passport.authenticate('facebook', { scope: ['email']}),
@@ -47,7 +47,7 @@ function isLoggedIn(req, res, next) {
     // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
-  
+
     // if they aren't redirect them to the home page
     res.redirect('/');
 }

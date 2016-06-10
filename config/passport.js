@@ -1,16 +1,12 @@
-<<<<<<< HEAD
-// config/passport.js
 
-// load all the things we need
 var passport = require('passport');
 //var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
+var FacebookStrategy=require('passport-facebook').Strategy;
+var configAuth      =require('./auth');
 // load up the user model
-var User = require('../app/models/users');
-
-// load the auth variables
-var configAuth = require('./auth');
+var User = require('../app/models/user');
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {
@@ -69,25 +65,7 @@ module.exports = function(passport) {
         });
 
     }));
-};
-=======
-//var LocalStrategy   = require('passport-local').Strategy;
-var FacebookStrategy=require('passport-facebook').Strategy;
-var User            = require('../app/models/user');
-var configAuth      =require('./auth');
-module.exports = function(passport) {
 
-  // used to serialize the user for the session
-     passport.serializeUser(function(user, done) {
-         done(null, user.id);
-     });
-
-     // used to deserialize the user
-     passport.deserializeUser(function(id, done) {
-          User.findById(id, function(err, user) {
-             done(err, user);
-         });
-     });
   
 
  passport.use(new FacebookStrategy({
@@ -133,4 +111,3 @@ function(token,refreshToken,profile,done){
 
  
 
->>>>>>> 65441380c93e4cfc7d536b5ecf2cbe29656f3949
