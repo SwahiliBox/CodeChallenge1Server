@@ -1,4 +1,4 @@
-var mongoose = require("mongoose");
+/*var mongoose = require("mongoose");
 
 var Event = mongoose.Schema({
 
@@ -38,4 +38,4 @@ var Event = mongoose.Schema({
 
 });
 
-module.exports = mongoose.model("Event", Event);
+module.exports = mongoose.model("Event", Event);*/
