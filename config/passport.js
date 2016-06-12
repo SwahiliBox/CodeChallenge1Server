@@ -23,7 +23,7 @@ module.exports = function(passport) {
     });
   });
 
-  function serializeClient(req, res, next) {  
+  function serializeClient(req, res, next) {
   if (req.query.permanent === 'true') {
     db.client.updateOrCreate({
       user: req.user
@@ -41,7 +41,7 @@ module.exports = function(passport) {
 }
 
 
-const db = {  
+const db = {
   updateOrCreate: function(user, cb){
     // db dummy, we just cb the user
     cb(null, user);
@@ -98,7 +98,7 @@ const db = {
 
     }));
 
-  
+
 
  passport.use(new FacebookStrategy({
 
@@ -111,7 +111,7 @@ const db = {
 //facebook sends back token to profile
 function(token,refreshToken,profile,done){
     process.nextTick(function(){
-      User.findOne({'facebook.id':'profile.id'},function(err,user){
+      User.findOne({'facebook.id':profile.id},function(err,user){
         if(err)
           return done(err);
         if (user) {
@@ -125,13 +125,13 @@ function(token,refreshToken,profile,done){
           newUser.facebook.token=token;
           newUser.facebook.name=profile.name.givenName + ' ' + profile.name.familyName;
           //newUser.facebook.email=profile.emails[0].value;
-          
+
           newUser.save(function(err){
             if (err)
               throw err;
             return done(null,newUser);
           });
-     
+
       }
   });
 });
@@ -139,9 +139,9 @@ function(token,refreshToken,profile,done){
 
 }
 
- 
 
-function generateRefreshToken(req, res, next) {  
+
+function generateRefreshToken(req, res, next) {
   if (req.query.permanent === 'true') {
     req.token.refreshToken = req.user.clientId.toString() + '.' + crypto.randomBytes(
       40).toString('hex');
