@@ -1,10 +1,6 @@
-
-var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    bcrypt = require('bcrypt'),
-    SALT_WORK_FACTOR = 10,
-    bcrypt   = require('bcrypt-nodejs');
-
+<<<<<<< HEAD
+var mongoose=require('mongoose');
+var bcrypt   = require('bcrypt-nodejs');
 
 var userSchema=mongoose.Schema({
   google : {
@@ -12,16 +8,27 @@ var userSchema=mongoose.Schema({
         token : String,
         email : String,
         name : String
-    },
+    }
+
+});
+
+module.exports = mongoose.model('User',userSchema);
+=======
+var mongoose = require('mongoose'),
+    Schema = mongoose.Schema,
+    bcrypt = require('bcrypt'),
+    SALT_WORK_FACTOR = 10;
+
+var UserSchema = new Schema({
+     
     facebook: {
         id           : { type: String },
         token        : { type: String },
         email        : { type: String },
         name         : { type: String }
     }
-   
 });
-userSchema.pre('save', function(next) {
+UserSchema.pre('save', function(next) {
     var user = this;
 
     // only hash the password if it has been modified (or is new)
@@ -42,11 +49,12 @@ userSchema.pre('save', function(next) {
     });
 });
 //cpmpare passport
-userSchema.methods.comparePassword = function(candidatePassword, cb) {
+UserSchema.methods.comparePassword = function(candidatePassword, cb) {
     bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
         if (err) return cb(err);
         cb(null, isMatch);
     });
 };
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('User', UserSchema);
+>>>>>>> 65441380c93e4cfc7d536b5ecf2cbe29656f3949

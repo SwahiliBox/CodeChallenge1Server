@@ -21,7 +21,6 @@ module.exports=function(app,passport){
             user : req.user // get the user out of session and pass to template
         });
     });
-    
 
 
     // FACEBOOK ROUTES
@@ -51,6 +50,4 @@ function isLoggedIn(req, res, next) {
 
     // if they aren't redirect them to the home page
     res.redirect('/');
-
-} 
-
+}
