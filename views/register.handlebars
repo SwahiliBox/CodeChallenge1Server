@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SignUp</title>
+</head>
+<body>
+  <!--checking if not empty-->
+  {{#if errors}}
+    {{#each errors}}
+    <div class="alert danger">{{msg}}</div>
+    {{/each}}
+{{/if}}
+<form method="post" action="http://192.168.1.100:3000/users/register">
+<input type="text" class="form-control" placeholder="firstname" name="firstname"/></br>
+<input type="text" class="form-control" placeholder="surname" name="surname"/></br>
+<input type="text" class="form-control" placeholder="Username" name="username"/></br>
+<input type="email" class="form-control" placeholder="Email" name="email"/></br>
+<input type="password" class="form-control" placeholder="password" name="password"/></br>
+<input type="password" class="form-control" placeholder="confirm password" name="password2"/></br>
+<button type="submit" class="btn btn-default">submit</button>
+</form>
+</body>
+</html>

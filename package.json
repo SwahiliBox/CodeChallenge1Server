@@ -1,39 +1,41 @@
 {
-  "name": "server.js",
+  "name": "loginapp",
   "version": "1.0.0",
-  "description": "An app for [SwahiliBox](swahilibox.co.ke) that will ensure community members have info on any meetings events and new info available to them on their phones at the same time members to be able to RSVP for events and meetings on their mobile phones It will also allow SwahiliBox to keep tabs on the numbers attending these meetings and events while at the same time enable them to keep their members well updated on any issues arising",
-  "main": "server.js",
+  "description": "simple authentication system",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kingdoshi",
+  "license": "ISC",
   "dependencies": {
     "bcrypt": "^0.8.6",
+    "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.1",
     "connect-flash": "^0.1.1",
     "cookie-parser": "^1.4.3",
-    "ejs": "^2.4.2",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
-    "express-session": "^1.13.0",
-    "jsonwebtoken": "^7.0.0",
+    "express-messages": "^1.0.1",
+    "express-sessions": "^1.0.5",
+    "express-validation": "^0.6.0",
+    "express-validator": "^2.20.5",
+    "joi": "^8.4.0",
     "mongodb": "^2.1.21",
     "mongoose": "^4.4.19",
-    "morgan": "^1.7.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
     "passport-http": "^0.3.0",
-    "passport-local": "^1.0.0"
+    "passport-http-bearer": "^1.0.1",
+    "passport-http-oauth": "^0.1.3",
+    "passport-local": "^1.0.0",
+    "passport-oauth": "^1.0.0",
+    "passport-openid": "^0.4.0",
+    "passport-twitter": "^1.0.4"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/SwahiliBox/CodeChallenge1Server.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/SwahiliBox/CodeChallenge1Server/issues"
-  },
-  "homepage": "https://github.com/SwahiliBox/CodeChallenge1Server#readme"
+  "directories": {
+    "test": "test"
+  }
 }
