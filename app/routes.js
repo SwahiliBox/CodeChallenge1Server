@@ -11,17 +11,24 @@ module.exports=function(app,passport){
 
     app.get('/auth/google/callback',
             passport.authenticate('google', {
-                    successRedirect : '/profile',
+                    successRedirect : '/profgmail',
                     failureRedirect : '/'
             }));
     //route for processing showing the profile page
-    app.get('/profile', isLoggedIn, function(req, res) {
+    app.get('/profgmail', isLoggedIn, function(req, res) {
 
-        res.render('profile.ejs', {
+        res.render('profgmail.ejs', {
             user : req.user // get the user out of session and pass to template
         });
     });
-    
+
+    app.get('/proffacebook', isLoggedIn, function(req, res) {
+
+        res.render('proffacebook.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
 
 
     // FACEBOOK ROUTES
@@ -32,7 +39,7 @@ passport.authenticate('facebook', { scope: ['email']}),
 });
     // handle the callback after facebook has authenticated the user
     app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {successRedirect : '/profile',
+        passport.authenticate('facebook', {successRedirect : '/proffacebook',
                                            failureRedirect : '/'
         }));
 //logout
@@ -52,5 +59,4 @@ function isLoggedIn(req, res, next) {
     // if they aren't redirect them to the home page
     res.redirect('/');
 
-} 
-
+}

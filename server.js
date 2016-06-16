@@ -1,5 +1,4 @@
 var express=require('express');
-var http = require('http');
 var app=express();
 var port=process.env.PORT || 3000;
 
@@ -33,7 +32,7 @@ app.use(session({secret:'anystringoftext',
 
 
 app.use(passport.initialize());
-app.use(passport.initialize());  
+app.use(passport.initialize());
 
 app.use(passport.session());
 app.use(flash());
@@ -41,11 +40,5 @@ app.use(flash());
 require('./app/routes.js')(app,passport);
 
 
-
-
-require('./app/routes.js')(app, passport);
-
 app.listen(3000);
 console.log('Server running on localhost: port ' + port);
-
-
