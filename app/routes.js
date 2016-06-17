@@ -17,16 +17,13 @@ module.exports=function(app,passport){
     //route for processing showing the profile page
     app.get('/profgmail', isLoggedIn, function(req, res) {
 
-        res.render('profgmail.ejs', {
-            user : req.user // get the user out of session and pass to template
-        });
+        res.send( req.user );// get the user out of session and pass to template
+
     });
 
     app.get('/proffacebook', isLoggedIn, function(req, res) {
 
-        res.render('proffacebook.ejs', {
-            user : req.user // get the user out of session and pass to template
-        });
+        res.send( req.user );
     });
 
 
