@@ -1,33 +1,69 @@
-var express=require('express');
-var app=express();
-var port=process.env.PORT || 3000;
-var bodyParser   = require('body-parser');
-var cookieParser=require('cookie-parser');
-var session=require('express-session');
-var bodyParser=require('body-parser');
-var morgan=require('morgan');
-var mongoose=require('mongoose');
-var mongodb=require('mongodb');
-var passport = require('passport');
-var passportLocal = require('passport-local');
-var flash    = require('connect-flash');
+var express = require('express');
+var mongoose = require('mongoose');
+var assert = require('assert');
+var http = require('http');
+var bodyParser = require('body-parser');
 
-var configDB = require('./config/database.js');
-mongoose.connect(configDB.url);
-require('./config/passport.js')(passport);
-app.use(morgan('dev'));
-app.use(cookieParser());
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(session({secret:'anystringoftext',
-                saveUninitialized:true,
-                resave:true}));
+var app = express();
+app.use(bodyParser);
 
-require('./app/routes.js')(app, passport);
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(flash());
+var server = http.createServer(app);
 
-app.set('view engine', 'ejs');
+server.listen(7000);
+console.log('server listening on port 7000');
 
-app.listen(port);
-console.log('The magic happens on port ' + port);
+
+
+var user_events = require('./models/user_events');
+
+var url = 'mongodb://localhost:27017/swahiliboxdb';
+
+mongoose.connect(url);
+
+var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+
+
+db.once('open', function(){
+
+
+	console.log('connection successful');
+
+	server.on('request', request);
+
+	function request(request, response) {
+      
+      var details = '';
+
+    request.on('data', function(data) 
+    {
+        details = JSON.parse(data);
+
+
+       user_events.create({
+
+            username : details.username,
+            eventname : details.eventname
+        });
+         
+        });
+
+    
+     
+     
+    request.on('end', function() 
+    {  console.log(details);
+        
+        
+    });
+
+  
+ } ;
+
+  
+
+
+});
+
+
