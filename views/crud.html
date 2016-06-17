@@ -12,11 +12,11 @@
  </head>
  <body ng-app="mainApp" ng-controller="myController">
      <marquee><h2>Welcome | SwahiliBox Events </h2></marquee>
-    
+
     <div class="read">
        <ul>
           <li ng-repeat="event in events">
-           {{ event._id + " " + event.title + " " +event.venue + " " + event.date + " " + event.time }}</li>
+           {{ event._id + " " + event.title + " " +event.venue + " "  +event.description + " "  + event.date + " " + event.time }}</li>
        </ul>
 
        <script type="text/javascript">
@@ -37,6 +37,7 @@
            <form method="post" action="/insert">
              	Event Title: <input type="text" name="title">
              	Event Venue: <input type="text" name="venue">
+              Event Description: <input type="text" name="description">
              	Event Date: <input type="text" name="date">
              	Event Time: <input type="text" name="time">
              	RSVP: <input type="checkbox" name="rsvp" value="true">
@@ -52,6 +53,7 @@
                 Event Id: <input type="text" name="id">
                 Event Title: <input type="text" name="title">
                 Event Venue: <input type="text" name="venue">
+                Event Description: <input type="text" name="description">
                 Event Date: <input type="text" name="date">
                 Event Time: <input type="text" name="time">
                 <input type="submit" style="background-color:blue" name="submit" value="Update">

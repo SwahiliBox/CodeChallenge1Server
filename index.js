@@ -24,12 +24,13 @@ application.use(express.static(path.join(__dirname, 'views')));
 //Create a Schema model to hold your events data.
 var Events = mongoose.model('Events', {
 	title : String,
-    venue : String,
-    date : {type :Date,
+	description : String,
+  venue : String,
+  date : {type :Date,
             default: Date.now
           },
-    time : String,
-    rsvp : {type : Boolean,
+  time : String,
+  rsvp : {type : Boolean,
         default : false}
 });
 
@@ -50,10 +51,11 @@ application.get('/events', function(request, response){
 //Insert events data into collection.
 application.post('/insert', function(request, response){
     Events.create({title : request.body.title,
-                   venue : request.body.venue,
-                   date : request.body.date,
-                   time : request.body.time,
-                   rsvp : request.body.rsvp
+                  venue : request.body.venue,
+								  description :request.body.description,
+                  date : request.body.date,
+                  time : request.body.time,
+                  rsvp : request.body.rsvp
                  },
         function(error, events){
              if(error)
@@ -84,6 +86,7 @@ application.post('/update', function(request, response){
    var terms = {
        title : request.body.title,
        venue : request.body.venue,
+			 description : request.body.description,
        date : request.body.date,
        time : request.body.time
        }
