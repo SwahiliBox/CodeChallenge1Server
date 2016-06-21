@@ -1,3 +1,4 @@
-module.exports={
-  'url' : 'mongodb://localhost:27017/CodeChallenge1Server'
+module.exports = {
+    'url' : 'mongodb://localhost/admindatabase'
+
 };
