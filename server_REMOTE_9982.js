@@ -1,9 +1,8 @@
-
 var express=require('express');
 var app=express();
 var port=process.env.PORT || 3000;
 
-//initialize dependencies required for the app
+//var cookieParser=require('cookie-parser');
 var session=require('express-session');
 var bodyParser=require('body-parser');
 var morgan=require('morgan');
@@ -41,6 +40,5 @@ app.use(flash());
 require('./app/routes.js')(app,passport);
 
 
-app.listen(port);
+app.listen(3000);
 console.log('Server running on localhost: port ' + port);
-
