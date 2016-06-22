@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 var mongoose = require('mongoose');
 var bcrypt   = require('bcrypt-nodejs');
 var userSchema = mongoose.Schema({
@@ -18,4 +16,3 @@ userSchema.methods.validPassword = function(password) {
 };
 
 module.exports = mongoose.model('User', userSchema);
->>>>>>> b3fb236e39c14c5ee9ff98905cf78166e5a960e3
