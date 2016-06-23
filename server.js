@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-
 var express=require('express');
 var app=express();
 var port=process.env.PORT || 3000;
@@ -32,9 +30,9 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(session({secret:'anystringoftext',
-                saveUninitialized:true,
-                resave:false
-                }));
+      saveUninitialized:true,
+      resave:false
+}));
 
 
 app.use(passport.initialize());
@@ -48,7 +46,6 @@ require('./app/routes.js')(app,passport);
 
 app.listen(port);
 console.log('Server running on localhost: port ' + port);
-=======
 var express = require('express');
 var mongoose = require('mongoose');
 var assert = require('assert');
@@ -79,43 +76,35 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function(){
 
 
-	console.log('connection successful');
+  console.log('connection successful');
 
-	server.on('request', request);
+  server.on('request', request);
 
-	function request(request, response) {
-      
-      var details = '';
+  function request(request, response) {
+
+    var details = '';
 
     request.on('data', function(data) 
     {
-        details = JSON.parse(data);
+      details = JSON.parse(data);
 
 
-       user_events.create({
+      user_events.create({
 
-            username : details.username,
-            eventname : details.eventname
-        });
-         
-        });
+          username : details.username,
+          eventname : details.eventname
+      });
 
-    
-     
-     
-    request.on('end', function() 
-    {  console.log(details);
-        
-        
     });
 
-  
- } ;
-
-  
 
 
+
+    request.on('end', function() 
+    {  console.log(details);
+
+
+    });
+  } ;
 });
 
-
->>>>>>> 3c34214821f0adcbfa74291cf11173fbf0fd3576
