@@ -1,6 +1,9 @@
 
-var User=require('./models/user');
-var Events=require('./models/event');
+var User = require('./models/user');
+var Events = require('./models/event');
+var Rsvp = require('./models/rsvp');
+var mongoose = require('mongoose');
+var db = mongoose.connection;
 module.exports=function(app,passport){
 
     //GOOGLE ROUTES
@@ -102,6 +105,12 @@ module.exports=function(app,passport){
       });
     });
 
+    app.post('/rsvp', function(req, res){
+      console.log("Data reception working");
+          
+      
+    });
+
 };
 
 
@@ -115,3 +124,24 @@ function isLoggedIn(req, res, next) {
     res.send('Authentication unsuccessful');
 
 }
+
+/* var db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function(){
+  console.log('connection successful');
+  server.on('request', request);
+  function request(request, response) {
+        var details = '';
+        request.on('data', function(data) {
+            details = JSON.parse(data);
+            user_events.create({
+                username : details.username,
+                eventname : details.eventname
+            });
+        });
+        request.on('end', function(){
+          console.log(details);
+        });
+    } ;
+});  */
