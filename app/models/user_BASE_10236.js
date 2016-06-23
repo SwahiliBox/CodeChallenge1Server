@@ -5,20 +5,14 @@ var userSchema=mongoose.Schema({
     username:String,
     //email:String,
     password:String
-  },
+  }
   facebook:{
     id:String,
     token:String,
     email:String,
     name:String
-  },
-  google : {
-        id : String,
-        token : String,
-        email : String,
-        name : String
-    }
 
+  }
 });
 userSchema.methods.generateHash=function(password){
   return bcrypt.hashsync(password,bcrypt.genSaltSync(9));

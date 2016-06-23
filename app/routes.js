@@ -1,52 +1,107 @@
-var user = require('./models/user.js');
-module.exports = function(app, passport) {
-	 app.get('/', function(req, res) {
-        res.render('index.ejs');
-    });
 
-    	 // show the login form
-        app.get('/login', function(req, res) {
-           res.render('login.ejs', { message: req.flash('loginMessage') });
-        });
-        app.post('/login', passport.authenticate('local-login', {
-            successRedirect : '/profile', // redirect to the secure profile section
-            failureRedirect : '/signup', // redirect back to the signup page if there is an error
-            failureFlash : true // allow flash messages
+var User=require('./models/user');
+var Events=require('./models/event');
+module.exports=function(app,passport){
+
+    //GOOGLE ROUTES
+    //route for google authentication and login
+    app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+
+    app.get('/auth/google/callback', passport.authenticate('google', {
+                    successRedirect : '/profgmail',
+                    failureRedirect : '/'
+            }));
+
+
+    // FACEBOOK ROUTES
+    // route for facebook authentication and login
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email']}));
+
+    // handle the callback after facebook has authenticated the user
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {successRedirect : '/proffacebook',
+                                           failureRedirect : '/'
         }));
 
-    app.get('/signup',function(req,res){
-      res.render('signup.ejs',{message:req.flash('signupMessage')});
+
+    //route for processing showing the profile page
+    app.get('/profgmail', isLoggedIn, function(req, res) {
+        res.send( req.user );// get the user out of session and pass to template
     });
 
-    app.post('/signup',passport.authenticate('local-signup',{
-        successRedirect : '/profile', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
+    app.get('/proffacebook', isLoggedIn, function(req, res) {
+        res.send( req.user );
+    });
 
-    //profile
-     app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs', {
-            user : req.user
+    //Send file crud.html
+    app.get('/crud', function(request, response){
+        response.sendFile('crud.html', {'root' : 'views'});
+    });
+
+    //send events to frontend
+    app.get('/events', function(req, res){
+    	Events.find({}, function(error, events){
+    		if(error)
+    			res.send(error)
+    		res.json(events)
+    	 });
+    });
+
+    //insert values into mongo db
+    app.post('/insert', function(req, res){
+        Events.create({
+          title : req.body.title,
+          venue : req.body.venue,
+          date : req.body.date,
+          time : req.body.time,
+          rsvp : req.body.rsvp
+        },
+        function(error, events){
+           if(error)
+              res.send(error)
+
+           Events.find({}, function(error, events){
+              if(error)
+                  res.send(error);
+
+              res.redirect('crud.html');
+           });
         });
     });
 
-    app.get('/:username/:email/:password',function(req,res){
-      var newUser=new User();
-      newUser.local.username = req.params.username;
-      newUser.local.email = req.params.email;
-      newUser.local.password=req.params.password;
-      console.log(newUser.local.username +" "+newUser.local.email+" "+newUser.local.password);
-      newUser.save(function(err){
-        if(err) throw err;
-      });
-      res.send("Success");
+    //Deleting events data from collection.
+    app.post('/delete', function(req, res){
+       Events.remove({ _id : req.body.id}, function(error, events){
+          if(error)
+            res.send(error)
+          Events.find({}, function(error, events){
+            if(error)
+              res.send(error);
+            res.redirect('crud.html');
+          });
+       });
     });
-//logout
-		 app.get('/logout', function(req, res) {
-			 req.logout();
-			 res.redirect('/');
-	 });
+
+    //Updating events data in collection.
+    app.post('/update', function(req, res){
+       var terms = {
+           title : req.body.title,
+           venue : req.body.venue,
+           date : req.body.date,
+           time : req.body.time
+           }
+      Events.update({_id : req.body.id}, {$set: terms}, function(error, events){
+         if(error)
+          res.send(error);
+        Events.find({}, function(error, events){
+          if(error)
+            res.send(error);
+          console.log(terms);
+          res.redirect('crud.html');
+        });
+      });
+    });
+
 };
 
 
@@ -57,5 +112,6 @@ function isLoggedIn(req, res, next) {
         return next();
 
     // if they aren't redirect them to the home page
-    res.redirect('/');
+    res.send('Authentication unsuccessful');
+
 }
