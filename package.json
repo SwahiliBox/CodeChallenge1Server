@@ -49,9 +49,5 @@
     "url": "https://github.com/SwahiliBox/CodeChallenge1Server/issues"
   },
   "homepage": "https://github.com/SwahiliBox/CodeChallenge1Server#readme"
-  },
-  "devDependencies": {},
-  "directories": {
-    "test": "test"
   }
-}
+  
