@@ -1,7 +1,4 @@
-<<<<<<< HEAD
 
-=======
->>>>>>> abd60916f143cb7072d205f30824db8dcaa3b1f1
 var express=require('express');
 var app=express();
 var port=process.env.PORT || 3000;
@@ -36,9 +33,9 @@ app.use(express.static(path.join(__dirname, 'views')));
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(session({secret:'anystringoftext',
-      saveUninitialized:true,
-      resave:false
-}));
+                saveUninitialized:true,
+                resave:false
+                }));
 
 
 app.use(passport.initialize());
@@ -47,34 +44,12 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-<<<<<<< HEAD
-=======
-require('./app/routes.js')(app,passport);
-
-
-app.listen(port);
-console.log('Server running on localhost: port ' + port);
-var express = require('express');
-var mongoose = require('mongoose');
-var assert = require('assert');
-var http = require('http');
-var bodyParser = require('body-parser');
-
-var app = express();
-app.use(bodyParser);
-
-var server = http.createServer(app);
-
-server.listen(7000);
-console.log('server listening on port 7000');
->>>>>>> abd60916f143cb7072d205f30824db8dcaa3b1f1
 
 /*
 
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
-<<<<<<< HEAD
 db.once('open', function(){ 
 	console.log('connection successful'); 
 	app.on('request', request);
@@ -98,42 +73,3 @@ require('./app/routes.js')(app,passport);
 
 server.listen(port);
 console.log('Server running on localhost: port ' + port);
-=======
-
-
-db.once('open', function(){
-
-
-  console.log('connection successful');
-
-  server.on('request', request);
-
-  function request(request, response) {
-
-    var details = '';
-
-    request.on('data', function(data) 
-    {
-      details = JSON.parse(data);
-
-
-      user_events.create({
-
-          username : details.username,
-          eventname : details.eventname
-      });
-
-    });
-
-
-
-
-    request.on('end', function() 
-    {  console.log(details);
-
-
-    });
-  } ;
-});
-
->>>>>>> abd60916f143cb7072d205f30824db8dcaa3b1f1

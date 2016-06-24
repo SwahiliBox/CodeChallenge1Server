@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> abd60916f143cb7072d205f30824db8dcaa3b1f1
 var express=require('express');
 var app=express();
 var port=process.env.PORT || 3000;
-var http=require('http');
-var server=http.createServer(app);
 
 //initialize required modules for the app
 var session=require('express-session');
@@ -21,7 +15,7 @@ var passport = require('passport');
 var passportLocal = require('passport-local');
 var flash    = require('connect-flash');
 var MongoStore=require('connect-mongo')(session);
-var Rsvp = require('./app/models/rsvp');
+
 //connect to mongo database
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url);
@@ -47,8 +41,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-<<<<<<< HEAD
-=======
 require('./app/routes.js')(app,passport);
 
 
@@ -67,38 +59,18 @@ var server = http.createServer(app);
 
 server.listen(7000);
 console.log('server listening on port 7000');
->>>>>>> abd60916f143cb7072d205f30824db8dcaa3b1f1
 
-/*
+
+
+var user_events = require('./models/user_events');
+
+var url = 'mongodb://localhost:27017/swahiliboxdb';
+
+mongoose.connect(url);
 
 var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
-<<<<<<< HEAD
-db.once('open', function(){ 
-	console.log('connection successful'); 
-	app.on('request', request);
-	function request(request, response) {
-        var details = '';
-        request.on('data', function(data) {
-            details = JSON.parse(data);
-            Rsvp.create({
-                username : details.username,
-                eventname : details.eventname
-            });
-        });
-        request.on('end', function(){
-          console.log(details);
-        });
-    } ;
-});
- 
-*/
-require('./app/routes.js')(app,passport);
-
-server.listen(port);
-console.log('Server running on localhost: port ' + port);
-=======
 
 
 db.once('open', function(){
@@ -136,4 +108,3 @@ db.once('open', function(){
   } ;
 });
 
->>>>>>> abd60916f143cb7072d205f30824db8dcaa3b1f1
