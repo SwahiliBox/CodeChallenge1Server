@@ -25,6 +25,7 @@ module.exports=function(app,passport){
         }));
 
 
+
     //route for processing showing the profile page
     app.get('/profgmail', isLoggedIn, function(req, res) {
         res.send( req.user );// get the user out of session and pass to template
@@ -117,9 +118,9 @@ module.exports=function(app,passport){
           console.log(rsvp);
           console.log("successful insert")
         });
-      
+
       console.log("Successful read");
-      
+
     });
 };
 
