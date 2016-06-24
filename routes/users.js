@@ -23,7 +23,7 @@ router.post('/register',function(req,res){
   //validation
   req.checkBody('firstname','firstname is required').notEmpty();
   req.checkBody('surname','surname is required').notEmpty();
-//  req.checkBody('name','name is required').notEmpty();
+
   req.checkBody('email','Email is required').notEmpty();
   req.checkBody('email','Email is not valid').isEmail();
   req.checkBody('username','Username is required').notEmpty();

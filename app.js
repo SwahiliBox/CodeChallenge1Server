@@ -61,6 +61,10 @@ app.use(function(req,res,next){
 });
 app.use('/',routes);
 app.use('/users',users);
+// route for front-end -------------------------------------------------------------
+   app.get('*', function(req, res) {
+       res.sendfile('./public/index.html'); // load the single view file (angular will handle the page changes on the front-end)
+   });
 //set port
 app.set('port',(process.env.PORT || 3000));
 app.listen(app.get('port'),function(){
