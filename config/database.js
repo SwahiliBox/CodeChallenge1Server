@@ -1,4 +1,5 @@
+
 module.exports = {
-    'url' : 'mongodb://localhost/admindatabase'
+    'url' : 'mongodb://localhost/adminDB'
 
 };

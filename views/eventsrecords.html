@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="utf-8">
+  <title>SwahiliBox</title>
+    <style type="text/css">
+        .btn{
+          margin-top: 5px;
+        }
+        .text-right{
+          margin-left: 10px;
+        }
+       /* #create{
+          text-align: center;
+          margin-left: 130px;
+        }
+        #delete{
+          text-align: center;
+          margin-left: 70px;
+        }
+
+        #update{
+          text-align: center;
+          margin-left: 130px;
+        }*/
+       #create{width: 100px;}
+        #delete{width: 100px;}
+        #update{width: 100px;}
+    </style>
+     <style>
+        body { padding-top:40px; word-wrap:break-word; }
+    </style>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" ></script>
+ </head>
+ <body ng-app="mainApp" ng-controller="myController">
+     <marquee><h2>Welcome | SwahiliBox Events </h2></marquee>
+<div class="page-header text-right">
+    <a href="/signup" class="btn btn-default btn-md">Sign Up other admin</a>
+    <a href="/logout" class="btn btn-default btn-md">Logout</a>
+    </div>
+    <div class="read">
+       <ul>
+          <li ng-repeat="event in events">
+           {{ event._id + " " + event.title + " " +event.venue + " "  +event.description + " "  + event.date + " " + event.time }}</li>
+       </ul>
+
+       <script type="text/javascript">
+            var app = angular.module("mainApp", []);
+            app.controller("myController", function($scope, $http){
+                $http.get("/events")
+                .then(function(response){
+                    console.log(response);
+                    $scope.events = response.data;
+                });
+            });
+        </script>
+    </div>
+    <div class="container well">
+      <div class="row">
+        <div class="col-md-4 ">
+
+          <div class="create">
+       <fieldset id="create">
+         <legend style="font-weight:bold">CREATE</legend>
+           <form method="post" action="/insert">
+              Event Title: <input type="text" name="title">
+              Event Venue: <input type="text" name="venue">
+              Event Description: <input type="text" name="description">
+              Event Date: <input type="text" name="date">
+              Event Time: <input type="text" name="time">
+              <div class="btn btn-primary btn-success">CREATE</div>
+           </form>
+       </fieldset>
+       </div>
+
+
+
+        </div>
+
+         <div class="col-md-4">
+
+          <div class="update">
+       <fieldset id="update">
+         <legend style="font-weight:bold">UPDATE</legend>
+           <form method="post" action="/update">
+                Event Id: <input type="text" name="id">
+                Event Title: <input type="text" name="title">
+                Event Venue: <input type="text" name="venue">
+                Event Description: <input type="text" name="description">
+                Event Date: <input type="text" name="date">
+                Event Time: <input type="text" name="time">
+
+                <div class="btn btn-primary btn-warning">UPDATE</div>
+           </form>
+       </fieldset>
+       </div>
+
+
+
+        </div>
+
+        <div class="col-md-4">
+
+          <div id="delete">
+       <fieldset id="delete">
+          <legend style="font-weight:bold">DELETE</legend>
+           <form method="post" action="/delete">
+                Event Id: <input type="text" name="id">
+                <div class="btn btn-primary btn-danger">DELETE</div>
+           </form>
+       </fieldset>
+       </div>
+
+
+
+        </div>
+
+      </div>
+    </div>
+     
+
+      
+
+       
+
+  </body>
+</html>

@@ -1,7 +1,7 @@
-<<<<<<< HEAD
-=======
+
 var LocalStrategy   = require('passport-local').Strategy;
 var User            = require('../app/models/user');
+//var Event            = require('../app/models/event');
 module.exports = function(passport) {
 
     passport.serializeUser(function(user, done) {
@@ -64,4 +64,4 @@ module.exports = function(passport) {
     }));
 
 };
->>>>>>> b3fb236e39c14c5ee9ff98905cf78166e5a960e3
+
