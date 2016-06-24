@@ -16,7 +16,7 @@
         $.ajax({
             type: "POST",
             url: "http://192.168.1.123:3000/rsvp",
-            crossDomain:true, 
+            crossDomain:true,
             dataType: "json",
             data: JSON.stringify({username:user, eventname:event})
             cache: false,
@@ -25,12 +25,12 @@
             }
         });
       }
-    </script>>
+    </script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" ></script>
  </head>
  <body ng-app="mainApp" ng-controller="myController">
      <marquee><h2>Welcome | SwahiliBox Events </h2></marquee>
-    
+
     <div class="read">
        <ul>
           <li ng-repeat="event in events">

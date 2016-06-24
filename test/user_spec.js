@@ -1,5 +1,5 @@
 describe("User", function(){
-  // just any other user 
+  // just any other user
   it("has a name and email")
   it("can log in")
   it("can register by providing username, email and password")
