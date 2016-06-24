@@ -1,9 +1,8 @@
 var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
 
 //craete the user_event schema
 
-var rsvpSchema = new Schema({
+var rsvpSchema = mongoose.Schema({
 	username: {
 		type: String,
 		required : true
@@ -22,8 +21,4 @@ var rsvpSchema = new Schema({
 });
 
 //create a model to use the schema
-var Rsvp = mongoose.model('Rsvp', rsvpSchema);
-
-//make the model available to our node apllications
-
-module.exports = Rsvp;
+module.exports = mongoose.model('Rsvp', rsvpSchema);

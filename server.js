@@ -18,7 +18,7 @@ var passport = require('passport');
 var passportLocal = require('passport-local');
 var flash    = require('connect-flash');
 var MongoStore=require('connect-mongo')(session);
-
+var Rsvp = require('./app/models/rsvp');
 //connect to mongo database
 var configDB = require('./config/database.js');
 mongoose.connect(configDB.url);
@@ -44,15 +44,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-require('./app/routes.js')(app,passport);
 
+/*
 
-/* var db = mongoose.connection;
+var db = mongoose.connection;
 
 db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function(){
-	console.log('connection successful');
-	server.on('request', request);
+db.once('open', function(){ 
+	console.log('connection successful'); 
+	app.on('request', request);
 	function request(request, response) {
         var details = '';
         request.on('data', function(data) {
@@ -66,8 +66,10 @@ db.once('open', function(){
           console.log(details);
         });
     } ;
-    
-}); */
+});
+ 
+*/
+require('./app/routes.js')(app,passport);
 
 server.listen(port);
 console.log('Server running on localhost: port ' + port);

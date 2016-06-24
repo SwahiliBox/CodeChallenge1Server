@@ -1,9 +1,7 @@
-
+var express=require('express');
 var User = require('./models/user');
 var Events = require('./models/event');
 var Rsvp = require('./models/rsvp');
-var mongoose = require('mongoose');
-var db = mongoose.connection;
 module.exports=function(app,passport){
 
     //GOOGLE ROUTES
@@ -57,6 +55,7 @@ module.exports=function(app,passport){
           venue : req.body.venue,
           date : req.body.date,
           time : req.body.time,
+          desc : req.body.desc,
           rsvp : req.body.rsvp
         },
         function(error, events){
@@ -91,6 +90,7 @@ module.exports=function(app,passport){
            title : req.body.title,
            venue : req.body.venue,
            date : req.body.date,
+           desc : req.body.desc,
            time : req.body.time
            }
       Events.update({_id : req.body.id}, {$set: terms}, function(error, events){
@@ -105,12 +105,22 @@ module.exports=function(app,passport){
       });
     });
 
-    app.post('/rsvp', function(req, res){
-      console.log("Data reception working");
-          
+
+    app.post('/rsvp', function(req,res){
+        Rsvp.create({
+          username : req.body.username,
+          eventname : req.body.eventname
+        }, function(error,rsvp){
+          if(error)
+            console.log(error);
+
+          console.log(rsvp);
+          console.log("successful insert")
+        });
+      
+      console.log("Successful read");
       
     });
-
 };
 
 
@@ -124,24 +134,3 @@ function isLoggedIn(req, res, next) {
     res.send('Authentication unsuccessful');
 
 }
-
-/* var db = mongoose.connection;
-
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function(){
-  console.log('connection successful');
-  server.on('request', request);
-  function request(request, response) {
-        var details = '';
-        request.on('data', function(data) {
-            details = JSON.parse(data);
-            user_events.create({
-                username : details.username,
-                eventname : details.eventname
-            });
-        });
-        request.on('end', function(){
-          console.log(details);
-        });
-    } ;
-});  */
