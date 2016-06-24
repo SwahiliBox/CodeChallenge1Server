@@ -10,4 +10,11 @@ describe("User", function(){
     it("Can create other users")
     it("can delete and manager resources")
   })
+
+  describe("Merge login & master ", function () {
+    it("make sure App.js and Server.js are in one file which will be Server.js")
+    it("add loging routes to master routes(app->models->routes.js)")
+    it("add loging user to master(app->models->user.js)")
+
+  })
 })
