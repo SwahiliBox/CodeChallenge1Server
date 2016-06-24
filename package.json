@@ -1,19 +1,32 @@
 {
+<<<<<<< HEAD
   "name": "code",
+=======
+  "name": "loginapp",
+>>>>>>> 3ecdeda9beffc731742f4d75e303fae1a80eb45b
   "version": "1.0.0",
-  "description": "An app for [SwahiliBox](swahilibox.co.ke) that will ensure community members have info on any meetings events and new info available to them on their phones at the same time members to be able to RSVP for events and meetings on their mobile phones It will also allow SwahiliBox to keep tabs on the numbers attending these meetings and events while at the same time enable them to keep their members well updated on any issues arising",
-  "main": "server.js",
+  "description": "simple authentication system",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kingdoshi",
+  "license": "ISC",
   "dependencies": {
     "bcrypt": "^0.8.6",
+<<<<<<< HEAD
     "bcrypt-nodejs": "0.0.3",
+=======
+    "bcryptjs": "^2.3.0",
+>>>>>>> 3ecdeda9beffc731742f4d75e303fae1a80eb45b
     "body-parser": "^1.15.1",
     "chai": "^3.5.0",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^1.2.0",
     "cookie-parser": "^1.4.3",
-    "ejs": "^2.4.2",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
+<<<<<<< HEAD
     "express-session": "^1.13.0",
     "jsonwebtoken": "^7.0.0",
     "method-override": "^2.3.6",
@@ -45,4 +58,28 @@
     "url": "https://github.com/SwahiliBox/CodeChallenge1Server/issues"
   },
   "homepage": "https://github.com/SwahiliBox/CodeChallenge1Server#readme"
+=======
+    "express-messages": "^1.0.1",
+    "express-sessions": "^1.0.5",
+    "express-validation": "^0.6.0",
+    "express-validator": "^2.20.5",
+    "joi": "^8.4.0",
+    "mongodb": "^2.1.21",
+    "mongoose": "^4.4.19",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-google-oauth": "^1.0.0",
+    "passport-http": "^0.3.0",
+    "passport-http-bearer": "^1.0.1",
+    "passport-http-oauth": "^0.1.3",
+    "passport-local": "^1.0.0",
+    "passport-oauth": "^1.0.0",
+    "passport-openid": "^0.4.0",
+    "passport-twitter": "^1.0.4"
+  },
+  "devDependencies": {},
+  "directories": {
+    "test": "test"
+  }
+>>>>>>> 3ecdeda9beffc731742f4d75e303fae1a80eb45b
 }
