@@ -100,5 +100,30 @@
          </fieldset>
        </div>
 
+       <div id="user">
+         <fieldset>
+           <legend>User registration</legend>
+           <form method="post" action="/register">
+             username:<input type="text" name="username"/>
+             password:<input type="password" name="password"/>
+             First_name:<input type="text" name="firstname"/>
+             Sur_name:<input type="text" name="surname"/>
+             email:<input type="email" name="email"/>
+             <input type="submit" name="register"/>
+           </form>
+         </fieldset>
+       </div>
+
+        <div id="user">
+         <fieldset>
+           <legend>User login</legend>
+           <form method="post" action="/login">
+             username:<input type="text" name="username"/>
+             password:<input type="password" name="password"/>
+             <input type="submit" name="login"/>
+           </form>
+         </fieldset>
+       </div>
+
   </body>
 </html>

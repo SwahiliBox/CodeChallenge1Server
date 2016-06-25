@@ -1,8 +1,7 @@
 
 var passport = require('passport');
-//var LocalStrategy = require('passport-local').Strategy;
+var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-
 var FacebookStrategy=require('passport-facebook').Strategy;
 var configAuth      =require('./auth');
 // load up the user model
@@ -13,17 +12,19 @@ module.exports = function(passport) {
 
 
   // used to serialize the user for the session
-     passport.serializeUser(function(user, done) {
-         done(null, user.id);
-     });
+  passport.serializeUser(function(user, done) {
+      done(null, user.id);
+  });
 
-      passport.deserializeUser(function(id,done){
+  passport.deserializeUser(function(id,done){
     User.findById(id,function(err,user){
       done(err,user);
     });
   });
 
-  function serializeClient(req, res, next) {
+
+
+function serializeClient(req, res, next) {
   if (req.query.permanent === 'true') {
     db.client.updateOrCreate({
       user: req.user
@@ -47,14 +48,29 @@ const db = {
     cb(null, user);
   }
 };
-  passport.deserializeUser(function(id,done){
-    User.findById(id,function(err,user){
-      done(err,user);
+
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({'local.username' : username },function(err,user){
+      if(err) throw err;
+      if(!user){
+        return done(null,false,{message:'User does not exist in our database'});
+      }
+      User.comparePassword(password,user.local.password,function(err,isMatch){
+        if(err) 
+          throw err;
+
+        if(isMatch){
+          return done(null,user);
+        }
+        else{
+          return done(null,false,{message:'invalid password'});
+        }
+      });
     });
-  });
+  }));
 
-
-    passport.use(new GoogleStrategy({
+  passport.use(new GoogleStrategy({
 
         clientID        : configAuth.googleAuth.clientID,
         clientSecret    : configAuth.googleAuth.clientSecret,
@@ -65,36 +81,37 @@ const db = {
 
         // make the code asynchronous
         // User.findOne won't fire until we have all our data back from Google
-        process.nextTick(function() {
+      process.nextTick(function() {
 
-            // try to find the user based on their google id
-            User.findOne({ 'google.id' : profile.id }, function(err, user) {
-                if (err)
-                    return done(err);
+          // try to find the user based on their google id
+        User.findOne({ 'google.id' : profile.id }, function(err, user) {
+            if (err)
+                return done(err);
 
-                if (user) {
+            if (user) {
 
-                    // if a user is found, log them in
-                    return done(null, user);
-                } else {
-                    // if the user isnt in our database, create a new user
-                     var newUser          = new User();
+                // if a user is found, log them in
+                return done(null, user);
+            } 
+            else {
+                // if the user isnt in our database, create a new user
+              var newUser          = new User();
 
-                    // set all of the relevant information
-                    newUser.google.id    = profile.id;
-                    newUser.google.token = token;
-                    newUser.google.name  = profile.displayName;
-                    newUser.google.email = profile.emails[0].value; // pull the first email
+              // set all of the relevant information
+              newUser.google.id    = profile.id;
+              newUser.google.token = token;
+              newUser.google.name  = profile.displayName;
+              newUser.google.email = profile.emails[0].value; // pull the first email
 
-                     //save the user
-                    newUser.save(function(err) {
-                        if (err)
-                            throw err;
-                        return done(null, newUser);
-                    });
-                }
-            });
+               //save the user
+              newUser.save(function(err) {
+                  if (err)
+                      throw err;
+                  return done(null, newUser);
+              });
+            }
         });
+      });
 
     }));
 
@@ -131,10 +148,9 @@ function(token,refreshToken,profile,done){
               throw err;
             return done(null,newUser);
           });
-
-      }
-  });
-});
+        }
+      });
+    });
 }));
 
 }

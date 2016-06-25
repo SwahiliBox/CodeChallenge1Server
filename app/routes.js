@@ -1,8 +1,53 @@
 var express=require('express');
+var router=express.Router();
 var User = require('./models/user');
 var Events = require('./models/event');
 var Rsvp = require('./models/rsvp');
 module.exports=function(app,passport){
+
+
+    //register user
+    app.post('/register',function(req,res){
+      var firstname=req.body.firstname;
+      var surname=req.body.surname;
+      //var name=req.body.name;
+      var email=req.body.email;
+      var username=req.body.username;
+      var password=req.body.password;
+      var password2=req.body.password2;
+      
+      //newuser object oriented variable assigning
+      var newUser=new User();
+        newUser.local.firstname =firstname;
+        newUser.local.surname   =surname;
+        newUser.local.email     =email;
+        newUser.local.username  =username;
+        newUser.local.password  =password;
+
+      User.findOne({ 'local.username' : newUser.local.username }, function(err, user) {
+        if (err)
+            return err;
+
+        if (user) {
+
+            // if a user is found, prevent sign up
+            return(res.send("username already exists"));
+        }
+        else{
+          User.createUser(newUser,function(err,user){
+            if (err) throw err;
+
+            console.log(user);
+            res.send(user);
+          });
+        }
+      });
+    });
+    app.post('/login',
+        passport.authenticate('local',{
+          successRedirect:'/userdata',
+          failureRedirect:'/'
+        }));
 
     //GOOGLE ROUTES
     //route for google authentication and login
@@ -25,6 +70,10 @@ module.exports=function(app,passport){
         }));
 
 
+    //route for processing local user login
+    app.get('/userdata', isLoggedIn, function(req, res) {
+        res.send( req.user );// get the user out of session and pass to template
+    });
 
     //route for processing showing the profile page
     app.get('/profgmail', isLoggedIn, function(req, res) {
@@ -116,11 +165,10 @@ module.exports=function(app,passport){
             console.log(error);
 
           console.log(rsvp);
-          console.log("successful insert")
+          console.log("successful insert");
+
+          res.send('success:' + rsvp);
         });
-
-      console.log("Successful read");
-
     });
 };
 

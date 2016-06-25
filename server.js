@@ -13,6 +13,8 @@ var path = require('path');
 var methodOverride = require('method-override');
 var mongoose=require('mongoose');
 var mongodb=require('mongodb');
+var exphbs  = require('express-handlebars');
+var expressValidator= require('express-validator');
 
 var passport = require('passport');
 var passportLocal = require('passport-local');

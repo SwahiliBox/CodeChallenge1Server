@@ -4,9 +4,10 @@
   "description": "simple authentication system",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/mocha --reporter spec",
+    "start": "node server.js"
   },
-  "author": "kingdoshi",
+  "author": "rodgers",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^0.8.6",
@@ -19,6 +20,7 @@
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.13.0",
+    "express-validator": "^2.20.8",
     "jsonwebtoken": "^7.0.0",
     "method-override": "^2.3.6",
     "mocha": "^2.5.3",
@@ -35,24 +37,12 @@
     "path": "^0.12.7"
   },
   "devDependencies": {},
-  "scripts": {
-    "test": "./node_modules/.bin/mocha --reporter spec",
-    "start": "node server.js"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SwahiliBox/CodeChallenge1Server.git"
   },
-  "author": "rodgers",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/SwahiliBox/CodeChallenge1Server/issues"
   },
   "homepage": "https://github.com/SwahiliBox/CodeChallenge1Server#readme"
-  }
-<<<<<<< HEAD
- 
-
-=======
-  
->>>>>>> 28116cfc801f3979f104d385e248ab5caccd9b08
+}

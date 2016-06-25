@@ -1,7 +1,7 @@
-var express= require('express');
+var express= require('express'); 
 var router=express.Router();
 var User=require('../models/user');
-var passport = require('passport');
+var passport = require('passport'); 
 var LocalStrategy = require('passport-local').Strategy;
 //register
 router.get('/register',function(req,res){
@@ -30,26 +30,25 @@ router.post('/register',function(req,res){
   req.checkBody('password','password is required').notEmpty();
   req.checkBody('password2','password do not match').equals(req.body.password);
   var errors=req.validationErrors();
-  if (errors){
-  res.render('register',{
-    errors:errors
+  
+  if (errors)
+    res.send({ errors:errors });
+ 
+  var newUser=new User({
+    firstname:firstname,
+    surname:surname,
+    email:email,
+    username:username,
+    password:password
   });
-}
-  else {
-    var newUser=new User({
-      firstname:firstname,
-      surname:surname,
-      email:email,
-      username:username,
-      password:password
-    });
-    User.createUser(newUser,function(err,user){
-      if (err) throw err;
+  User.createUser(newUser,function(err,user){
+    if (err) throw err;
       console.log(user);
     });
-    req.flash('success_msg','you are registered and now can login');
+
+  req.flash('success_msg','you are registered and now can login');
   res.redirect('/users/login');
-  }
+  
 });
 
 passport.use(new LocalStrategy(
