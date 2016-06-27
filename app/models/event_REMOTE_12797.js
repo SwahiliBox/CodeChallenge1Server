@@ -4,24 +4,12 @@ var mongoose=require('mongoose');
 
 //Create a Schema model to hold your events data.
 var eventSchema = mongoose.Schema({
-<<<<<<< HEAD
-	title : String,
-=======
     title : String,
->>>>>>> 20a290ef70c312e8211849834476330896e68c79
     venue : String,
     date : {type :Date
             //default: Date.now
           },
     time : String,
-<<<<<<< HEAD
-    rsvp : {type : Boolean,
-        default : false},
-    desc : String
-});
-
-module.exports = mongoose.model('Events',eventSchema);
-=======
     description : String
 });
 
@@ -59,4 +47,3 @@ module.exports.removeEvent =function(id, callback){
 	Event.remove(query, callback);
 }
 */
->>>>>>> 20a290ef70c312e8211849834476330896e68c79

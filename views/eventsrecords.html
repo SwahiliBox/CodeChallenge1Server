@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+    <meta charset="utf-8">
+  <title>SwahiliBox</title>
+    <style type="text/css">
+        .btn{
+          margin-top: 5px;
+        }
+        .jumbotron{
+         margin-bottom: 30px;
+        }
+        #text{
+          margin-right: 10px;
+        }
+       /* #create{
+          text-align: center;
+          margin-left: 130px;
+        }
+        #delete{
+          text-align: center;
+          margin-left: 70px;
+        }
+
+        #update{
+          text-align: center;
+          margin-left: 130px;
+        }*/
+       #create{width: 100px;}
+        #delete{width: 100px;}
+        #update{width: 100px;}
+    </style>
+    <style>
+        body { padding-top:30px; 
+          word-wrap:break-word;
+          background: #C0C0C0 !important;
+             }
+    </style>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    
+ </head>
+ <div class="">
+   <div class="container well">
+    
+ <body ng-app="mainApp" ng-controller="myController">
+
+  <div class="page-header">
+     <marquee><h2>Welcome | SwahiliBox Events </h2></marquee>
+   </div>
+   
+<div class="page-header text-right">
+    <a href="/signup" class="btn btn-default btn-md">Sign Up other admin</a>
+    <a href="/logout" class="btn btn-default btn-md">Logout</a>
+    </div>
+    
+  
+       <script type="text/javascript">
+            var app = angular.module("mainApp", []);
+            app.controller("myController", function($scope, $http){
+                $http.get("/events")
+                .then(function(response){
+                    console.log(response);
+                    $scope.events = response.data;
+                });
+            });
+        </script>
+      </div>
+
+</div>
+    <div class="container well">
+      <div class="row">
+         <div class="panel panel-default">
+          <div class="panel-heading"><b>ADD EVENTS</b></div>
+          <form id="Events-form" method="post" class="form-horizontal" action="/insert">
+          
+            
+           <label class="col-md-2 control-label" for="Event Title">Title</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Title" name="title"/>
+          </div>
+           
+          
+
+              <label class="col-md-2 control-label" for="Event venue">Venue</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event venue" name="venue"/>
+          </div>
+                               
+          
+              <label class="col-md-2 control-label" for="Event Description">Description</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Description" name="description"/>
+          </div>
+            
+
+            
+              <label class="col-md-2 control-label" for="Event date">Date</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Date" name="date"/>
+          </div>
+            
+           
+             
+
+        <label class="col-md-2 control-label" for="Event time">Time</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Time" name="time"/>
+          </div>
+            </div>
+             </div>
+          
+            
+      
+         <div class="col-md-6 col-md-offset-2">
+           <button type="Create"class="btn btn-success">CREATE</button>
+            </div>
+              </div>
+
+               
+           </form>
+      
+
+ <div class="container well">
+      <div class="row">
+         <div class="panel panel-default">
+          <div class="panel-heading"><b>UPDATE EVENT</b></div>
+          <form id="Events-form" method="post" class="form-horizontal" action="/update">
+          
+             <label class="col-md-2 control-label" for="Event id">Id</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event id" name="id"/>
+          </div>
+
+
+           <label class="col-md-2 control-label" for="Event Title">Title</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Title" name="title"/>
+          </div>
+           
+          
+
+              <label class="col-md-2 control-label" for="Event venue">Venue</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event venue" name="venue"/>
+          </div>
+                               
+          
+              <label class="col-md-2 control-label" for="Event Description">Description</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Description" name="description"/>
+          </div>
+            
+
+            
+              <label class="col-md-2 control-label" for="Event date">Date</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Date" name="date"/>
+          </div>
+            
+           
+             
+
+        <label class="col-md-2 control-label" for="Event time">Time</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Time" name="time"/>
+          </div>
+            </div>
+             </div>
+          
+            
+      
+         <div class="col-md-6 col-md-offset-2">
+           <button type="Create"class="btn btn-primary btn-warning">UPDATE</button>
+            </div>
+              </div>
+              
+           </form>
+      
+
+<div class="container well">
+      <div class="row">
+         <div class="panel panel-default">
+          <div class="panel-heading"><b>DELETE EVENT</b></div>
+          <form id="Events-form" method="post" class="form-horizontal" action="/delete">
+          
+             <label class="col-md-2 control-label" for="Event id">Id</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event id" name="id"/>
+          </div>
+
+  </div>
+ </div>
+          
+            
+      
+         <div class="col-md-6 col-md-offset-2">
+           <button type="Create"class="btn btn-primary btn-danger">DELETE</button>
+            </div>
+              </div>
+                         </form>
+          
+     </div>
+     </div> 
+   </div>
+     
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" ></script>
+
+</body>
+
+
+
+
+</html>
