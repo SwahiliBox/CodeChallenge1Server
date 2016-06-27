@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var mongoose=require('mongoose');
 var bcrypt   = require('bcryptjs');
 var userSchema=mongoose.Schema({
@@ -60,25 +59,3 @@ module.exports.comparePassword=function(candidatePassword,hash,callback){
     callback(null,isMatch);
   });
 }
-=======
-
-var mongoose = require('mongoose');
-var bcrypt   = require('bcrypt-nodejs');
-var userSchema = mongoose.Schema({
-    local            : {
-        email        : String,
-        password     : String
-    }
-});
-
-userSchema.methods.generateHash = function(password) {
-    return bcrypt.hashSync(password, bcrypt.genSaltSync(8), null);
-};
-
-userSchema.methods.validPassword = function(password) {
-    return bcrypt.compareSync(password, this.local.password);
-};
-
-module.exports = mongoose.model('User', userSchema);
-
->>>>>>> 20a290ef70c312e8211849834476330896e68c79

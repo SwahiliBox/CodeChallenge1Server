@@ -1,25 +1,19 @@
-<<<<<<< HEAD
 var express=require('express');
 var router=express.Router();
 var User = require('./models/user');
 var Events = require('./models/event');
+var Admin = require('./models/admin');
 var Rsvp = require('./models/rsvp');
+
+
 module.exports=function(app,passport){
 
-    app.get('/',function(req,res){
+    app.get('/error',function(req,res){
       res.send('1');
-=======
-
-var express= require('express');
-//var router=express.Router();
-var User = require('../app/models/user');
-var Event = require('../app/models/event');
-
-module.exports = function(app, passport) {
-
+    });
+    
     app.get('/', function(req, res) {
         res.render('index.ejs');
->>>>>>> 20a290ef70c312e8211849834476330896e68c79
     });
     //register user
     app.post('/register',function(req,res){
@@ -39,7 +33,6 @@ module.exports = function(app, passport) {
         newUser.local.username  =username;
         newUser.local.password  =password;
 
-<<<<<<< HEAD
       User.findOne({ 'local.username' : newUser.local.username }, function(err, user) {
         if (err)
             return err;
@@ -59,10 +52,11 @@ module.exports = function(app, passport) {
         }
       });
     });
+
     app.post('/login',
         passport.authenticate('local',{
           successRedirect:'/userdata',
-          failureRedirect:'/'
+          failureRedirect:'/error'
         }));
 
     //GOOGLE ROUTES
@@ -71,7 +65,7 @@ module.exports = function(app, passport) {
 
     app.get('/auth/google/callback', passport.authenticate('google', {
                     successRedirect : '/profgmail',
-                    failureRedirect : '/'
+                    failureRedirect : '/error'
             }));
 
 
@@ -82,7 +76,7 @@ module.exports = function(app, passport) {
     // handle the callback after facebook has authenticated the user
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {successRedirect : '/proffacebook',
-                                           failureRedirect : '/'
+                                           failureRedirect : '/error'
         }));
 
 
@@ -94,18 +88,18 @@ module.exports = function(app, passport) {
     //route for processing showing the profile page
     app.get('/profgmail', isLoggedIn, function(req, res) {
         res.send( req.user );// get the user out of session and pass to template
-=======
-    app.get('/login', function(req, res) {
-        res.render('login.ejs', { message: req.flash('loginMessage') });
->>>>>>> 20a290ef70c312e8211849834476330896e68c79
     });
-      app.post('/login', passport.authenticate('local-login', {
+
+    app.get('/admin', function(req, res) {
+        res.render('login.ejs', { message: req.flash('loginMessage') });
+    
+    });
+    app.post('/admin', passport.authenticate('local-login', {
         successRedirect : '/eventsrecords',
-        failureRedirect : '/login',
+        failureRedirect : '/admin',
         failureFlash : true
     }));
 
-<<<<<<< HEAD
     app.get('/proffacebook', isLoggedIn, function(req, res) {
         res.send( req.user );
     });
@@ -121,15 +115,17 @@ module.exports = function(app, passport) {
     		if(error)
     			res.send(error)
     		res.json(events)
-    	 });
-=======
+    	});
+    });
+
     app.get('/signup', function(req, res) {
         res.render('signup.ejs', { message: req.flash('signupMessage') });
     });
-      app.post('/signup', passport.authenticate('local-signup', {
-          successRedirect : '/login',
-          failureRedirect : '/signup',
-          failureFlash : true
+
+    app.post('/signup', passport.authenticate('local-signup', {
+        successRedirect : '/login',
+        failureRedirect : '/signup',
+        failureFlash : true
     }));
 
     //Crud Page.
@@ -144,36 +140,17 @@ module.exports = function(app, passport) {
           res.send(err)
         res.json(event)
        });
->>>>>>> 20a290ef70c312e8211849834476330896e68c79
     });
 
     //insert values into mongo db
     app.post('/insert', function(req, res){
-<<<<<<< HEAD
         Events.create({
-=======
-        Event.create({
->>>>>>> 20a290ef70c312e8211849834476330896e68c79
+
           title : req.body.title,
           venue : req.body.venue,
           date : req.body.date,
           time : req.body.time,
-<<<<<<< HEAD
-          desc : req.body.desc,
-          rsvp : req.body.rsvp
-        },
-        function(error, events){
-           if(error)
-              res.send(error)
-
-           Events.find({}, function(error, events){
-              if(error)
-                  res.send(error);
-
-              res.redirect('crud.html');
-=======
-          desc : req.body.description
-          //rsvp : req.body.rsvp
+          desc : req.body.desc
         },
         function(err, event){
            if(err)
@@ -184,22 +161,14 @@ module.exports = function(app, passport) {
                   res.send(err);
 
               res.redirect('eventsrecords.html');
->>>>>>> 20a290ef70c312e8211849834476330896e68c79
+
            });
         });
     });
 
     //Deleting events data from collection.
     app.post('/delete', function(req, res){
-<<<<<<< HEAD
-       Events.remove({ _id : req.body.id}, function(error, events){
-          if(error)
-            res.send(error)
-          Events.find({}, function(error, events){
-            if(error)
-              res.send(error);
-            res.redirect('crud.html');
-=======
+
        Event.remove({ _id : req.body.id}, function(err, event){
           if(err)
             res.send(err)
@@ -207,7 +176,6 @@ module.exports = function(app, passport) {
             if(err)
               res.send(err);
             res.redirect('eventsrecords.html');
->>>>>>> 20a290ef70c312e8211849834476330896e68c79
           });
        });
     });
@@ -218,22 +186,20 @@ module.exports = function(app, passport) {
            title : req.body.title,
            venue : req.body.venue,
            date : req.body.date,
-<<<<<<< HEAD
            desc : req.body.desc,
            time : req.body.time
            }
-      Events.update({_id : req.body.id}, {$set: terms}, function(error, events){
-         if(error)
-          res.send(error);
-        Events.find({}, function(error, events){
-          if(error)
-            res.send(error);
+      Event.update({_id : req.body.id}, {$set: terms}, function(error, event){
+         //if(err)
+          //res.send(err);
+        Event.find({}, function(err, event){
+          if(err)
+            res.send(err);
           console.log(terms);
-          res.redirect('crud.html');
+          res.redirect('eventsrecords.html');
         });
       });
     });
-
 
     app.post('/rsvp', function(req,res){
         Rsvp.create({
@@ -249,23 +215,7 @@ module.exports = function(app, passport) {
           res.send('success:' + rsvp);
         });
     });
-};
-=======
-           description : req.body.description,
-           time : req.body.time
-           }
-      Event.update({_id : req.body.id}, {$set: terms}, function(error, event){
-         //if(err)
-          //res.send(err);
-        Event.find({}, function(err, event){
-          if(err)
-            res.send(err);
-          console.log(terms);
-          res.redirect('eventsrecords.html');
-        });
-      });
-    });
->>>>>>> 20a290ef70c312e8211849834476330896e68c79
+    
 
 
 
@@ -277,18 +227,16 @@ module.exports = function(app, passport) {
         req.logout();
         res.redirect('/');
         });
-    };
+  };
+
 
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated())
         return next();
-<<<<<<< HEAD
 
     // if they aren't redirect them to the home page
     res.send('Authentication unsuccessful');
 
-=======
-    res.redirect('/');
->>>>>>> 20a290ef70c312e8211849834476330896e68c79
+    res.redirect('/error');
 }
 

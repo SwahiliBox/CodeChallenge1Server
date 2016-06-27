@@ -12,10 +12,7 @@
   "dependencies": {
     "bcrypt": "^0.8.6",
     "bcrypt-nodejs": "0.0.3",
-<<<<<<< HEAD
     "bcryptjs": "^2.3.0",
-=======
->>>>>>> 20a290ef70c312e8211849834476330896e68c79
     "body-parser": "^1.15.1",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^1.2.0",
@@ -26,10 +23,7 @@
     "express-validator": "^2.20.8",
     "jsonwebtoken": "^7.0.0",
     "method-override": "^2.3.6",
-<<<<<<< HEAD
     "mocha": "^2.5.3",
-=======
->>>>>>> 20a290ef70c312e8211849834476330896e68c79
     "mongodb": "^2.1.21",
     "mongoose": "^4.4.20",
     "morgan": "^1.7.0",
