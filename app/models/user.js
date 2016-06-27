@@ -35,12 +35,6 @@ var userSchema=mongoose.Schema({
     }
 
 });
-/*userSchema.methods.generateHash=function(password){
-  return bcrypt.hashsync(password,bcrypt.genSaltSync(9));
-}
-userSchema.methods.validPassword=function(password){
-  return bcrypt.compareSync(password, this.local.password);
-} */
 module.exports = mongoose.model('User',userSchema);
 
 module.exports.createUser=function(newUser,callback){
