@@ -7,8 +7,8 @@
         .btn{
           margin-top: 5px;
         }
-        .text-right{
-          margin-left: 10px;
+        #text{
+          margin-right: 10px;
         }
        /* #create{
           text-align: center;
@@ -32,7 +32,7 @@
     </style>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" ></script>
+    
  </head>
  <body ng-app="mainApp" ng-controller="myController">
      <marquee><h2>Welcome | SwahiliBox Events </h2></marquee>
@@ -40,12 +40,7 @@
     <a href="/signup" class="btn btn-default btn-md">Sign Up other admin</a>
     <a href="/logout" class="btn btn-default btn-md">Logout</a>
     </div>
-    <div class="read">
-       <ul>
-          <li ng-repeat="event in events">
-           {{ event._id + " " + event.title + " " +event.venue + " "  +event.description + " "  + event.date + " " + event.time }}</li>
-       </ul>
-
+  
        <script type="text/javascript">
             var app = angular.module("mainApp", []);
             app.controller("myController", function($scope, $http){
@@ -59,71 +54,151 @@
     </div>
     <div class="container well">
       <div class="row">
-        <div class="col-md-4 ">
+         <div class="panel panel-default">
+          <div class="panel-heading">ADD EVENTS</div>
+          <form id="Events-form" method="post" class="form-horizontal" action="/insert">
+          
+            
+           <label class="col-md-2 control-label" for="Event Title">Title</label>
 
-          <div class="create">
-       <fieldset id="create">
-         <legend style="font-weight:bold">CREATE</legend>
-           <form method="post" action="/insert">
-              Event Title: <input type="text" name="title">
-              Event Venue: <input type="text" name="venue">
-              Event Description: <input type="text" name="description">
-              Event Date: <input type="text" name="date">
-              Event Time: <input type="text" name="time">
-              <div class="btn btn-primary btn-success">CREATE</div>
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Title" name="title"/>
+          </div>
+           
+          
+
+              <label class="col-md-2 control-label" for="Event venue">Venue</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event venue" name="venue"/>
+          </div>
+                               
+          
+              <label class="col-md-2 control-label" for="Event Description">Description</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Description" name="description"/>
+          </div>
+            
+
+            
+              <label class="col-md-2 control-label" for="Event date">Date</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Date" name="date"/>
+          </div>
+            
+           
+             
+
+        <label class="col-md-2 control-label" for="Event time">Time</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Time" name="time"/>
+          </div>
+            </div>
+             </div>
+          
+            
+      
+         <div class="col-md-6 col-md-offset-2">
+           <button type="Create"class="btn btn-success">CREATE</button>
+            </div>
+              </div>
+               
            </form>
-       </fieldset>
-       </div>
-
-
-
-        </div>
-
-         <div class="col-md-4">
-
-          <div class="update">
-       <fieldset id="update">
-         <legend style="font-weight:bold">UPDATE</legend>
-           <form method="post" action="/update">
-                Event Id: <input type="text" name="id">
-                Event Title: <input type="text" name="title">
-                Event Venue: <input type="text" name="venue">
-                Event Description: <input type="text" name="description">
-                Event Date: <input type="text" name="date">
-                Event Time: <input type="text" name="time">
-
-                <div class="btn btn-primary btn-warning">UPDATE</div>
-           </form>
-       </fieldset>
-       </div>
-
-
-
-        </div>
-
-        <div class="col-md-4">
-
-          <div id="delete">
-       <fieldset id="delete">
-          <legend style="font-weight:bold">DELETE</legend>
-           <form method="post" action="/delete">
-                Event Id: <input type="text" name="id">
-                <div class="btn btn-primary btn-danger">DELETE</div>
-           </form>
-       </fieldset>
-       </div>
-
-
-
-        </div>
-
-      </div>
-    </div>
-     
-
       
 
-       
+ <div class="container well">
+      <div class="row">
+         <div class="panel panel-default">
+          <div class="panel-heading">UPDATE EVENT</div>
+          <form id="Events-form" method="post" class="form-horizontal" action="/update">
+          
+             <label class="col-md-2 control-label" for="Event id">Id</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event id" name="id"/>
+          </div>
+
+
+           <label class="col-md-2 control-label" for="Event Title">Title</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Title" name="title"/>
+          </div>
+           
+          
+
+              <label class="col-md-2 control-label" for="Event venue">Venue</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event venue" name="venue"/>
+          </div>
+                               
+          
+              <label class="col-md-2 control-label" for="Event Description">Description</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Description" name="description"/>
+          </div>
+            
+
+            
+              <label class="col-md-2 control-label" for="Event date">Date</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Date" name="date"/>
+          </div>
+            
+           
+             
+
+        <label class="col-md-2 control-label" for="Event time">Time</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event Time" name="time"/>
+          </div>
+            </div>
+             </div>
+          
+            
+      
+         <div class="col-md-6 col-md-offset-2">
+           <button type="Create"class="btn btn-primary btn-warning">UPDATE</button>
+            </div>
+              </div>
+              
+           </form>
+      
+
+<div class="container well">
+      <div class="row">
+         <div class="panel panel-default">
+          <div class="panel-heading">DELETE EVENT</div>
+          <form id="Events-form" method="post" class="form-horizontal" action="/delete">
+          
+             <label class="col-md-2 control-label" for="Event id">Id</label>
+
+           <div class="col-md-4 ">
+        <input type="text" class="form-control" id="Event id" name="id"/>
+          </div>
+
+  </div>
+ </div>
+          
+            
+      
+         <div class="col-md-6 col-md-offset-2">
+           <button type="Create"class="btn btn-primary btn-danger">DELETE</button>
+            </div>
+              </div>
+                         </form>
+          
+     </div>
+     </div> 
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" ></script>
 
   </body>
 </html>
