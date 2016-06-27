@@ -3,14 +3,21 @@ var mongoose = require('mongoose');
 //craete the user_event schema
 
 var rsvpSchema = mongoose.Schema({
-	username: {
+	firstname: {
 		type: String,
 		required : true
 	},
-
+	lastname: {
+		type: String,
+		required : true
+	},
+	phonenumber:{
+		type: String,
+		required : true
+	},
 	eventname: {
 		type : String,
-		required : true,
+		required : true
 
 	},  
 

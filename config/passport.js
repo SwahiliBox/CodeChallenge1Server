@@ -5,7 +5,7 @@ var FacebookStrategy=require('passport-facebook').Strategy;
 var configAuth      =require('./auth');
 // load up the user model
 var User = require('../app/models/user');
-var Admin = require('../app/models/admin');
+
 
 // expose this function to our app using module.exports
 module.exports = function(passport) {

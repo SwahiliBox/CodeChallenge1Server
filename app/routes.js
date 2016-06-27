@@ -2,7 +2,6 @@ var express=require('express');
 var router=express.Router();
 var User = require('./models/user');
 var Events = require('./models/event');
-var Admin = require('./models/admin');
 var Rsvp = require('./models/rsvp');
 
 
@@ -89,16 +88,6 @@ module.exports=function(app,passport){
     app.get('/profgmail', isLoggedIn, function(req, res) {
         res.send( req.user );// get the user out of session and pass to template
     });
-
-    app.get('/admin', function(req, res) {
-        res.render('login.ejs', { message: req.flash('loginMessage') });
-    
-    });
-    app.post('/admin', passport.authenticate('local-login', {
-        successRedirect : '/eventsrecords',
-        failureRedirect : '/admin',
-        failureFlash : true
-    }));
 
     app.get('/proffacebook', isLoggedIn, function(req, res) {
         res.send( req.user );
@@ -203,7 +192,8 @@ module.exports=function(app,passport){
 
     app.post('/rsvp', function(req,res){
         Rsvp.create({
-          username : req.body.username,
+          firstname : req.body.firstname,
+          lastname : req.body.lastname,
           eventname : req.body.eventname
         }, function(error,rsvp){
           if(error)
@@ -216,13 +206,6 @@ module.exports=function(app,passport){
         });
     });
     
-
-
-
-    app.get('/profile', isLoggedIn, function(req, res) {
-        res.render('profile.ejs');
-    });
-
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
