@@ -29,7 +29,7 @@ module.exports = function(app, passport) {
     }));
 
     //Crud Page.
-    app.get('/eventsrecords',function(req,res){
+    app.get('/eventsrecords',isLoggedIn, function(req,res){
       res.sendFile('eventsrecords.html', {'root' : 'views'});
     });
 
