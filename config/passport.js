@@ -49,9 +49,11 @@ const db = {
   }
 };
 
+
 passport.use(new LocalStrategy(
   function(username, password, done) {
-    User.findOne({'local.username' : username },function(err,user){
+    var criteria = {$or: [{'local.username' : username}, {'local.email': username}]};
+    User.findOne(criteria, function(err,user){
       if(err) throw err;
       if(!user){
         return done(null,false,{message:'User does not exist in our database'});
