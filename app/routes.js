@@ -5,7 +5,9 @@ var Events = require('./models/event');
 var Rsvp = require('./models/rsvp');
 module.exports=function(app,passport){
 
-
+    app.get('/',function(req,res){
+      res.send('1');
+    });
     //register user
     app.post('/register',function(req,res){
       var firstname=req.body.firstname;
@@ -31,7 +33,7 @@ module.exports=function(app,passport){
         if (user) {
 
             // if a user is found, prevent sign up
-            return(res.send("username already exists"));
+            res.send('1');
         }
         else{
           User.createUser(newUser,function(err,user){
