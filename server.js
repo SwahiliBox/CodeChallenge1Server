@@ -1,9 +1,8 @@
 
 var express=require('express');
+var nodemailer = require('nodemailer');
 var app=express();
 var port=process.env.PORT || 3000;
-var http=require('http');
-var server=http.createServer(app);
 
 //initialize required modules for the app
 var passport = require('passport');
@@ -22,6 +21,7 @@ var bodyParser   = require('body-parser');
 var session=require('express-session');
 var methodOverride = require('method-override'); 
 var flash = require('connect-flash'); 
+
 
 var MongoStore=require('connect-mongo')(session);
 var Rsvp = require('./app/models/rsvp');
@@ -43,18 +43,15 @@ app.use(session({secret:'anystringoftext',
       resave:false
 }));
 
-Event = require('./app/models/event');
 
 
 require('./config/passport')(passport);
-
 
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'views')));
 
 app.set('view engine', 'html');
 
-app.use(session({ secret: 'ilovescotchscotchyscotchscotch' }));
 app.use(passport.initialize());
 app.use(passport.initialize());
 

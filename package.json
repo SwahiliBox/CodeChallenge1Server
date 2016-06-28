@@ -27,6 +27,9 @@
     "mongodb": "^2.1.21",
     "mongoose": "^4.4.20",
     "morgan": "^1.7.0",
+    "nodemailer": "^0.7.1",
+    "nodemailer-smtp-transport": "^2.5.0",
+    "nodemon": "^1.9.2",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
     "passport-facebook-token": "^3.2.0",
@@ -34,7 +37,8 @@
     "passport-google-token": "^0.1.2",
     "passport-http": "^0.3.0",
     "passport-local": "^1.0.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "xoauth2": "^1.1.0"
   },
   "devDependencies": {},
   "repository": {

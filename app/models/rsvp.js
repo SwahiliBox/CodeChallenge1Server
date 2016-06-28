@@ -4,20 +4,16 @@ var mongoose = require('mongoose');
 
 var rsvpSchema = mongoose.Schema({
 	firstname: {
-		type: String,
-		required : true
+		type: String
 	},
 	lastname: {
-		type: String,
-		required : true
+		type: String
 	},
 	phonenumber:{
-		type: String,
-		required : true
+		type: String
 	},
 	eventname: {
-		type : String,
-		required : true
+		type : String
 
 	},  
 

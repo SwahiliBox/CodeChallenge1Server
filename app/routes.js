@@ -3,17 +3,21 @@ var router=express.Router();
 var User = require('./models/user');
 var Events = require('./models/event');
 var Rsvp = require('./models/rsvp');
-
+var nodemailer = require('nodemailer');
+var smtpTransport = nodemailer.createTransport("SMTP",{
+    service: "Gmail",
+    auth: {
+        user: "bmirauri@gmail.com",
+        pass: "08237001036"
+    }
+});
 
 module.exports=function(app,passport){
 
     app.get('/error',function(req,res){
       res.send('1');
     });
-    
-    app.get('/', function(req, res) {
-        res.render('index.ejs');
-    });
+
     //register user
     app.post('/register',function(req,res){
       var firstname=req.body.firstname;
@@ -194,6 +198,7 @@ module.exports=function(app,passport){
         Rsvp.create({
           firstname : req.body.firstname,
           lastname : req.body.lastname,
+          phonenumber : req.body.phonenumber,
           eventname : req.body.eventname
         }, function(error,rsvp){
           if(error)
@@ -209,7 +214,9 @@ module.exports=function(app,passport){
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
-        });
+    });
+
+
   };
 
 
