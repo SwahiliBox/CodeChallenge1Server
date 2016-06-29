@@ -1,7 +1,8 @@
 
 var express= require('express');
 //var router=express.Router();
-var User = require('../app/models/user');
+//var User = require('../app/models/user');
+var Admin = require('../app/models/admin');
 var Event = require('../app/models/event');
 
 module.exports = function(app, passport) {
@@ -45,12 +46,11 @@ module.exports = function(app, passport) {
     //insert values into mongo db
     app.post('/insert', function(req, res){
         Event.create({
-          title : req.body.title,
-          venue : req.body.venue,
-          date : req.body.date,
-          time : req.body.time,
-          desc : req.body.description
-          //rsvp : req.body.rsvp
+           title : req.body.title,
+           venue : req.body.venue,
+           date : req.body.date,
+           desc : req.body.desc,
+           time : req.body.time
         },
         function(err, event){
            if(err)
@@ -84,7 +84,7 @@ module.exports = function(app, passport) {
            title : req.body.title,
            venue : req.body.venue,
            date : req.body.date,
-           description : req.body.description,
+           desc : req.body.desc,
            time : req.body.time
            }
       Event.update({_id : req.body.id}, {$set: terms}, function(error, event){

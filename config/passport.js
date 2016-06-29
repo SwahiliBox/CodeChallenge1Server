@@ -1,6 +1,7 @@
 
 var LocalStrategy   = require('passport-local').Strategy;
-var User            = require('../app/models/user');
+//var User            = require('../app/models/user');
+var Admin           = require('../app/models/admin');
 //var Event            = require('../app/models/event');
 module.exports = function(passport) {
 
@@ -9,7 +10,7 @@ module.exports = function(passport) {
     });
 
     passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
+        Admin.findById(id, function(err, user) {
             done(err, user);
         });
     });
@@ -21,14 +22,14 @@ module.exports = function(passport) {
     },
     function(req, email, password, done) {
         process.nextTick(function() {
-        User.findOne({ 'local.email' :  email }, function(err, user) {
+        Admin.findOne({ 'local.email' :  email }, function(err, user) {
             if (err)
                 return done(err);
             if (user) {
                 return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
             }
             else {
-                var newUser            = new User();
+                var newUser            = new Admin();
                 newUser.local.email    = email;
                 newUser.local.password = newUser.generateHash(password);
                 newUser.save(function(err) {
@@ -51,7 +52,7 @@ module.exports = function(passport) {
         passReqToCallback : true
     },
     function(req, email, password, done) {
-        User.findOne({ 'local.email' :  email }, function(err, user) {
+        Admin.findOne({ 'local.email' :  email }, function(err, user) {
             if (err)
                 return done(err);
             if (!user)

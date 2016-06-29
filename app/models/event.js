@@ -6,11 +6,12 @@ var mongoose=require('mongoose');
 var eventSchema = mongoose.Schema({
     title : String,
     venue : String,
-    date : {type :Date
+    desc  : String,
+    date  : {type :Date
             //default: Date.now
           },
     time : String,
-    description : String
+    
 });
 
 module.exports = mongoose.model('Event',eventSchema);
