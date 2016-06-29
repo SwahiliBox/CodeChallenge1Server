@@ -37,6 +37,7 @@ app.use(morgan('dev'));
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(bodyParser.urlencoded({extended: false}));
+app.use(cookieParser());
 
 app.use(session({secret:'anystringoftext',
       saveUninitialized:true,
@@ -46,14 +47,6 @@ app.use(session({secret:'anystringoftext',
 
 
 require('./config/passport')(passport);
-
-app.use(cookieParser());
-<<<<<<< HEAD
-app.use(express.static(path.join(__dirname, 'views')));
-=======
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(methodOverride());
->>>>>>> cecb507236da60d32fb717859405923ec3d1238f
 
 app.set('view engine', 'html');
 
