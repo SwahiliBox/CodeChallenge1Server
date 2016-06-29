@@ -3,14 +3,7 @@ var router=express.Router();
 var User = require('./models/user');
 var Events = require('./models/event');
 var Rsvp = require('./models/rsvp');
-var nodemailer = require('nodemailer');
-var smtpTransport = nodemailer.createTransport("SMTP",{
-    service: "Gmail",
-    auth: {
-        user: "bmirauri@gmail.com",
-        pass: "08237001036"
-    }
-});
+
 
 module.exports=function(app,passport){
 
@@ -149,7 +142,7 @@ module.exports=function(app,passport){
            if(err)
               res.send(err)
 
-           Event.find({}, function(err, event){
+           Events.find({}, function(err, event){
               if(err)
                   res.send(err);
 
@@ -162,7 +155,7 @@ module.exports=function(app,passport){
     //Deleting events data from collection.
     app.post('/delete', function(req, res){
 
-       Event.remove({ _id : req.body.id}, function(err, event){
+       Events.remove({ _id : req.body.id}, function(err, event){
           if(err)
             res.send(err)
           Event.find({}, function(err, event){
@@ -182,7 +175,7 @@ module.exports=function(app,passport){
            desc : req.body.desc,
            time : req.body.time
            }
-      Event.update({_id : req.body.id}, {$set: terms}, function(error, event){
+      Events.update({_id : req.body.id}, {$set: terms}, function(error, event){
          //if(err)
           //res.send(err);
         Event.find({}, function(err, event){
