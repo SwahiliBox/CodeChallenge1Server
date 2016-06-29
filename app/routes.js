@@ -4,6 +4,14 @@ var User = require('./models/user');
 var Events = require('./models/event');
 var Rsvp = require('./models/rsvp');
 
+<<<<<<< HEAD
+=======
+var express= require('express');
+//var router=express.Router();
+//var User = require('../app/models/user');
+var Admin = require('../app/models/admin');
+var Event = require('../app/models/event');
+>>>>>>> cecb507236da60d32fb717859405923ec3d1238f
 
 module.exports=function(app,passport){
 
@@ -130,6 +138,7 @@ module.exports=function(app,passport){
 
     //insert values into mongo db
     app.post('/insert', function(req, res){
+<<<<<<< HEAD
         Events.create({
 
           title : req.body.title,
@@ -137,6 +146,14 @@ module.exports=function(app,passport){
           date : req.body.date,
           time : req.body.time,
           desc : req.body.desc
+=======
+        Event.create({
+           title : req.body.title,
+           venue : req.body.venue,
+           date : req.body.date,
+           desc : req.body.desc,
+           time : req.body.time
+>>>>>>> cecb507236da60d32fb717859405923ec3d1238f
         },
         function(err, event){
            if(err)
