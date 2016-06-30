@@ -3,15 +3,7 @@ var router=express.Router();
 var User = require('./models/user');
 var Events = require('./models/event');
 var Rsvp = require('./models/rsvp');
-
-<<<<<<< HEAD
-=======
-var express= require('express');
-//var router=express.Router();
-//var User = require('../app/models/user');
 var Admin = require('../app/models/admin');
-var Event = require('../app/models/event');
->>>>>>> cecb507236da60d32fb717859405923ec3d1238f
 
 module.exports=function(app,passport){
 
@@ -58,10 +50,10 @@ module.exports=function(app,passport){
     });
 
     app.post('/login',
-        passport.authenticate('local',{
+        passport.authenticate('user-login',{
           successRedirect:'/userdata',
           failureRedirect:'/error'
-        }));
+    }));
 
     //GOOGLE ROUTES
     //route for google authentication and login
@@ -85,8 +77,13 @@ module.exports=function(app,passport){
 
 
     //route for processing local user login
-    app.get('/userdata', isLoggedIn, function(req, res) {
+    app.get('/userdata',isLoggedIn, function(req, res) {
+      if(req.user){
         res.send( req.user );// get the user out of session and pass to template
+      }
+      else{
+        res.send("Could not stream data to this end... Keep trying though");
+      }
     });
 
     //route for processing showing the profile page
@@ -111,24 +108,35 @@ module.exports=function(app,passport){
     		res.json(events)
     	});
     });
-
-    app.get('/signup', function(req, res) {
+    //admin signup via ejs view
+    app.get('/adminsignup', function(req, res) {
         res.render('signup.ejs', { message: req.flash('signupMessage') });
     });
-
-    app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/login',
-        failureRedirect : '/signup',
+    //admin details saved to database
+    app.post('/adminsignup', passport.authenticate('admin-signup', {
+        successRedirect : '/adminlogin',
+        failureRedirect : '/adminsignup',
         failureFlash : true
     }));
 
+    //admin login render ejs
+    app.get('/adminlogin', function(req, res) {
+        res.render('login.ejs', { message: req.flash('signupMessage') });
+    });
+    //admin details saved to database
+    app.post('/adminlogin', passport.authenticate('admin-login', {
+        successRedirect : '/eventsrecords',
+        failureRedirect : '/adminlogin',
+        failureFlash : true 
+    }));
+
     //Crud Page.
-    app.get('/eventsrecords',isLoggedIn, function(req,res){
+    app.get('/eventsrecords', adminLoggedIn,function(req,res){
       res.sendFile('eventsrecords.html', {'root' : 'views'});
     });
 
     //send events to frontend
-    app.get('/event', function(req, res){
+    app.get('/event',adminLoggedIn, function(req, res){
       Event.find({}, function(err, event){
         if(err)
           res.send(err)
@@ -138,7 +146,6 @@ module.exports=function(app,passport){
 
     //insert values into mongo db
     app.post('/insert', function(req, res){
-<<<<<<< HEAD
         Events.create({
 
           title : req.body.title,
@@ -146,14 +153,6 @@ module.exports=function(app,passport){
           date : req.body.date,
           time : req.body.time,
           desc : req.body.desc
-=======
-        Event.create({
-           title : req.body.title,
-           venue : req.body.venue,
-           date : req.body.date,
-           desc : req.body.desc,
-           time : req.body.time
->>>>>>> cecb507236da60d32fb717859405923ec3d1238f
         },
         function(err, event){
            if(err)
@@ -223,7 +222,7 @@ module.exports=function(app,passport){
     
     app.get('/logout', function(req, res) {
         req.logout();
-        res.redirect('/');
+        res.redirect('/adminlogin');
     });
 
 
@@ -231,12 +230,17 @@ module.exports=function(app,passport){
 
 
 function isLoggedIn(req, res, next) {
-    if (req.isAuthenticated())
+    if(req.isAuthenticated()){
         return next();
+    }
+    
 
-    // if they aren't redirect them to the home page
-    res.send('Authentication unsuccessful');
-
-    res.redirect('/error');
+    res.send('1');
 }
+function adminLoggedIn(req, res, next) {
+    if(req.isAuthenticated()){
+      return next();
+    }
 
+    res.redirect('/adminlogin');
+}

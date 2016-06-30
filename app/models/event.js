@@ -11,11 +11,6 @@ var eventSchema = mongoose.Schema({
             //default: Date.now
           },
     time : String,
-<<<<<<< HEAD
-    desc : String
-=======
-    
->>>>>>> cecb507236da60d32fb717859405923ec3d1238f
 });
 
 module.exports = mongoose.model('Event',eventSchema);

@@ -10,15 +10,16 @@
     </style>
     <script type="text/javascript">
       function rsvp(){
-        var event = 123456789;
-        var user = 987654321;
-
+        var details={
+          var event : 123456789,
+          var user : 987654321
+        }
         $.ajax({
             type: "POST",
             url: "http://192.168.1.123:3000/rsvp",
             crossDomain:true,
             dataType: "json",
-            data: JSON.stringify({username:user, eventname:event})
+            data: details,
             cache: false,
             success: function(html) {
                   alert("successful");
