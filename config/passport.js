@@ -9,7 +9,7 @@ var Admin = require('../app/models/admin');
 
 module.exports = function(passport) {
 
-    /*passport.serializeUser(function(user, done) {
+    passport.serializeUser(function(user, done) {
         done(null, user.id);
     });
 
@@ -17,7 +17,7 @@ module.exports = function(passport) {
         User.findById(id, function(err, user) {
             done(err, user);
         });
-    });*/
+    });
 
     passport.serializeUser(function(admin, done) {
         done(null, admin.id);
