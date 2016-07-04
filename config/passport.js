@@ -13,21 +13,20 @@ module.exports = function(passport) {
         done(null, user.id);
     });
 
-    passport.deserializeUser(function(id, done) {
-        User.findById(id, function(err, user) {
-            done(err, user);
+    passport.deserializeUser(function(id, done){
+        Admin.findById(id, function(err, user){
+            if(err) 
+                done(err);
+            if(user){
+                done(null, user);
+            } else {
+                User.findById(id, function(err, user){
+                    if(err) done(err);
+                    done(null, user);
+               })
+              }
         });
-    });
-
-    passport.serializeUser(function(admin, done) {
-        done(null, admin.id);
-    });
-
-    passport.deserializeUser(function(id, done) {
-        Admin.findById(id, function(err, admin) {
-            done(err, admin);
-        });
-    });
+    });    
 
     function serializeClient(req, res, next) {
       if (req.query.permanent === 'true') {

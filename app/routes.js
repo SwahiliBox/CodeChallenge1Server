@@ -1,4 +1,5 @@
 var express=require('express');
+var cors=require('cors');
 var router=express.Router();
 var User = require('./models/user');
 var Events = require('./models/event');
@@ -6,6 +7,14 @@ var Rsvp = require('./models/rsvp');
 var Admin = require('../app/models/admin');
 
 module.exports=function(app,passport){
+
+    /*app.use(cors());
+    app.use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+      console.log("This should be working");
+      next();
+    });*/
 
     app.get('/error',function(req,res){
       res.send('1');
@@ -218,6 +227,14 @@ module.exports=function(app,passport){
 
           res.send('success:' + rsvp);
         });
+    });
+
+    app.get('/rsvp', function(req, res){
+      Rsvp.find({}, function(err, rsvp){
+        if(err)
+          res.send(err);
+        res.json(rsvp);
+       });
     });
     
     app.get('/logout', function(req, res) {

@@ -21,6 +21,7 @@ var bodyParser   = require('body-parser');
 var session=require('express-session');
 var methodOverride = require('method-override'); 
 var flash = require('connect-flash'); 
+var cors = require('cors');
 
 
 var MongoStore=require('connect-mongo')(session);
@@ -44,7 +45,13 @@ app.use(session({secret:'anystringoftext',
       resave:false
 }));
 
+app.use(cors());
 
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 require('./config/passport')(passport);
 
