@@ -8,13 +8,13 @@ var Admin = require('../app/models/admin');
 
 module.exports=function(app,passport){
 
-    /*app.use(cors());
+    app.use(cors());
     app.use(function(req, res, next) {
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
       console.log("This should be working");
       next();
-    });*/
+    });
 
     app.get('/error',function(req,res){
       res.send('1');
