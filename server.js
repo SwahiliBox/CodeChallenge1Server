@@ -1,35 +1,30 @@
-
-var express=require('express');
-var nodemailer = require('nodemailer');
-var app=express();
-var port=process.env.PORT || 3000;
-
+var express          = require('express');
+var nodemailer       = require('nodemailer');
+var app              = express();
+var port             = process.env.PORT || 3000;
 //initialize required modules for the app
-var passport = require('passport');
-var session=require('express-session');
-var bodyParser=require('body-parser');
-var morgan=require('morgan');
-var path = require('path');
-var methodOverride = require('method-override');
-var mongoose=require('mongoose');
-var mongodb=require('mongodb');
-var exphbs  = require('express-handlebars');
-var expressValidator= require('express-validator');
-var morgan       = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser   = require('body-parser');
-var session=require('express-session');
-var methodOverride = require('method-override'); 
-var flash = require('connect-flash'); 
-var cors = require('cors');
-
-
-var MongoStore=require('connect-mongo')(session);
-var Rsvp = require('./app/models/rsvp');
+var passport         = require('passport');
+var session          = require('express-session');
+var bodyparser       = require('body-parser');
+var morgan           = require('morgan');
+var path             = require('path');
+var methodoverride   = require('method-override');
+var mongoose         = require('mongoose');
+var mongodb          = require('mongodb');
+var exphbs           = require('express-handlebars');
+var expressvalidator = require('express-validator');
+var morgan           = require('morgan');
+var cookieparser     = require('cookie-parser');
+var bodyparser       = require('body-parser');
+var session          = require('express-session');
+var methodoverride   = require('method-override');
+var flash            = require('connect-flash');
+var cors             = require('cors');
+var mongostore       = require('connect-mongo')(session);
+var rsvp             = require('./app/models/rsvp');
 //connect to mongo database
-var configDB = require('./config/database.js');
+var configDB         = require('./config/database.js');
 mongoose.connect(configDB.url);
-
 //require passport for authentication
 require('./config/passport.js')(passport);
 
@@ -39,7 +34,6 @@ app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'views')));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
-
 app.use(session({secret:'anystringoftext',
       saveUninitialized:true,
       resave:false
@@ -67,6 +61,3 @@ require('./app/routes.js')(app, passport);
 
 app.listen(port);
 console.log('Server running on localhost: port ' + port);
-
-
-

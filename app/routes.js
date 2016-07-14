@@ -1,13 +1,12 @@
-var express=require('express');
-var cors=require('cors');
-var router=express.Router();
-var User = require('./models/user');
-var Events = require('./models/event');
-var Rsvp = require('./models/rsvp');
-var Admin = require('../app/models/admin');
+var express = require('express');
+var cors    = require('cors');
+var router  = express.Router();
+var User    = require('./models/user');
+var Events  = require('./models/event');
+var Rsvp    = require('./models/rsvp');
+var Admin   = require('../app/models/admin');
 
 module.exports=function(app,passport){
-
     app.use(cors());
     app.use(function(req, res, next) {
       res.header("Access-Control-Allow-Origin", "*");
@@ -43,14 +42,12 @@ module.exports=function(app,passport){
             return err;
 
         if (user) {
-
             // if a user is found, prevent sign up
             res.send('1');
         }
         else{
           User.createUser(newUser,function(err,user){
             if (err) throw err;
-
             console.log(user);
             res.send(user);
           });
@@ -73,7 +70,6 @@ module.exports=function(app,passport){
                     failureRedirect : '/error'
             }));
 
-
     // FACEBOOK ROUTES
     // route for facebook authentication and login
     app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email']}));
@@ -83,7 +79,6 @@ module.exports=function(app,passport){
         passport.authenticate('facebook', {successRedirect : '/proffacebook',
                                            failureRedirect : '/error'
         }));
-
 
     //route for processing local user login
     app.get('/userdata',isLoggedIn, function(req, res) {
@@ -117,10 +112,12 @@ module.exports=function(app,passport){
     		res.json(events)
     	});
     });
+
     //admin signup via ejs view
     app.get('/adminsignup', function(req, res) {
         res.render('signup.ejs', { message: req.flash('signupMessage') });
     });
+
     //admin details saved to database
     app.post('/adminsignup', passport.authenticate('admin-signup', {
         successRedirect : '/adminlogin',
@@ -132,6 +129,7 @@ module.exports=function(app,passport){
     app.get('/adminlogin', function(req, res) {
         res.render('login.ejs', { message: req.flash('signupMessage') });
     });
+
     //admin details saved to database
     app.post('/adminlogin', passport.authenticate('admin-login', {
         successRedirect : '/eventsrecords',
@@ -156,12 +154,11 @@ module.exports=function(app,passport){
     //insert values into mongo db
     app.post('/insert', function(req, res){
         Events.create({
-
-          title : req.body.title,
-          venue : req.body.venue,
-          date : req.body.date,
-          time : req.body.time,
-          desc : req.body.desc
+          title: req.body.title,
+          venue: req.body.venue,
+          date: req.body.date,
+          time: req.body.time,
+          desc: req.body.desc
         },
         function(err, event){
            if(err)
@@ -170,16 +167,13 @@ module.exports=function(app,passport){
            Events.find({}, function(err, event){
               if(err)
                   res.send(err);
-
               res.redirect('eventsrecords.html');
-
            });
         });
     });
 
     //Deleting events data from collection.
     app.post('/delete', function(req, res){
-
        Events.remove({ _id : req.body.id}, function(err, event){
           if(err)
             res.send(err)
@@ -219,12 +213,9 @@ module.exports=function(app,passport){
           phonenumber : req.body.phonenumber,
           eventname : req.body.eventname
         }, function(error,rsvp){
-          if(error)
-            console.log(error);
-
+          if(error) console.log(error);
           console.log(rsvp);
           console.log("successful insert");
-
           res.send('success:' + rsvp);
         });
     });
@@ -241,23 +232,17 @@ module.exports=function(app,passport){
         req.logout();
         res.redirect('/adminlogin');
     });
-
-
   };
-
 
 function isLoggedIn(req, res, next) {
     if(req.isAuthenticated()){
         return next();
     }
-    
-
     res.send('1');
 }
 function adminLoggedIn(req, res, next) {
     if(req.isAuthenticated()){
       return next();
     }
-
     res.redirect('/adminlogin');
 }

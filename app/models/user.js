@@ -19,21 +19,18 @@ var userSchema=mongoose.Schema({
       type:String
     }
   },
-
   facebook:{
     id:String,
     token:String,
     email:String,
     name:String
   },
-
   google : {
         id : String,
         token : String,
         email : String,
         name : String
     }
-
 });
 module.exports = mongoose.model('User',userSchema);
 
