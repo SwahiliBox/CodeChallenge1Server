@@ -42,7 +42,9 @@
     "path": "^0.12.7",
     "xoauth2": "^1.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "ejs-mate": "^2.3.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SwahiliBox/CodeChallenge1Server.git"

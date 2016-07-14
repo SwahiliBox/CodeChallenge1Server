@@ -19,6 +19,11 @@ module.exports = function(app,passport){
     res.send('1');
   });
 
+  /* home route  */
+  app.get('/', function(req, res){
+    res.render('index');
+  });
+
   //register user
   app.post('/register',function(req,res){
     var firstname = req.body.firstname;
