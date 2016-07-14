@@ -1,0 +1,46 @@
+body, html {
+  height: 100%;
+  width: 100%; }
+
+/* ------------------------------------------------------
+ * topbar navigation styling section
+ * -----------------------------------------------------*/
+.top-bar {
+  background: transparent;
+  height: 60px;
+  line-height: 60px; }
+  .top-bar li.name {
+    height: 60px; }
+    .top-bar li.name h1 {
+      line-height: 60px; }
+
+.top-bar-section ul {
+  background: transparent; }
+  .top-bar-section ul li:not(.has-form) a:not(.button) {
+    line-height: 60px;
+    background: transparent; }
+    .top-bar-section ul li:not(.has-form) a:not(.button):hover {
+      background: transparent; }
+  .top-bar-section ul li a {
+    text-transform: uppercase; }
+    .top-bar-section ul li a:hover {
+      background: transparent; }
+
+/* ------------------------------------------------------
+ * header styling 
+ * -----------------------------------------------------*/
+header {
+  background: url("../images/hero.jpg");
+  height: 100%;
+  background-size: cover;
+  position: relative; }
+  header:before {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: rgba(31, 81, 139, 0.9);
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.9; }

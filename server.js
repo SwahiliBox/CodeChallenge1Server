@@ -32,7 +32,8 @@ require('./config/passport.js')(passport);
 //use required modules
 app.use(morgan('dev'));
 app.use(methodOverride());
-app.use(express.static(path.join(__dirname, 'views')));
+/* app.use(express.static(path.join(__dirname, 'views'))); */
+app.use(express.static(__dirname + '/public'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(session({secret:'anystringoftext',
