@@ -106,3 +106,59 @@ header {
       font-size: 16px;
       text-decoration: none;
       display: inline-block; }
+
+/* ------------------------------------------------------
+ * home upcoming events styling
+ * -----------------------------------------------------*/
+.upcoming {
+  padding: 80px 0;
+  background: #315d8e; }
+  .upcoming .event-container {
+    background: #fff;
+    font-size: 14px;
+    font-weight: 300;
+    text-align: center; }
+    .upcoming .event-container .event.add_bg_hover {
+      color: #fff;
+      border-color: #fff;
+      padding: 1.5em 0; }
+      .upcoming .event-container .event.add_bg_hover:hover {
+        background: #5ab4e6;
+        color: #fff;
+        cursor: pointer;
+        -webkit-transition: all 0.4s ease-in-out;
+        -moz-transition: all 0.4s ease-in-out;
+        -o-transition: all 0.4s ease-in-out;
+        -ms-transition: all 0.4s ease-in-out;
+        transition: all 0.4s ease-in-out; }
+        .upcoming .event-container .event.add_bg_hover:hover .eventsicon {
+          border: 1px solid #fff; }
+          .upcoming .event-container .event.add_bg_hover:hover .eventsicon i {
+            color: #fff; }
+        .upcoming .event-container .event.add_bg_hover:hover .event-content h2 {
+          color: #fff; }
+        .upcoming .event-container .event.add_bg_hover:hover .event-content p {
+          color: #fff; }
+    .upcoming .event-container .event .eventsicon {
+      border: 1px solid #5ab4e6;
+      width: 100px;
+      height: 100px;
+      font-size: 45px;
+      line-height: 100px;
+      text-align: center;
+      margin: 25px auto 0px;
+      display: inline-block; }
+      .upcoming .event-container .event .eventsicon i {
+        color: #5ab4e6; }
+    .upcoming .event-container .event .event-content {
+      padding: 15px 10px;
+      font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+      .upcoming .event-container .event .event-content h2 {
+        color: #000;
+        font-family: 'LatoWeb', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+        .upcoming .event-container .event .event-content h2.title {
+          font-size: 18px;
+          font-weight: 700;
+          margin-bottom: 5px; }
+      .upcoming .event-container .event .event-content p {
+        color: #000; }
