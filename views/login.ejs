@@ -1,39 +1,22 @@
-<!-- views/login.ejs -->
-<!doctype html>
-<html>
-<head>
-    <title>Swahili Box</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
-    <style>
-        body { padding-top:80px; 
-          word-wrap:break-word;
-          background: #808080 !important;
-             }
-    </style>
-</head>
-<body>
-<div class="container">
+<% layout('index') %>
 
 <div class="col-sm-6 col-sm-offset-3">
-    <h1><span class="fa fa-sign-in"></span> Login</h1>
-    <% if (message.length > 0) { %>
-        <div class="alert alert-danger"><%= message %></div>
-    <% } %>
-    <form action="/adminlogin" method="post">
-        <div class="form-group">
-            <label>Email</label>
-            <input type="text" required class="form-control" name="email">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" required class="form-control" name="password">
-        </div>
-        <button type="submit" class="btn btn-warning btn-lg">Login</button>
-    </form>
-    <hr>
+  <h1><span class="fa fa-sign-in"></span> Login</h1>
+  <% if (message.length > 0) { %>
+  <div class="alert alert-danger"><%= message %></div>
+  <% } %>
+  <form action="/adminlogin" method="post">
+    <div class="form-group">
+      <label>Email</label>
+      <input type="text" required class="form-control" name="email">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" required class="form-control" name="password">
+    </div>
+    <button type="submit" class="btn btn-warning btn-lg">Login</button>
+  </form>
+  <hr>
     <p>Go <a href="/">home</a>.</p>
-</div>
-</div>
-</body>
+  </div>
 

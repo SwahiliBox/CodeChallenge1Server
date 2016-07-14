@@ -1,64 +1,19 @@
-<!doctype html>
-<html>
-<head>
-    <title>Swahili Box</title>
-    <link rel="stylesheet" href="/css/foundation.css" media="all" /> 
-    <!-- load fontawesome -->
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> </head>
-    <link rel="stylesheet" href="/css/fonts/font.css" media="all" /> 
-    <link rel="stylesheet" href="/css/app.css" media="all" /> 
+<% include partials/masthead %>
 <body>
   <!--header starts -->
   <header>
-  <!--sticky navigation starts -->
-    <div class="contain-to-grid-sticky">
-      <nav class="top-bar" data-topbar role="navigation" data-options="sticky_on: large">
-        <ul class="title-area">
-          <li class="name">
-            <h1><a href="/"><span><i class="fa fa-calendar"></i></span>sbEventr</a></h1>
-          </li>
-          <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-        </ul>
-        <section class="top-bar-section">
-          <!-- Right Nav Section -->
-          <ul class="right">
-            <li><a href="/">Home</a></li>
-            <li><a href="/">About</a></li>
-            <li><a href="/signup">Events</a></li>
-            <li><a href="/signup">Speakers</a></li>
-            <li><a href="/signup">Login / Sign Up</a></li>
-          </ul>
-          <!-- Left Nav Section -->
-          <ul class="left">
-          </ul>
-        </section>
-      </nav>
-    </div>
-    <div class="call-to-action">
-      <div class="content">
-        <h1>
-          Get Ready for The Next Event. Its Beginning!
-        </h1>
-        <div class="clearfix"></div>
-        <p>
-          Authoritatively repurpose cross-media technologies rather than front-end communities. Efficiently implement professional schema after diverse results.
-        </p>
-        <a class="large button cta" href="">Start Now</a>
-      </div>
-    </div>
+    <!--sticky navigation starts -->
+    <% include partials/navbar %>
     <!--sticky navigation ends -->
+    <!--call to action section starts -->
+    <% include partials/cta %>
+    <!--call to action ends -->
   </header>
-<!--header ends -->
-
-<!--start of javascripts-->
-<script src="js/vendor/jquery.js"></script>
-<script src="js/vendor/foundation.min.js"></script>
-<script src="js/foundation.sticky.js"></script>
-<script>
-  $(document).foundation();
-</script>
-<!--end of javascripts-->
-</body>
+    <div class="clearfix"></div>
+    <!--header ends -->
+    <!--start of javascripts-->
+    <div class="clearfix"></div>
+    <% include partials/footer_scripts %>
+    <!--end of javascripts-->
+  </body>
 </html>
-

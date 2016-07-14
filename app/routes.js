@@ -60,6 +60,10 @@ module.exports = function(app,passport){
     });
   });
 
+  app.get('/login', function(req, res){
+    res.render('login');
+  });
+
   app.post('/login',
     passport.authenticate('user-login',{
         successRedirect:'/userdata',
