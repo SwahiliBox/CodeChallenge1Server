@@ -6,7 +6,7 @@ var Events  = require('./models/event');
 var Rsvp    = require('./models/rsvp');
 var Admin   = require('../app/models/admin');
 
-module.exports=function(app,passport){
+module.exports = function(app,passport){
   app.use(cors());
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -21,16 +21,16 @@ module.exports=function(app,passport){
 
   //register user
   app.post('/register',function(req,res){
-    var firstname=req.body.firstname;
-    var surname=req.body.surname;
-    //var name=req.body.name;
-    var email=req.body.email;
-    var username=req.body.username;
-    var password=req.body.password;
-    var password2=req.body.password2;
+    var firstname = req.body.firstname;
+    var surname   = req.body.surname;
+    //var name    = req.body.name;
+    var email     = req.body.email;
+    var username  = req.body.username;
+    var password  = req.body.password;
+    var password2 = req.body.password2;
 
     //newuser object oriented variable assigning
-    var newUser=new User();
+    var newUser = new User();
     newUser.local.firstname = firstname;
     newUser.local.surname   = surname;
     newUser.local.email     = email;
@@ -232,17 +232,17 @@ module.exports=function(app,passport){
     req.logout();
     res.redirect('/adminlogin');
   });
-};
+  };
 
-function isLoggedIn(req, res, next) {
-  if(req.isAuthenticated()){
-    return next();
+  function isLoggedIn(req, res, next) {
+    if(req.isAuthenticated()){
+      return next();
+    }
+    res.send('1');
   }
-  res.send('1');
-}
-function adminLoggedIn(req, res, next) {
-  if(req.isAuthenticated()){
-    return next();
+  function adminLoggedIn(req, res, next) {
+    if(req.isAuthenticated()){
+      return next();
+    }
+    res.redirect('/adminlogin');
   }
-  res.redirect('/adminlogin');
-}

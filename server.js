@@ -8,16 +8,17 @@ var session          = require('express-session');
 var bodyparser       = require('body-parser');
 var morgan           = require('morgan');
 var path             = require('path');
-var methodoverride   = require('method-override');
 var mongoose         = require('mongoose');
+var ejs              = require('ejs');
+var engine           = require('ejs-mate');
 var mongodb          = require('mongodb');
 var exphbs           = require('express-handlebars');
 var expressvalidator = require('express-validator');
 var morgan           = require('morgan');
-var cookieparser     = require('cookie-parser');
-var bodyparser       = require('body-parser');
+var cookieParser     = require('cookie-parser');
+var bodyParser       = require('body-parser');
 var session          = require('express-session');
-var methodoverride   = require('method-override');
+var methodOverride   = require('method-override');
 var flash            = require('connect-flash');
 var cors             = require('cors');
 var mongostore       = require('connect-mongo')(session);
@@ -49,7 +50,9 @@ app.use(function(req, res, next) {
 
 require('./config/passport')(passport);
 
-app.set('view engine', 'html');
+/* app.set('view engine', 'html'); */
+app.engine('ejs', engine);
+app.set('view engine', 'ejs');
 
 app.use(passport.initialize());
 app.use(passport.initialize());
