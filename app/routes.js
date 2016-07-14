@@ -16,6 +16,9 @@ module.exports=function(app,passport){
       next();
     });
 
+    app.get('/', function(req,res){
+      res.render('index.ejs');
+    });
     app.get('/error',function(req,res){
       res.send('1');
     });
