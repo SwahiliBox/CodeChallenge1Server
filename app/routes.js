@@ -31,13 +31,13 @@ module.exports=function(app,passport){
 
     //newuser object oriented variable assigning
     var newUser=new User();
-    newUser.local.firstname =firstname;
-    newUser.local.surname   =surname;
-    newUser.local.email     =email;
-    newUser.local.username  =username;
-    newUser.local.password  =password;
+    newUser.local.firstname = firstname;
+    newUser.local.surname   = surname;
+    newUser.local.email     = email;
+    newUser.local.username  = username;
+    newUser.local.password  = password;
 
-    User.findOne({ 'local.username' : newUser.local.username }, function(err, user) {
+    User.findOne({ 'local.username': newUser.local.username }, function(err, user) {
       if (err)
         return err;
 
@@ -63,11 +63,11 @@ module.exports=function(app,passport){
 
   //GOOGLE ROUTES
   //route for google authentication and login
-  app.get('/auth/google', passport.authenticate('google', { scope : ['profile', 'email'] }));
+  app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
   app.get('/auth/google/callback', passport.authenticate('google', {
-        successRedirect : '/profgmail',
-        failureRedirect : '/error'
+        successRedirect: '/profgmail',
+        failureRedirect: '/error'
   }));
 
   // FACEBOOK ROUTES
@@ -76,8 +76,8 @@ module.exports=function(app,passport){
 
   // handle the callback after facebook has authenticated the user
   app.get('/auth/facebook/callback',
-    passport.authenticate('facebook', {successRedirect : '/proffacebook',
-        failureRedirect : '/error'
+    passport.authenticate('facebook', {successRedirect: '/proffacebook',
+        failureRedirect: '/error'
   }));
 
   //route for processing local user login
@@ -101,7 +101,7 @@ module.exports=function(app,passport){
 
   //Send file crud.html
   app.get('/crud', function(request, response){
-    response.sendFile('crud.html', {'root' : 'views'});
+    response.sendFile('crud.html', {'root': 'views'});
   });
 
   //send events to frontend
@@ -120,9 +120,9 @@ module.exports=function(app,passport){
 
   //admin details saved to database
   app.post('/adminsignup', passport.authenticate('admin-signup', {
-        successRedirect : '/adminlogin',
-        failureRedirect : '/adminsignup',
-        failureFlash : true
+        successRedirect: '/adminlogin',
+        failureRedirect: '/adminsignup',
+        failureFlash:     true
   }));
 
   //admin login render ejs
@@ -132,14 +132,14 @@ module.exports=function(app,passport){
 
   //admin details saved to database
   app.post('/adminlogin', passport.authenticate('admin-login', {
-        successRedirect : '/eventsrecords',
-        failureRedirect : '/adminlogin',
-        failureFlash : true 
+        successRedirect: '/eventsrecords',
+        failureRedirect: '/adminlogin',
+        failureFlash: true 
   }));
 
   //Crud Page.
   app.get('/eventsrecords', adminLoggedIn,function(req,res){
-    res.sendFile('eventsrecords.html', {'root' : 'views'});
+    res.sendFile('eventsrecords.html', {'root': 'views'});
   });
 
   //send events to frontend
@@ -156,9 +156,9 @@ module.exports=function(app,passport){
     Events.create({
         title: req.body.title,
         venue: req.body.venue,
-        date: req.body.date,
-        time: req.body.time,
-        desc: req.body.desc
+        date:  req.body.date,
+        time:  req.body.time,
+        desc:  req.body.desc
     },
     function(err, event){
       if(err)
@@ -174,7 +174,7 @@ module.exports=function(app,passport){
 
   //Deleting events data from collection.
   app.post('/delete', function(req, res){
-    Events.remove({ _id : req.body.id}, function(err, event){
+    Events.remove({ _id: req.body.id}, function(err, event){
       if(err)
         res.send(err)
       Event.find({}, function(err, event){
@@ -188,11 +188,11 @@ module.exports=function(app,passport){
   //Updating events data in collection.
   app.post('/update', function(req, res){
     var terms = {
-      title : req.body.title,
-      venue : req.body.venue,
-      date : req.body.date,
-      desc : req.body.desc,
-      time : req.body.time
+      title: req.body.title,
+      venue: req.body.venue,
+      date:  req.body.date,
+      desc:  req.body.desc,
+      time:  req.body.time
     }
     Events.update({_id : req.body.id}, {$set: terms}, function(error, event){
       //if(err)
@@ -208,10 +208,10 @@ module.exports=function(app,passport){
 
   app.post('/rsvp', function(req,res){
     Rsvp.create({
-        firstname : req.body.firstname,
-        lastname : req.body.lastname,
-        phonenumber : req.body.phonenumber,
-        eventname : req.body.eventname
+        firstname:    req.body.firstname,
+        lastname:     req.body.lastname,
+        phonenumber:  req.body.phonenumber,
+        eventname:    req.body.eventname
     }, function(error,rsvp){
       if(error) console.log(error);
       console.log(rsvp);
