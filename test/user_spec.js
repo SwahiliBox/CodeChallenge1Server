@@ -15,6 +15,5 @@ describe("User", function(){
     it("make sure App.js and Server.js are in one file which will be Server.js")
     it("add loging routes to master routes(app->models->routes.js)")
     it("add loging user to master(app->models->user.js)")
-
   })
 })
