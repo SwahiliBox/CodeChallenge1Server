@@ -11,4 +11,3 @@ module.exports = {
     'profileFields': ['id', 'email', 'gender']
   }
 };
-

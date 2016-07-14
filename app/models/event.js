@@ -7,8 +7,8 @@ var eventSchema = mongoose.Schema({
     venue: String,
     desc:  String,
     date:  {type :Date
-            //default: Date.now
-           },
+      //default: Date.now
+    },
     time:  String,
 });
 
