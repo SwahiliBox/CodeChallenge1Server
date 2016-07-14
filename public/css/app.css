@@ -12,7 +12,14 @@ body, html {
   .top-bar li.name {
     height: 60px; }
     .top-bar li.name h1 {
-      line-height: 60px; }
+      line-height: 60px;
+      font-size: 2rem;
+      font-weight: bold; }
+      .top-bar li.name h1 i {
+        font-size: 0.5em;
+        padding: 0 0.4em 0 0;
+        position: relative;
+        top: -3px; }
 
 .top-bar-section ul {
   background: transparent; }
@@ -44,3 +51,58 @@ header {
     top: 0;
     left: 0;
     opacity: 0.9; }
+
+/* ------------------------------------------------------
+ * call to action section  
+ * -----------------------------------------------------*/
+.call-to-action {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  min-height: 24em;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  height: 100%; }
+  .call-to-action .content {
+    -webkit-box-flex: 0;
+    -webkit-flex: none;
+    -ms-flex: none;
+    flex: none;
+    max-width: 60%;
+    aling-self: auto;
+    z-index: 10;
+    text-align: center; }
+    .call-to-action .content h1 {
+      color: #fff;
+      /*text-transform: lowercase;*/
+      font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 3em; }
+    .call-to-action .content p {
+      color: #fff;
+      font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 1.3em; }
+  .call-to-action .button {
+    border-radius: 0;
+    background-color: #f47920;
+    color: #fff;
+    padding: 15px 40px;
+    margin-top: 20px;
+    -webkit-transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, background 0.2s ease-in-out; }
+    .call-to-action .button:hover {
+      background-color: #000;
+      padding: 15px 45px; }
+    .call-to-action .button.cta {
+      text-transform: uppercase;
+      font-family: 'LatoWeb', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-style: normal;
+      font-size: 16px;
+      text-decoration: none;
+      display: inline-block; }
