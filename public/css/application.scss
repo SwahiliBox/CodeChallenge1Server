@@ -2,6 +2,9 @@ body, html{
   height: 100%;
   width: 100%;
 }
+.row{
+  max-width: 74%;
+}
 /* ------------------------------------------------------
  * topbar navigation styling section
  * -----------------------------------------------------*/
@@ -132,6 +135,54 @@ header{
   }
 }
 /* ------------------------------------------------------
+ * promotion section  
+ * -----------------------------------------------------*/
+.promotion{
+  padding: 3em 0;
+  background: #dbf2fa;
+  .promote{
+    border: 4px solid #fff;
+    border-top: none;
+    @extend .call-to-action;
+    .content{
+      /*max-width: 40%;*/
+      h2.title{
+        font-weight: 900;
+        margin-top: -19px;
+        position: relative;
+        span{
+          width: 610px;
+          display: inline-block;
+          padding: 0px 20px;
+        }
+        &:before{
+          content: "";
+          border: 2px solid #fff;
+          display: inline-block;
+          position: absolute;
+          left: -45px;
+          top: 0px;
+          width: 20%;
+        }
+        &:after{
+          content: "";
+          border: 2px solid #fff;
+          display: inline-block;
+          position: absolute;
+          left: auto;
+          right: -60px;
+          top: 19px;
+          width: 20%;
+        }
+      }
+      p{
+        color: #000;
+      }
+    }
+  }
+}
+
+/* ------------------------------------------------------
  * home upcoming events styling
  * -----------------------------------------------------*/
 .upcoming{
@@ -200,6 +251,260 @@ header{
         p{
           color: #000;
         }
+      }
+    }
+  }
+}
+/*--------------------------------------------------------
+* footer section styling 
+*--------------------------------------------------------*/
+footer{
+  background: #303840;
+  zoom: 1;
+  .footer-top{
+    zoom: 1;
+    background: #22272d;
+    padding: 30px 0;
+    z-index: 5;
+    .wrapper{
+      margin: 0 auto;
+      width: 76%;
+    }
+    .row{
+      max-width: 100%;
+    }
+    .logo{
+      font-family: 'LatoWeb', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-variant: normal;
+      text-transform: none;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-size: 26px;
+      width: 110px;
+      height: 30px;
+      position: absolute;
+      left: 20px;
+      color: #fff;
+      z-index: 500;
+      top: 10px;
+      span{
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        width: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+      }
+    }
+    .cta{
+      text-transform: uppercase;
+      font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 14px;
+      text-decoration: none;
+      -webkit-transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
+      transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
+      display: inline-block;
+      float: right;
+    }
+    .button{
+      border-radius: 0;
+      padding: 1em 2em;
+      background-color: #f47920;
+      color: #fff;
+      border: 1px solid transparent;
+      &:hover{
+        background-color: #000;
+        border: 1px solid #fff;
+      }
+    }
+  }
+  .footer-wrapper {
+    background: #303840;
+    color: #fff;
+    padding: 50px 0;
+    position: relative;
+    z-index: 5;
+  }
+  .footer-nav {
+    zoom: 1;
+    float: left;
+    width: 40%;
+    display: inline-block;
+    &:before, &:after{
+      display: block;
+      overflow: hidden;
+      visibility: hidden;
+      width: 0;
+      height: 0;
+    }
+    ul{
+    font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    padding-left: 0;
+    float: left;
+    width: 45%;
+    }
+    li{
+    margin-bottom: 20px;
+    display: block;
+    }
+    a{
+      color: #fff;
+      text-decoration: none;
+      &:hover{
+        color: #f47920;
+      }
+    }
+    @media (max-width: 960px){
+      width: 45%;
+    }
+    @media (max-width: 800px){
+      display: none;
+    }
+  }
+  .footer-engage {
+    float: right;
+    width: 45%;
+    display: inline-block;
+    text-align: right;
+    margin-bottom: 75px;
+    @media (max-width: 960px){
+      width: 50%;
+    }
+    @media (max-width: 800px){
+      width: 100%;
+      margin-bottom: 20px;
+    }
+    p{
+      @media (max-width: 800px){
+        text-align: center;
+      }
+    }
+  }
+  .sign-up-form {
+    zoom: 1;
+  }
+  .sign-up-form:before, .sign-up-form:after {
+    content: '\0020';
+    display: block;
+    overflow: hidden;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
+  .sign-up-form:after {
+    clear: both;
+  }
+  .sign-up-form .field {
+    float: left;
+    width: 38%;
+  }
+  .sign-up-form .field:nth-child(1) {
+    border-right: 1px solid #e5e7e9;
+  }
+  .sign-up-form label {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+  }
+  .sign-up-form input {
+    width: 100%;
+    padding: 10px;
+  }
+  .sign-up-form button {
+    float: right;
+    width: 22%;
+    padding: 11px 10px;
+    background: none;
+    border: 1px solid #f47920;
+    color: #f47920;
+    -webkit-transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    transition: color 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  }
+  .sign-up-form button:hover {
+    border-color: #fff;
+    color: #fff;
+  }
+  .sign-up-form label.error {
+    position: absolute;
+    overflow: visible;
+    clip: auto;
+    height: auto;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    left: 0;
+    top: 46px;
+    font-size: 12px;
+    text-align: left;
+    margin: 0;
+    color: white;
+  }
+  @media (max-width: 800px) {
+    .sign-up-form .field:nth-child(1) {
+      width: 100%;
+      margin-bottom: 5px;
+      border-right: 0;
+    }
+    .sign-up-form .field:nth-child(2) {
+      width: 60%;
+    }
+    .sign-up-form button {
+      width: 39%;
+    }
+    .sign-up-form .field input.error {
+      margin-bottom: 35px;
+    }
+  }
+  p.copyright {
+    font-family: 'LatoWebLight', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.5);
+    clear: both;
+    margin-bottom: 0;
+    text-align: center;
+  }
+  p.copyright a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+  }
+  p.copyright a:hover, p.copyright a:active {
+    color: #3597eb;
+  }
+  @media (max-width: 800px) {
+    p.copyright {
+      text-align: center;
+    }
+  }
+  .wrapper{
+    margin: 0 auto;
+    width: 76%;
+  }
+}
+.social-links{
+  font-size: 1.2em;
+  li{
+    display: inline;
+    padding: 0 0.2em 0 0;
+    a{
+      color: #fff;
+      i{
+        padding-right: 0.6em;
       }
     }
   }
