@@ -21,8 +21,8 @@ body.f-topbar-fixed {
   margin-top: 30px;
   padding-left: 40px;
   padding-right: 40px;
-  -webkit-transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
-  transition: color 0.2s ease-in-out, background 0.2s ease-in-out; }
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out; }
   .top-bar li.name {
     height: 60px; }
     .top-bar li.name h1 {
