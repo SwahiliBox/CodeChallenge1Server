@@ -4,14 +4,14 @@
    color once we scroll past the main site title
 */
 $(document).ready(function () {
-  var scroll_start = 0;
-  var startchange = $(".call-to-action .content");
-  var offset = startchange.offset();
+  var scrollStart = 0;
+  var startChange  = $(".call-to-action .content");
+  var offset       = startChange.offset();
 
-  if (startchange.length) {
+  if (startChange.length) {
     $(document).scroll(function () {
-      scroll_start = $(this).scrollTop();
-      if (scroll_start > offset.top) {
+      scrollStart = $(this).scrollTop();
+      if (scrollStart > offset.top) {
         $("nav").css('background-color', 'rgba(0,0,0,.75)');
       } else {
         $('nav').css('background-color', 'transparent');
