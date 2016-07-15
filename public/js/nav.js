@@ -2,8 +2,8 @@
    when scrolling the page the navigation menu 
    will change its background from nothing to a transparent black
    color once we scroll past the main site title
-   $(document).ready(function () {
 */
+$(document).ready(function () {
   var scroll_start = 0;
   var startchange = $(".call-to-action .content");
   var offset = startchange.offset();
