@@ -143,7 +143,6 @@ header{
  * -----------------------------------------------------*/
 .promotion{
   padding: 3em 0;
-  background: #dbf2fa;
   .promote{
     border: 4px solid #fff;
     border-top: none;
@@ -339,6 +338,7 @@ footer{
     float: left;
     width: 40%;
     display: inline-block;
+    background: transparent !important;
     &:before, &:after{
       display: block;
       overflow: hidden;
@@ -497,7 +497,7 @@ footer{
   }
   .wrapper{
     margin: 0 auto;
-    width: 76%;
+    width: 74%;
   }
 }
 .social-links{
