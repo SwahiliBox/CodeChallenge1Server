@@ -2,7 +2,8 @@
 Gemfile
 Gemfile.lock
 node_modules/ 
-bower_components/
+public/bower_components/
+public/css/.sass-cache/ 
 npm-debug.log 
 public/js 
 .sass-cache 

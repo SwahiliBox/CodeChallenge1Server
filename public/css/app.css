@@ -2,6 +2,9 @@ body, html {
   height: 100%;
   width: 100%; }
 
+body.f-topbar-fixed {
+  padding-top: 0 !important; }
+
 .row {
   max-width: 74%; }
 
@@ -26,15 +29,17 @@ body, html {
 
 .top-bar-section ul {
   background: transparent; }
-  .top-bar-section ul li:not(.has-form) a:not(.button) {
-    line-height: 60px;
+  .top-bar-section ul li {
     background: transparent; }
-    .top-bar-section ul li:not(.has-form) a:not(.button):hover {
+    .top-bar-section ul li:not(.has-form) a:not(.button) {
+      line-height: 60px;
       background: transparent; }
-  .top-bar-section ul li a {
-    text-transform: uppercase; }
-    .top-bar-section ul li a:hover {
-      background: transparent; }
+      .top-bar-section ul li:not(.has-form) a:not(.button):hover {
+        background: transparent; }
+    .top-bar-section ul li a {
+      text-transform: uppercase; }
+      .top-bar-section ul li a:hover {
+        background: transparent; }
 
 /* ------------------------------------------------------
  * header styling 
