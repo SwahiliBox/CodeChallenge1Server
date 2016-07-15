@@ -270,7 +270,7 @@ footer{
   .footer-top{
     zoom: 1;
     background: #22272d;
-    padding: 30px 0;
+    height: 100px;
     z-index: 5;
     .wrapper{
       margin: 0 auto;
@@ -290,7 +290,6 @@ footer{
       font-size: 26px;
       width: 110px;
       height: 30px;
-      position: absolute;
       left: 20px;
       color: #fff;
       z-index: 500;
@@ -316,10 +315,10 @@ footer{
       transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
       display: inline-block;
       float: right;
+      margin-top: 25px;
     }
     .button{
       border-radius: 0;
-      padding: 1em 2em;
       background-color: #f47920;
       color: #fff;
       border: 1px solid transparent;
@@ -327,6 +326,9 @@ footer{
         background-color: #000;
         border: 1px solid #fff;
       }
+    }
+    .footer-top-container{
+      line-height: 100px;
     }
   }
   .footer-wrapper {
@@ -514,5 +516,49 @@ footer{
         padding-right: 0.6em;
       }
     }
+  }
+}
+.footer-headline{
+  padding-top: 30px;
+  h2{
+    font-size: 1.3em;
+    color: #305081;
+  }
+}
+.events-ticker{
+  padding-top: 15px;
+  .event-title{
+    padding-top: 18px;
+    text-align: center;
+    color: #565b60;
+  }
+  .orbit-container{
+    .orbit-prev{
+      &>span{
+        border-color: transparent #565b60 transparent transparent;
+      }
+    }
+    .orbit-next{
+      &>span{
+        border-color: transparent transparent transparent #565b60;
+      }
+    }
+  }
+}
+.sign-up-form{
+  input[type="text"], input[type="email"], input[type="tel"], textarea{
+    font-family: 'LatoWeb', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    background: #e5e7e9;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid transparent;
+    -webkit-transition: background 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    transition: background 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  }
+  .postfix{
+    height: 2.6125rem;
   }
 }
