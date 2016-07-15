@@ -1,10 +1,10 @@
-var express=require('express');
-var cors=require('cors');
-var router=express.Router();
-var User = require('./models/user');
-var Events = require('./models/event');
-var Rsvp = require('./models/rsvp');
-var Admin = require('../app/models/admin');
+var express = require('express');
+var cors    = require('cors');
+var router  = express.Router();
+var User    = require('./models/user');
+var Events  = require('./models/event');
+var Rsvp    = require('./models/rsvp');
+var Admin   = require('../app/models/admin');
 
 module.exports = function(app,passport){
   app.use(cors());

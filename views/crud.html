@@ -1,143 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
+  <head>
     <meta charset="utf-8">
-	<title>SwahiliBox</title>
-    <style type="text/css">
+      <title>SwahiliBox</title>
+      <style type="text/css">
         #create{width: 150px;}
         #delete{width: 150px;}
         #update{width: 150px;}
-    </style>
-    <script type="text/javascript">
-      function rsvp(){
-        var details={
-          var event : 123456789,
-          var user : 987654321
+      </style>
+      <script type="text/javascript">
+        function rsvp(){
+          var details={
+            var event : 123456789,
+            var user : 987654321
+          }
+          $.ajax({
+              type: "POST",
+              url: "http://192.168.1.123:3000/rsvp",
+              crossDomain:true,
+              dataType: "json",
+              data: details,
+              cache: false,
+              success: function(html) {
+                alert("successful");
+              }
+          });
         }
-        $.ajax({
-            type: "POST",
-            url: "http://192.168.1.123:3000/rsvp",
-            crossDomain:true,
-            dataType: "json",
-            data: details,
-            cache: false,
-            success: function(html) {
-                  alert("successful");
-            }
-        });
-      }
-    </script>
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" ></script>
- </head>
- <body ng-app="mainApp" ng-controller="myController">
-     <marquee><h2>Welcome | SwahiliBox Events </h2></marquee>
+      </script>
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" ></script>
+    </head>
+    <body ng-app="mainApp" ng-controller="myController">
+      <marquee><h2>Welcome | SwahiliBox Events </h2></marquee>
 
-    <div class="read">
-       <ul>
+      <div class="read">
+        <ul>
           <li ng-repeat="event in events">
-           {{ event._id + " " + event.title + " " +event.venue + " " + event.desc + " " + event.date + " " + event.time }}</li>
-       </ul>
+            {{ event._id + " " + event.title + " " +event.venue + " " + event.desc + " " + event.date + " " + event.time }}</li>
+        </ul>
 
-       <script type="text/javascript">
-            var app = angular.module("mainApp", []);
-            app.controller("myController", function($scope, $http){
-                $http.get("/events")
-                .then(function(response){
-                    console.log(response);
-                    $scope.events = response.data;
-                });
+        <script type="text/javascript">
+          var app = angular.module("mainApp", []);
+          app.controller("myController", function($scope, $http){
+            $http.get("/events")
+            .then(function(response){
+              console.log(response);
+              $scope.events = response.data;
             });
+          });
         </script>
-    </div>
+      </div>
 
-     <div class="create">
-       <fieldset id="create">
-         <legend style="font-weight:bold">CREATE</legend>
-           <form method="post" action="/insert">
-             	Event Title: <input type="text" name="title">
-             	Event Venue: <input type="text" name="venue">
-             	Event Date: <input type="text" name="date">
-             	Event Time: <input type="text" name="time">
-              Event Desc: <input type="text" name="desc">
-             	RSVP: <input type="checkbox" name="rsvp" value="true">
-             	<input type="submit" style="background-color:green" name="submit" value="Create">
-           </form>
-       </fieldset>
-       </div>
+      <div class="create">
+        <fieldset id="create">
+          <legend style="font-weight:bold">CREATE</legend>
+          <form method="post" action="/insert">
+            Event Title: <input type="text" name="title">
+            Event Venue: <input type="text" name="venue">
+            Event Date: <input type="text" name="date">
+            Event Time: <input type="text" name="time">
+            Event Desc: <input type="text" name="desc">
+            RSVP: <input type="checkbox" name="rsvp" value="true">
+            <input type="submit" style="background-color:green" name="submit" value="Create">
+          </form>
+        </fieldset>
+      </div>
 
-       <div class="update">
-       <fieldset id="update">
-         <legend style="font-weight:bold">UPDATE</legend>
-           <form method="post" action="/update">
-                Event Id: <input type="text" name="id">
-                Event Title: <input type="text" name="title">
-                Event Venue: <input type="text" name="venue">
-                Event Date: <input type="text" name="date">
-                Event Time: <input type="text" name="time">
-                Event Desc: <input type="text" name="desc">
-                <input type="submit" style="background-color:blue" name="submit" value="Update">
-           </form>
-       </fieldset>
-       </div>
-       
+      <div class="update">
+        <fieldset id="update">
+          <legend style="font-weight:bold">UPDATE</legend>
+          <form method="post" action="/update">
+            Event Id: <input type="text" name="id">
+            Event Title: <input type="text" name="title">
+            Event Venue: <input type="text" name="venue">
+            Event Date: <input type="text" name="date">
+            Event Time: <input type="text" name="time">
+            Event Desc: <input type="text" name="desc">
+            <input type="submit" style="background-color:blue" name="submit" value="Update">
+          </form>
+        </fieldset>
+      </div>
 
-       <div id="delete">
-       <fieldset id="delete">
+
+      <div id="delete">
+        <fieldset id="delete">
           <legend style="font-weight:bold">DELETE</legend>
-           <form method="post" action="/delete">
-                Event Id: <input type="text" name="id">
-                <input type="submit" style="background-color:red" name="submit" value="Delete">
-           </form>
-       </fieldset>
-       </div>
+          <form method="post" action="/delete">
+            Event Id: <input type="text" name="id">
+            <input type="submit" style="background-color:red" name="submit" value="Delete">
+          </form>
+        </fieldset>
+      </div>
 
-       <div id="rsvp1">
-         <fieldset id="rsvp1">
-           <legend style="font-weight:bold">RSVP</legend>
-           <form method="post" action="/rsvp">
-             <input type="hidden" name="username" value="123456789"/>
-             <input type="hidden" name="eventname" value="987654321"/>
-             <input type="submit" name="submit" value="RSVP"/>
-           </form>
-         </fieldset>
-       </div>
+      <div id="rsvp1">
+        <fieldset id="rsvp1">
+          <legend style="font-weight:bold">RSVP</legend>
+          <form method="post" action="/rsvp">
+            <input type="hidden" name="username" value="123456789"/>
+            <input type="hidden" name="eventname" value="987654321"/>
+            <input type="submit" name="submit" value="RSVP"/>
+          </form>
+        </fieldset>
+      </div>
 
-       <div id="user">
-         <fieldset>
-           <legend>User registration</legend>
-           <form method="post" action="/register">
-             username:<input type="text" name="username"/>
-             password:<input type="password" name="password"/>
-             First_name:<input type="text" name="firstname"/>
-             Sur_name:<input type="text" name="surname"/>
-             email:<input type="email" name="email"/>
-             <input type="submit" name="register"/>
-           </form>
-         </fieldset>
-       </div>
+      <div id="user">
+        <fieldset>
+          <legend>User registration</legend>
+          <form method="post" action="/register">
+            username:<input type="text" name="username"/>
+            password:<input type="password" name="password"/>
+            First_name:<input type="text" name="firstname"/>
+            Sur_name:<input type="text" name="surname"/>
+            email:<input type="email" name="email"/>
+            <input type="submit" name="register"/>
+          </form>
+        </fieldset>
+      </div>
 
-        <div id="user">
-         <fieldset>
-           <legend>User login</legend>
-           <form method="post" action="/login">
-             username:<input type="text" name="username"/>
-             password:<input type="password" name="password"/>
-             <input type="submit" name="login"/>
-           </form>
-         </fieldset>
-       </div>
+      <div id="user">
+        <fieldset>
+          <legend>User login</legend>
+          <form method="post" action="/login">
+            username:<input type="text" name="username"/>
+            password:<input type="password" name="password"/>
+            <input type="submit" name="login"/>
+          </form>
+        </fieldset>
+      </div>
 
-       <div id="Password">
-         <fieldset>
-           <legend>Password Recovery</legend>
-           <form method="post" action="/forgot">
-             email:<input type="text" name="email"/>
-             <input type="submit" name="recover" value="recover"/>
-           </form>
-         </fieldset>
-       </div>
-
-       
-
-  </body>
-</html>
+      <div id="Password">
+        <fieldset>
+          <legend>Password Recovery</legend>
+          <form method="post" action="/forgot">
+            email:<input type="text" name="email"/>
+            <input type="submit" name="recover" value="recover"/>
+          </form>
+        </fieldset>
+      </div>
+    </body>
+  </html>
