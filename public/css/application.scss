@@ -18,6 +18,11 @@ body.f-topbar-fixed{
   background: transparent;
   height: 60px;
   line-height: 60px;
+  margin-top: 30px;
+  padding-left: 40px;
+  padding-right: 40px;
+  -webkit-transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
+  transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
   li{
     &.name{
       height: 60px;
@@ -25,11 +30,12 @@ body.f-topbar-fixed{
         line-height: 60px;
         font-size: 2rem;
         font-family: 'LatoWebBold', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        i{
-          font-size: 0.5em;
-          padding: 0 0.4em 0 0;
-          position: relative;
-          top: -3px;
+        a{
+          -webkit-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
+          &:hover{
+            color: #f47920;
+          }
         }
       }
     }
@@ -40,14 +46,44 @@ body.f-topbar-fixed{
     background: transparent;
     li{
       background: transparent;
+      padding: 0 15px;
       &:not(.has-form){
         a{
+          -webkit-transition: all 0.2s ease-in-out;
+          transition: all 0.2s ease-in-out;
           &:not(.button){
             line-height: 60px;
             background: transparent;
+            position: relative;
+            display: block;
+            font-size: 0.9em;
+            padding: 0;
             &:hover{
               background: transparent;
+              color: #f47920;
+              &:after{
+                opacity: 1;
+                -webkit-transform: translateY(-2px);
+                -ms-transform: translateY(-2px);
+                transform: translateY(-2px);
+                top: 95%;
+              }
             }
+            &:after{
+              position: absolute;
+              top: 100%;
+              left: 0;
+              width: 100%;
+              height: 2px;
+              background: #f47920;
+              content: '';
+              opacity: 0;
+              -webkit-transition: opacity 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+              transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+              -webkit-transform: translateY(5px);
+              -ms-transform: translateY(5px);
+              transform: translateY(5px);
+            } 
             @media only screen and (max-width: 640px){
               line-height: 30px;
               background: rgba(0,0,0, .5);
