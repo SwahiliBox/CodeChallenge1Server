@@ -12,9 +12,11 @@ $(document).ready(function () {
     $(document).scroll(function () {
       scrollStart = $(this).scrollTop();
       if (scrollStart > offset.top) {
-        $("nav").css('background-color', 'rgba(0,0,0,.75)');
+        $("nav").css('background-color', 'rgba(0,0,0,.75)', 'margin-top', '0px')
+                .animate({'margin-top': "0px"}, 10);
       } else {
-        $('nav').css('background-color', 'transparent');
+        $('nav').css('background-color', 'transparent')
+                .animate({'margin-top': '30px'}, 10);
       }
     });
   }
