@@ -24,6 +24,10 @@ module.exports = function(app,passport){
     res.render('index');
   });
 
+  app.get('/secure', function(req, res){
+    res.render('secure');
+  });
+
   //register user
   app.post('/register',function(req,res){
     var firstname = req.body.firstname;

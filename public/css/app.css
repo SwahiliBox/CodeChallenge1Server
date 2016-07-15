@@ -268,8 +268,8 @@ header {
         color: #000; }
 
 /*--------------------------------------------------------
-* footer section styling 
-*--------------------------------------------------------*/
+ * footer section styling 
+ *--------------------------------------------------------*/
 footer {
   background: #303840;
   zoom: 1; }
@@ -511,3 +511,47 @@ footer {
   transition: background 0.2s ease-in-out, border-color 0.2s ease-in-out; }
 .sign-up-form .postfix {
   height: 2.6125rem; }
+
+/* ------------------------------------------------------
+ *  admin panel section styling 
+ * -----------------------------------------------------*/
+.admin .sidebar {
+  height: 100vh;
+  padding: 10px 20px;
+  background: #272727; }
+  .admin .sidebar .nav li {
+    color: #fff;
+    list-style: none;
+    padding: 5px 0;
+    text-transform: uppercase; }
+    .admin .sidebar .nav li i {
+      padding-right: 5px;
+      font-size: 1em; }
+    .admin .sidebar .nav li a {
+      color: #fff; }
+  .admin .sidebar .sidebar-logo h1 {
+    color: #fff;
+    font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding-left: 20px; }
+.admin .row {
+  max-width: 100%; }
+
+/* ------------------------------------------------------
+ *  admin main contente section  
+ * -----------------------------------------------------*/
+.main-content {
+  padding: 30px; }
+  .main-content .events li {
+    display: inline;
+    padding-right: 10px; }
+
+.toolbar {
+  background: #000;
+  height: 100px;
+  line-height: 100px; }
+  .toolbar .sign-up-form {
+    margin-top: 25px; }
+  .toolbar .add-button {
+    padding: 10px 25px 10px 25px;
+    float: right;
+    margin-top: 25px; }
