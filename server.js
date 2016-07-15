@@ -34,6 +34,7 @@ app.use(morgan('dev'));
 app.use(methodOverride());
 /* app.use(express.static(path.join(__dirname, 'views'))); */
 app.use(express.static(__dirname + '/public'));
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(session({secret:'anystringoftext',
