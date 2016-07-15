@@ -7,6 +7,9 @@ body.f-topbar-fixed {
 
 .row {
   max-width: 74%; }
+  @media only screen and (max-width: 768px) {
+    .row {
+      max-width: 90%; } }
 
 /* ------------------------------------------------------
  * topbar navigation styling section
@@ -36,6 +39,11 @@ body.f-topbar-fixed {
       background: transparent; }
       .top-bar-section ul li:not(.has-form) a:not(.button):hover {
         background: transparent; }
+      @media only screen and (max-width: 640px) {
+        .top-bar-section ul li:not(.has-form) a:not(.button) {
+          line-height: 30px;
+          background: rgba(0, 0, 0, 0.5);
+          text-align: center; } }
     .top-bar-section ul li a {
       text-transform: uppercase; }
       .top-bar-section ul li a:hover {
@@ -59,6 +67,9 @@ header {
     top: 0;
     left: 0;
     opacity: 0.9; }
+  @media only screen and (max-width: 768px) {
+    header {
+      height: 80%; } }
 
 /* ------------------------------------------------------
  * call to action section  
@@ -87,11 +98,17 @@ header {
     aling-self: auto;
     z-index: 10;
     text-align: center; }
+    @media only screen and (max-width: 768px) {
+      .call-to-action .content, .promotion .promote .content {
+        max-width: 92%; } }
     .call-to-action .content h1, .promotion .promote .content h1 {
       color: #fff;
       /*text-transform: lowercase;*/
       font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 3em; }
+      @media only screen and (max-width: 768px) {
+        .call-to-action .content h1, .promotion .promote .content h1 {
+          font-size: 2em; } }
     .call-to-action .content p, .promotion .promote .content p {
       color: #fff;
       font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -114,44 +131,31 @@ header {
       font-size: 16px;
       text-decoration: none;
       display: inline-block; }
+      @media only screen and (max-width: 768px) {
+        .call-to-action .button.cta, .promotion .promote .button.cta {
+          font-size: 12px; } }
 
 /* ------------------------------------------------------
  * promotion section  
  * -----------------------------------------------------*/
 .promotion {
+  width: 100%;
   padding: 3em 0; }
   .promotion .promote {
     border: 4px solid #fff;
     border-top: none; }
-    .promotion .promote .content {
-      /*max-width: 40%;*/ }
-      .promotion .promote .content h2.title {
-        font-weight: 900;
-        margin-top: -19px;
-        position: relative; }
-        .promotion .promote .content h2.title span {
-          width: 610px;
-          display: inline-block;
-          padding: 0px 20px; }
-        .promotion .promote .content h2.title:before {
-          content: "";
-          border: 2px solid #fff;
-          display: inline-block;
-          position: absolute;
-          left: -45px;
-          top: 0px;
-          width: 20%; }
-        .promotion .promote .content h2.title:after {
-          content: "";
-          border: 2px solid #fff;
-          display: inline-block;
-          position: absolute;
-          left: auto;
-          right: -60px;
-          top: 19px;
-          width: 20%; }
-      .promotion .promote .content p {
-        color: #000; }
+    .promotion .promote .content h2.title {
+      font-weight: 900;
+      margin-top: -19px;
+      position: relative; }
+      .promotion .promote .content h2.title span {
+        display: inline-block;
+        padding: 0px 20px; }
+    .promotion .promote .content p {
+      color: #000; }
+    @media only screen and (max-width: 1024px) {
+      .promotion .promote .content {
+        width: 100%; } }
 
 /* ------------------------------------------------------
  * home upcoming events styling
