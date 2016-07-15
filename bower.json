@@ -1,0 +1,23 @@
+{
+  "name": "SwahiliboxCodeChallege",
+  "description": "a node js event management app",
+  "main": "app.js",
+  "authors": [
+    "community"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "node",
+    "events",
+    "es6"
+  ],
+  "homepage": "https://github.com/SwahiliBox/CodeChallenge1Server",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
