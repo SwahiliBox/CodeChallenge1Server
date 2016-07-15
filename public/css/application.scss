@@ -40,6 +40,21 @@ body.f-topbar-fixed{
       }
     }
   }
+  li{
+    &.toggle-topbar{
+      span{
+        font-size: 1.4em;
+      }
+    }
+  }
+  @media only screen and (max-width: 640px){
+    margin-top: 0px;
+    padding-right: 0px;
+    padding-left: 0px;
+  }
+  &.expanded{
+    margin-top: 0px !important;
+  }
 }
 .top-bar-section{
   ul{
@@ -88,6 +103,7 @@ body.f-topbar-fixed{
               line-height: 30px;
               background: rgba(0,0,0, .5);
               text-align: center;
+              padding: 10px 0;
             }
           }
         }
@@ -97,6 +113,9 @@ body.f-topbar-fixed{
         &:hover{
           background: transparent;
         }
+      }
+      @media only screen and (max-width: 640px){
+        padding: 0;
       }
     }
   }
@@ -171,15 +190,17 @@ header{
   }
   .button{
     border-radius: 0;
-    background-color: #f47920;
+    background-color: transparent;
+    border: 1px solid #fff;
     color: #fff;
     padding: 15px 40px;
     margin-top: 20px;
     -webkit-transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
     transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
     &:hover{
-      background-color: #000;
+      background-color: #f47920;
       padding: 15px 45px;
+      border-color: #f47920;
     }
     &.cta{
       text-transform: uppercase;
@@ -219,6 +240,13 @@ header{
       }
       @media only screen and (max-width: 1024px){
         width: 100%;
+      }
+    }
+    .button{
+      background-color: #f47920;
+      border: none;
+      &:hover{
+        border: none;
       }
     }
   }

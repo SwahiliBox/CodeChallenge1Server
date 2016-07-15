@@ -34,6 +34,15 @@ body.f-topbar-fixed {
         transition: all 0.2s ease-in-out; }
         .top-bar li.name h1 a:hover {
           color: #f47920; }
+  .top-bar li.toggle-topbar span {
+    font-size: 1.4em; }
+  @media only screen and (max-width: 640px) {
+    .top-bar {
+      margin-top: 0px;
+      padding-right: 0px;
+      padding-left: 0px; } }
+  .top-bar.expanded {
+    margin-top: 0px !important; }
 
 .top-bar-section ul {
   background: transparent; }
@@ -77,11 +86,15 @@ body.f-topbar-fixed {
           .top-bar-section ul li:not(.has-form) a:not(.button) {
             line-height: 30px;
             background: rgba(0, 0, 0, 0.5);
-            text-align: center; } }
+            text-align: center;
+            padding: 10px 0; } }
     .top-bar-section ul li a {
       text-transform: uppercase; }
       .top-bar-section ul li a:hover {
         background: transparent; }
+    @media only screen and (max-width: 640px) {
+      .top-bar-section ul li {
+        padding: 0; } }
 
 /* ------------------------------------------------------
  * header styling 
@@ -149,15 +162,17 @@ header {
       font-size: 1.3em; }
   .call-to-action .button, .promotion .promote .button {
     border-radius: 0;
-    background-color: #f47920;
+    background-color: transparent;
+    border: 1px solid #fff;
     color: #fff;
     padding: 15px 40px;
     margin-top: 20px;
     -webkit-transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
     transition: color 0.2s ease-in-out, background 0.2s ease-in-out; }
     .call-to-action .button:hover, .promotion .promote .button:hover {
-      background-color: #000;
-      padding: 15px 45px; }
+      background-color: #f47920;
+      padding: 15px 45px;
+      border-color: #f47920; }
     .call-to-action .button.cta, .promotion .promote .button.cta {
       text-transform: uppercase;
       font-family: 'LatoWeb', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -190,6 +205,11 @@ header {
     @media only screen and (max-width: 1024px) {
       .promotion .promote .content {
         width: 100%; } }
+    .promotion .promote .button {
+      background-color: #f47920;
+      border: none; }
+      .promotion .promote .button:hover {
+        border: none; }
 
 /* ------------------------------------------------------
  * home upcoming events styling
