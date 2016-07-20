@@ -39,7 +39,7 @@ module.exports = function(app,passport){
     var password2 = req.body.password2;
 
     //newuser object oriented variable assigning
-    var newUser = new User();
+    var newUser             = new User();
     newUser.local.firstname = firstname;
     newUser.local.surname   = surname;
     newUser.local.email     = email;

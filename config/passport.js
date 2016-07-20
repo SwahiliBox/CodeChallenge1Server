@@ -112,12 +112,11 @@ module.exports       = function(passport) {
   }));
 
   passport.use(new FacebookStrategy({
-
-        // pull in our app id and secret from our auth.js file
-        clientID:         configAuth.facebookAuth.clientID,
-        clientSecret:     configAuth.facebookAuth.clientSecret,
-        callbackURL:      configAuth.facebookAuth.callbackURL,
-        profileFields:    [ 'email', 'name' ]
+    // pull in our app id and secret from our auth.js file
+    clientID:         configAuth.facebookAuth.clientID,
+    clientSecret:     configAuth.facebookAuth.clientSecret,
+    callbackURL:      configAuth.facebookAuth.callbackURL,
+    profileFields:    [ 'email', 'name' ]
   },
   //facebook sends back token to profile
   function(token,refreshToken,profile,done){

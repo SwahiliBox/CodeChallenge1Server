@@ -40,10 +40,10 @@
     "passport-http": "^0.3.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "xoauth2": "^1.1.0"
-  },
-  "devDependencies": {
-    "ejs-mate": "^2.3.0"
+    "xoauth2": "^1.1.0",
+    "grunt": "^1.0.1" ,
+    "ejs-mate": "^2.3.0",
+    "bower": "^1.7.9" 
   },
   "repository": {
     "type": "git",

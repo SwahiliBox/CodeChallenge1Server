@@ -5,8 +5,8 @@
 */
 $(document).ready(function () {
   var scrollStart = 0;
-  var startChange  = $(".call-to-action .content");
-  var offset       = startChange.offset();
+  var startChange = $(".call-to-action .content");
+  var offset      = startChange.offset();
 
   if (startChange.length) {
     $(document).scroll(function () {
