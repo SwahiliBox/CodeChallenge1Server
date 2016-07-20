@@ -1,10 +1,10 @@
-var express=require('express');
-var cors=require('cors');
-var router=express.Router();
-var User = require('./models/user');
-var Events = require('./models/event');
-var Rsvp = require('./models/rsvp');
-var Admin = require('../app/models/admin');
+var express = require('express');
+var cors    = require('cors');
+var router  = express.Router();
+var User    = require('./models/user');
+var Events  = require('./models/event');
+var Rsvp    = require('./models/rsvp');
+var Admin   = require('../app/models/admin');
 
 module.exports = function(app,passport){
   app.use(cors());
@@ -32,7 +32,6 @@ module.exports = function(app,passport){
   app.post('/register',function(req,res){
     var firstname = req.body.firstname;
     var surname   = req.body.surname;
-    //var name    = req.body.name;
     var email     = req.body.email;
     var username  = req.body.username;
     var password  = req.body.password;
@@ -121,8 +120,8 @@ module.exports = function(app,passport){
   app.get('/events', function(req, res){
     Events.find({}, function(error, events){
       if(error)
-        res.send(error)
-      res.json(events)
+        res.send(error);
+      res.json(events);
     });
   });
 
@@ -159,8 +158,8 @@ module.exports = function(app,passport){
   app.get('/event',adminLoggedIn, function(req, res){
     Event.find({}, function(err, event){
       if(err)
-        res.send(err)
-      res.json(event)
+        res.send(err);
+      res.json(event);
     });
   });
 
@@ -175,7 +174,7 @@ module.exports = function(app,passport){
     },
     function(err, event){
       if(err)
-        res.send(err)
+        res.send(err);
 
       Events.find({}, function(err, event){
         if(err)
@@ -189,7 +188,7 @@ module.exports = function(app,passport){
   app.post('/delete', function(req, res){
     Events.remove({ _id: req.body.id}, function(err, event){
       if(err)
-        res.send(err)
+        res.send(err);
       Event.find({}, function(err, event){
         if(err)
           res.send(err);
@@ -206,7 +205,7 @@ module.exports = function(app,passport){
       date:  req.body.date,
       desc:  req.body.desc,
       time:  req.body.time
-    }
+    };
     Events.update({_id : req.body.id}, {$set: terms}, function(error, event){
       //if(err)
       //res.send(err);
