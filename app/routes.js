@@ -64,13 +64,16 @@ app.post('/register',function(req,res){
 });
 
 app.get('/login', function(req, res){
-  res.render('login');
+  res.render('login', {
+      message: req.flash('loginMessage') 
+  });
 });
 
 app.post('/login',
   passport.authenticate('user-login',{
       successRedirect:'/userdata',
-      failureRedirect:'/error'
+      failureRedirect:'/login',
+      failureFlash:    true 
 }));
 
 //GOOGLE ROUTES
@@ -131,21 +134,21 @@ app.get('/signup', function(req, res) {
 });
 
 //admin details saved to database
-app.post('/adminsignup', passport.authenticate('admin-signup', {
-      successRedirect: '/adminlogin',
-      failureRedirect: '/adminsignup',
+app.post('/signup', passport.authenticate('admin-signup', {
+      successRedirect: '/login',
+      failureRedirect: '/signup',
       failureFlash:     true
 }));
 
 //admin login render ejs
-app.get('/adminlogin', function(req, res) {
+app.get('/login', function(req, res) {
   res.render('login.ejs', { message: req.flash('signupMessage') });
 });
 
 //admin details saved to database
-app.post('/adminlogin', passport.authenticate('admin-login', {
+app.post('/login', passport.authenticate('admin-login', {
       successRedirect: '/eventsrecords',
-      failureRedirect: '/adminlogin',
+      failureRedirect: '/login',
       failureFlash: true 
 }));
 
