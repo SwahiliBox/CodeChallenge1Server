@@ -1,4 +1,4 @@
-var mongoose   = require('mongoose');
+var mongoose = require('mongoose');
 
 //craete the user_event schema
 var rsvpSchema = mongoose.Schema({
@@ -12,7 +12,7 @@ var rsvpSchema = mongoose.Schema({
       type: String
     },
     eventname: {
-      type : String
+      type: String
 
     },  
     date_created: {

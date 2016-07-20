@@ -17,37 +17,84 @@ body.f-topbar-fixed {
 .top-bar {
   background: transparent;
   height: 60px;
-  line-height: 60px; }
+  line-height: 60px;
+  margin-top: 30px;
+  padding-left: 40px;
+  padding-right: 40px;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out; }
   .top-bar li.name {
     height: 60px; }
     .top-bar li.name h1 {
       line-height: 60px;
       font-size: 2rem;
-      font-weight: bold; }
-      .top-bar li.name h1 i {
-        font-size: 0.5em;
-        padding: 0 0.4em 0 0;
-        position: relative;
-        top: -3px; }
+      font-family: 'LatoWebBold', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+      .top-bar li.name h1 a {
+        -webkit-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out; }
+        .top-bar li.name h1 a:hover {
+          color: #f47920; }
+  .top-bar li.toggle-topbar span {
+    font-size: 1.4em; }
+  @media only screen and (max-width: 640px) {
+    .top-bar {
+      margin-top: 0px;
+      padding-right: 0px;
+      padding-left: 0px; } }
+  .top-bar.expanded {
+    margin-top: 0px !important; }
 
 .top-bar-section ul {
   background: transparent; }
   .top-bar-section ul li {
-    background: transparent; }
-    .top-bar-section ul li:not(.has-form) a:not(.button) {
-      line-height: 60px;
-      background: transparent; }
-      .top-bar-section ul li:not(.has-form) a:not(.button):hover {
-        background: transparent; }
-      @media only screen and (max-width: 640px) {
-        .top-bar-section ul li:not(.has-form) a:not(.button) {
-          line-height: 30px;
-          background: rgba(0, 0, 0, 0.5);
-          text-align: center; } }
+    background: transparent;
+    padding: 0 15px; }
+    .top-bar-section ul li:not(.has-form) a {
+      -webkit-transition: all 0.2s ease-in-out;
+      transition: all 0.2s ease-in-out; }
+      .top-bar-section ul li:not(.has-form) a:not(.button) {
+        line-height: 60px;
+        background: transparent;
+        position: relative;
+        display: block;
+        font-size: 0.9em;
+        padding: 0; }
+        .top-bar-section ul li:not(.has-form) a:not(.button):hover {
+          background: transparent;
+          color: #f47920; }
+          .top-bar-section ul li:not(.has-form) a:not(.button):hover:after {
+            opacity: 1;
+            -webkit-transform: translateY(-2px);
+            -ms-transform: translateY(-2px);
+            transform: translateY(-2px);
+            top: 95%; }
+        .top-bar-section ul li:not(.has-form) a:not(.button):after {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: #f47920;
+          content: '';
+          opacity: 0;
+          -webkit-transition: opacity 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
+          transition: opacity 0.2s ease-in-out, transform 0.2s ease-in-out;
+          -webkit-transform: translateY(5px);
+          -ms-transform: translateY(5px);
+          transform: translateY(5px); }
+        @media only screen and (max-width: 640px) {
+          .top-bar-section ul li:not(.has-form) a:not(.button) {
+            line-height: 30px;
+            background: rgba(0, 0, 0, 0.5);
+            text-align: center;
+            padding: 10px 0; } }
     .top-bar-section ul li a {
       text-transform: uppercase; }
       .top-bar-section ul li a:hover {
         background: transparent; }
+    @media only screen and (max-width: 640px) {
+      .top-bar-section ul li {
+        padding: 0; } }
 
 /* ------------------------------------------------------
  * header styling 
@@ -115,15 +162,17 @@ header {
       font-size: 1.3em; }
   .call-to-action .button, .promotion .promote .button {
     border-radius: 0;
-    background-color: #f47920;
+    background-color: transparent;
+    border: 1px solid #fff;
     color: #fff;
     padding: 15px 40px;
     margin-top: 20px;
     -webkit-transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
     transition: color 0.2s ease-in-out, background 0.2s ease-in-out; }
     .call-to-action .button:hover, .promotion .promote .button:hover {
-      background-color: #000;
-      padding: 15px 45px; }
+      background-color: #f47920;
+      padding: 15px 45px;
+      border-color: #f47920; }
     .call-to-action .button.cta, .promotion .promote .button.cta {
       text-transform: uppercase;
       font-family: 'LatoWeb', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -156,6 +205,11 @@ header {
     @media only screen and (max-width: 1024px) {
       .promotion .promote .content {
         width: 100%; } }
+    .promotion .promote .button {
+      background-color: #f47920;
+      border: none; }
+      .promotion .promote .button:hover {
+        border: none; }
 
 /* ------------------------------------------------------
  * home upcoming events styling
@@ -214,15 +268,15 @@ header {
         color: #000; }
 
 /*--------------------------------------------------------
-* footer section styling 
-*--------------------------------------------------------*/
+ * footer section styling 
+ *--------------------------------------------------------*/
 footer {
   background: #303840;
   zoom: 1; }
   footer .footer-top {
     zoom: 1;
     background: #22272d;
-    padding: 30px 0;
+    height: 100px;
     z-index: 5; }
     footer .footer-top .wrapper {
       margin: 0 auto;
@@ -240,7 +294,6 @@ footer {
       font-size: 26px;
       width: 110px;
       height: 30px;
-      position: absolute;
       left: 20px;
       color: #fff;
       z-index: 500;
@@ -263,16 +316,18 @@ footer {
       -webkit-transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
       transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
       display: inline-block;
-      float: right; }
+      float: right;
+      margin-top: 25px; }
     footer .footer-top .button {
       border-radius: 0;
-      padding: 1em 2em;
       background-color: #f47920;
       color: #fff;
       border: 1px solid transparent; }
       footer .footer-top .button:hover {
         background-color: #000;
         border: 1px solid #fff; }
+    footer .footer-top .footer-top-container {
+      line-height: 100px; }
   footer .footer-wrapper {
     background: #303840;
     color: #fff;
@@ -425,3 +480,139 @@ footer {
       color: #fff; }
       .social-links li a i {
         padding-right: 0.6em; }
+
+.footer-headline {
+  padding-top: 30px; }
+  .footer-headline h2 {
+    font-size: 1.3em;
+    color: #305081; }
+
+.events-ticker {
+  padding-top: 15px; }
+  .events-ticker .event-title {
+    padding-top: 18px;
+    text-align: center;
+    color: #565b60; }
+  .events-ticker .orbit-container .orbit-prev > span {
+    border-color: transparent #565b60 transparent transparent; }
+  .events-ticker .orbit-container .orbit-next > span {
+    border-color: transparent transparent transparent #565b60; }
+
+.sign-up-form input[type="text"], .sign-up-form input[type="email"], .sign-up-form input[type="tel"], .sign-up-form textarea {
+  font-family: 'LatoWeb', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  background: #e5e7e9;
+  width: 100%;
+  padding: 20px;
+  border: 1px solid transparent;
+  -webkit-transition: background 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  transition: background 0.2s ease-in-out, border-color 0.2s ease-in-out; }
+.sign-up-form .postfix {
+  height: 2.6125rem; }
+
+/* ------------------------------------------------------
+ *  admin panel section styling 
+ * -----------------------------------------------------*/
+.admin .sidebar {
+  height: 100vh;
+  padding: 10px 20px;
+  background: #272727; }
+  .admin .sidebar .nav li {
+    color: #fff;
+    list-style: none;
+    padding: 5px 0;
+    text-transform: uppercase; }
+    .admin .sidebar .nav li i {
+      padding-right: 5px;
+      font-size: 1em; }
+    .admin .sidebar .nav li a {
+      color: #fff; }
+  .admin .sidebar .sidebar-logo h1 {
+    color: #fff;
+    font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    padding-left: 20px; }
+.admin .row {
+  max-width: 100%; }
+
+/* ------------------------------------------------------
+ *  admin main contente section  
+ * -----------------------------------------------------*/
+.main-content {
+  padding: 30px; }
+  .main-content .events li {
+    display: inline;
+    padding-right: 10px; }
+
+.toolbar {
+  background: #000;
+  height: 100px;
+  line-height: 100px; }
+  .toolbar .sign-up-form {
+    margin-top: 25px; }
+  .toolbar .add-button {
+    padding: 10px 25px 10px 25px;
+    float: right;
+    margin-top: 25px; }
+
+/* ------------------------------------------------------
+ * secure panel section & sign up forms
+ * -----------------------------------------------------*/
+.secure-panel {
+  background: #22272d; }
+  .secure-panel .container {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: 24em;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 100%; }
+    .secure-panel .container .content {
+      -webkit-box-flex: 0;
+      -webkit-flex: none;
+      -ms-flex: none;
+      flex: none;
+      max-width: 60%;
+      aling-self: auto;
+      z-index: 10;
+      text-align: center; }
+      @media only screen and (max-width: 768px) {
+        .secure-panel .container .content {
+          max-width: 92%; } }
+      .secure-panel .container .content h1 {
+        color: #000;
+        text-transform: lowercase;
+        font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 3em; }
+        @media only screen and (max-width: 768px) {
+          .secure-panel .container .content h1 {
+            font-size: 2em; } }
+      .secure-panel .container .content p {
+        color: #000;
+        font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 1.3em; }
+  .secure-panel .signup-form, .secure-panel .edit-profile-form {
+    width: 35%;
+    background: #fff;
+    padding: 20px; }
+    .secure-panel .signup-form p.registered, .secure-panel .edit-profile-form p.registered {
+      margin-top: 10px;
+      float: right; }
+    .secure-panel .signup-form h2, .secure-panel .edit-profile-form h2 {
+      font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+  .secure-panel .row {
+    max-width: 100%; }
+
+.edit-profile-form {
+  padding: 3em 0; }
+
+/*# sourceMappingURL=app.css.map */

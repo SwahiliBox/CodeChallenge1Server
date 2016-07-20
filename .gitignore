@@ -1,9 +1,8 @@
-
 Gemfile
 Gemfile.lock
 node_modules/ 
 public/bower_components/
 public/css/.sass-cache/ 
+public/css/app.css.map
 npm-debug.log 
-public/js 
 .sass-cache 

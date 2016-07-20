@@ -2,6 +2,7 @@ var express          = require('express');
 var nodemailer       = require('nodemailer');
 var app              = express();
 var port             = process.env.PORT || 3000;
+
 //initialize required modules for the app
 var passport         = require('passport');
 var session          = require('express-session');
@@ -23,6 +24,7 @@ var flash            = require('connect-flash');
 var cors             = require('cors');
 var mongostore       = require('connect-mongo')(session);
 var rsvp             = require('./app/models/rsvp');
+
 //connect to mongo database
 var configDB         = require('./config/database.js');
 mongoose.connect(configDB.url);
@@ -41,6 +43,14 @@ app.use(session({secret:'anystringoftext',
       saveUninitialized:true,
       resave:false
 }));
+/* 
+   this middleware is used to make the user object accessible
+   throughout all our routes 
+*/
+app.use(function(req, res, next){
+  res.locals.user = req.user;
+  next();
+});
 
 app.use(cors());
 

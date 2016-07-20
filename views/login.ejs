@@ -1,22 +1,48 @@
-<% layout('index') %>
+<% layout('secure-forms') %>
+<div class="signup-form">
+<div class="wrapper">
+  <div class="row">
+    <div class="large-12 columns">
+    <div class="row">
+      <div class="large-12 columns">
+        <h2>Login </h2>
+      </div>
+    </div>
 
-<div class="col-sm-6 col-sm-offset-3">
-  <h1><span class="fa fa-sign-in"></span> Login</h1>
-  <% if (message.length > 0) { %>
-  <div class="alert alert-danger"><%= message %></div>
-  <% } %>
-  <form action="/adminlogin" method="post">
-    <div class="form-group">
-      <label>Email</label>
-      <input type="text" required class="form-control" name="email">
+    <% if (message.length > 0) { %> 
+    <div class="row">
+    <div class="large-12 columns">
+      <div data-alert class="alert-box warning ">
+        <%= message %>
+        <a href="#" class="close">&times;</a>
+      </div>
     </div>
-    <div class="form-group">
-      <label>Password</label>
-      <input type="password" required class="form-control" name="password">
     </div>
-    <button type="submit" class="btn btn-warning btn-lg">Login</button>
-  </form>
-  <hr>
-    <p>Go <a href="/">home</a>.</p>
+    <% } %>
+
+    <form action="/login" method="post">
+        <div class="row">
+          <div class="large-12 columns">
+            <label for="email">Email Address</label>
+              <input class="form-control" id="email" type="email" name="email" placeholder="email address">
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <label for="password">Password </label>
+              <input class="form-control" id="password" type="password" name="password" placeholder="password">
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-6 small-12 columns">
+            <button type="submit" class="button success">Register</button>
+          </div>
+          <div class="large-6 small-12 columns">
+          <p class="registered">Already Registered? <a href="/login">Login</a></p>
+          </div>
+        </div>
+        </form>
+      </div>
+    </div>
   </div>
-
+</div>
