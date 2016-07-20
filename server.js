@@ -2,6 +2,7 @@ var express          = require('express');
 var nodemailer       = require('nodemailer');
 var app              = express();
 var port             = process.env.PORT || 3000;
+
 //initialize required modules for the app
 var passport         = require('passport');
 var session          = require('express-session');
@@ -23,6 +24,7 @@ var flash            = require('connect-flash');
 var cors             = require('cors');
 var mongostore       = require('connect-mongo')(session);
 var rsvp             = require('./app/models/rsvp');
+
 //connect to mongo database
 var configDB         = require('./config/database.js');
 mongoose.connect(configDB.url);
@@ -32,7 +34,9 @@ require('./config/passport.js')(passport);
 //use required modules
 app.use(morgan('dev'));
 app.use(methodOverride());
-app.use(express.static(path.join(__dirname, 'views')));
+/* app.use(express.static(path.join(__dirname, 'views'))); */
+app.use(express.static(__dirname + '/public'));
+app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(session({secret:'anystringoftext',

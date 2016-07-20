@@ -12,7 +12,7 @@ var rsvpSchema = mongoose.Schema({
       type: String
     },
     eventname: {
-      type : String
+      type: String
 
     },  
     date_created: {

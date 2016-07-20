@@ -24,6 +24,10 @@ module.exports = function(app,passport){
     res.render('index');
   });
 
+  app.get('/secure', function(req, res){
+    res.render('secure');
+  });
+
   //register user
   app.post('/register',function(req,res){
     var firstname = req.body.firstname;
@@ -35,7 +39,7 @@ module.exports = function(app,passport){
     var password2 = req.body.password2;
 
     //newuser object oriented variable assigning
-    var newUser = new User();
+    var newUser             = new User();
     newUser.local.firstname = firstname;
     newUser.local.surname   = surname;
     newUser.local.email     = email;
@@ -58,6 +62,10 @@ module.exports = function(app,passport){
         });
       }
     });
+  });
+
+  app.get('/login', function(req, res){
+    res.render('login');
   });
 
   app.post('/login',
