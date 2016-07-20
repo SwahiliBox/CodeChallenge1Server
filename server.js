@@ -43,6 +43,14 @@ app.use(session({secret:'anystringoftext',
       saveUninitialized:true,
       resave:false
 }));
+/* 
+   this middleware is used to make the user object accessible
+   throughout all our routes 
+*/
+app.use(function(req, res, next){
+  res.locals.user = req.user;
+  next();
+});
 
 app.use(cors());
 
