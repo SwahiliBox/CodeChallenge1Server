@@ -3,5 +3,6 @@ Gemfile.lock
 node_modules/ 
 public/bower_components/
 public/css/.sass-cache/ 
+public/css/app.css.map
 npm-debug.log 
 .sass-cache 
