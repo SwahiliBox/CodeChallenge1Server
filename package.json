@@ -43,8 +43,16 @@
     "xoauth2": "^1.1.0",
     "grunt": "^1.0.1" ,
     "ejs-mate": "^2.3.0",
-    "bower": "^1.7.9" 
+    "bower": "^1.7.9",
+    "bower": "^1.7.9"
   },
+  "devDependencies":{
+    "grunt": "^1.0.1",
+    "nodedev": "^0.0.1",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-sass": "^1.0.0",
+    "grunt-contrib-watch": "^1.0.0" 
+  }, 
   "repository": {
     "type": "git",
     "url": "git+https://github.com/SwahiliBox/CodeChallenge1Server.git"
