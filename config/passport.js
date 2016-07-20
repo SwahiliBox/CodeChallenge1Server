@@ -22,7 +22,7 @@ module.exports       = function(passport) {
         User.findById(id, function(err, user){
           if(err) done(err);
           done(null, user);
-        })
+        });
       }
     });
   });    
