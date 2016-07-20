@@ -12,15 +12,13 @@ It will also allow SwahiliBox to keep tabs on the numbers attending these meetin
 * Intel XDK
 * Text Editor
 
-
-
 ### Installing
 
 A step by step series of examples that tell you have to get a development env running for Linux
 
 To get your local copy git clone `https://github.com/SwahiliBox/CodeChallenge1Server.git`
 
-*cd* into the project root and run ```npm install```
+*cd* into the project root and run ```npm run dev```
 
 example server.js code
 ```
@@ -43,9 +41,6 @@ var server = app.listen(3000, function  () {
 ```
 
 `Output:Server is Running at ::: on port 3000`
-
-
-
 
 ### Contributing
 

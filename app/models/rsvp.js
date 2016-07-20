@@ -1,4 +1,4 @@
-var mongoose   = require('mongoose');
+var mongoose = require('mongoose');
 
 //craete the user_event schema
 var rsvpSchema = mongoose.Schema({
