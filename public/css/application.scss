@@ -686,3 +686,71 @@ footer{
     margin-top: 25px;
   }
 }
+/* ------------------------------------------------------
+ * secure panel section & sign up forms
+ * -----------------------------------------------------*/
+.secure-panel{
+  background: #22272d;
+  .container{
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    min-height: 24em;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    height: 100%;
+    .content{
+      -webkit-box-flex: 0;
+      -webkit-flex: none;
+      -ms-flex: none;
+      flex: none;
+      max-width: 60%;
+      aling-self: auto; 
+      z-index: 10;
+      text-align: center;
+      @media only screen and (max-width: 768px){
+        max-width: 92%;
+      }
+      h1{
+        color: #000;
+        text-transform: lowercase;
+        font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 3em;
+        @media only screen and (max-width: 768px){
+          font-size: 2em;
+        }
+      }
+      p{
+        color: #000;
+        font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-size: 1.3em;
+      }
+    }
+  }
+  .signup-form{
+    width: 35%;
+    background: #fff;
+    padding: 20px;
+    p.registered{
+      margin-top: 10px;
+      float: right;
+    }
+    h2{
+        font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    }
+  }
+  .row{
+    max-width: 100%;
+  }
+}
+.edit-profile-form{
+  @extend .signup-form;
+  padding: 3em 0;
+}
