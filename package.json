@@ -16,6 +16,7 @@
     "bcrypt-nodejs": "0.0.3",
     "bcryptjs": "^2.3.0",
     "body-parser": "^1.15.1",
+    "bower": "^1.7.9",
     "connect-flash": "^0.1.1",
     "connect-mongo": "^1.2.0",
     "cookie-parser": "^1.4.3",
