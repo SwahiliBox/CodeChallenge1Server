@@ -7,3 +7,4 @@ public/css/app.css.map
 npm-debug.log 
 config/my-passport.js
 .sass-cache 
+.gitconfig 

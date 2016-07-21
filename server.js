@@ -72,7 +72,10 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(flash());
 
-require('./app/routes.js')(app, passport);
+require('./config/routes/rsvp')(app, passport);
+require('./config/routes/user')(app, passport);
+require('./config/routes/events')(app, passport);
+require('./config/routes/main')(app, passport);
 
 app.listen(port);
 console.log('Server running on localhost: port ' + port);
