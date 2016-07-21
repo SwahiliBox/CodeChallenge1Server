@@ -130,7 +130,7 @@ app.get('/events', function(req, res){
 
 //admin signup via ejs view
 app.get('/signup', function(req, res) {
-  res.render('signup.ejs', { message: req.flash('signupMessage') });
+  res.render('signup', { message: req.flash('signupMessage') });
 });
 
 //admin details saved to database
@@ -142,7 +142,7 @@ app.post('/signup', passport.authenticate('admin-signup', {
 
 //admin login render ejs
 app.get('/login', function(req, res) {
-  res.render('login.ejs', { message: req.flash('signupMessage') });
+  res.render('login', { message: req.flash('signupMessage') });
 });
 
 //admin details saved to database
