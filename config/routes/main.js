@@ -1,4 +1,5 @@
-var router = require('express').Router();
+var express= require('express');
+var router=express.Router();
 var cors   = require('cors');
 
 module.exports = function(app,passport){

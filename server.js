@@ -62,7 +62,7 @@ app.use(function(req, res, next) {
 
 require('./config/passport')(passport);
 
-/* app.set('view engine', 'html'); */
+app.set('view engine', 'html'); 
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 

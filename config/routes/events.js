@@ -1,4 +1,5 @@
-var router = require('express').Router();
+var express= require('express');
+var router=express.Router();
 var cors   = require('cors');
 var Events = require('../../app/models/event');
 
@@ -21,9 +22,13 @@ app.get('/events', function(req, res){
 });
 
 //Crud Page.
-app.get('/eventsrecords', adminLoggedIn,function(req,res){
+/*app.get('/eventsrecords', adminLoggedIn,function(req,res){
   res.sendFile('eventsrecords.html', {'root': 'views'});
-});
+});*/
+
+app.get('/insert',function(req,res){
+ res.render('eventsrecords');
+  });
 
 //send events to frontend
 app.get('/event',adminLoggedIn, function(req, res){
@@ -50,7 +55,8 @@ app.post('/insert', function(req, res){
     Events.find({}, function(err, event){
       if(err)
         res.send(err);
-      res.redirect('eventsrecords.html');
+      //res.redirect('eventsrecords.html');
+       res.render('eventsrecords');
     });
   });
 });
@@ -63,7 +69,8 @@ app.post('/delete', function(req, res){
     Event.find({}, function(err, event){
       if(err)
         res.send(err);
-      res.redirect('eventsrecords.html');
+      //res.redirect('eventsrecords.html');
+       res.render('eventsrecords');
     });
   });
 });
@@ -85,7 +92,8 @@ app.post('/update', function(req, res){
       if(err) res.send(err);
 
       console.log(terms);
-      res.redirect('eventsrecords.html');
+      //res.redirect('eventsrecords.html');
+       res.render('eventsrecords');
     });
   });
 });

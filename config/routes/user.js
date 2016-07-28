@@ -1,6 +1,9 @@
-var router = require('express').Router();
+var express= require('express');
+var router=express.Router();
 var cors   = require('cors');
 var User   = require('../../app/models/user');
+var LocalStrategy = require('passport-local');
+//var app = require('express')
 
 module.exports = function(app,passport){
   app.use(cors());
@@ -44,6 +47,26 @@ module.exports = function(app,passport){
     });
   });
 
+ passport.use(new LocalStrategy(
+  function(username, password, done) {
+  User.getUserByUsername(username, function(err, user){
+    if(err) throw err;
+    if(!user){
+      return done(null,false,{message:'Unknown user'});
+    }
+    });
+  }));
+
+passport.serializeUser(function(user, done) {
+    done(null, user.id);
+  });
+
+  passport.deserializeUser(function(id, done) {
+    User.getUserById(id, function(err, user) {
+      done(err, user);
+    });
+  });
+
   app.get('/login', function(req, res){
     res.render('login', {
       message: req.flash('loginMessage')
@@ -53,9 +76,9 @@ module.exports = function(app,passport){
   
 
   app.post('/login',
-    passport.authenticate('user-login',{
-        successRedirect:'/index',
-        failureRedirect:'/login',
+    passport.authenticate('local',{
+        successRedirect:'/',
+        failureRedirect:'/',
         failureFlash:    true 
   }));
 
@@ -103,4 +126,4 @@ module.exports = function(app,passport){
       return next();
     }
     res.send('1');
-  }
+}
