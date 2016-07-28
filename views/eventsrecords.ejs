@@ -13,20 +13,20 @@
         #text{
           margin-right: 10px;
         }
-       
+
        #create{width: 100px;}
         #delete{width: 100px;}
         #update{width: 100px;}
     </style>
     <style>
-        body { padding-top:0px; 
+        body { padding-top:0px;
           word-wrap:break-word;
           background: #C0C0C0 !important;
              }
     </style>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    
+
  </head>
  <body>
     <nav class="navbar navbar-inverse">
@@ -42,7 +42,6 @@
 </nav>
  <div class="">
    <div class="container well">
-    
  <body ng-app="mainApp" ng-controller="myController">
 
        <script type="text/javascript">
@@ -56,152 +55,94 @@
             });
         </script>
       </div>
-
 </div>
   <div class="container well">
       <div class="row">
          <div class="panel panel-default">
           <div class="panel-heading"><b>ADD EVENTS</b></div>
           <form id="Events-form" method="post" class="form-horizontal" action="/insert">
-          
-            
            <label class="col-md-2 control-label" for="Event Title">Title</label>
-
            <div class="col-md-4 ">
         <input type="text" required class="form-control" id="Event Title" name="title"/>
           </div>
-           
-          
-
               <label class="col-md-2 control-label" for="Event venue">Venue</label>
-
            <div class="col-md-4 ">
         <input type="text" required class="form-control" id="Event venue" name="venue"/>
           </div>
-                               
-          
               <label class="col-md-2 control-label" for="Event Description">Description</label>
-
            <div class="col-md-4 ">
         <input type="text" required class="form-control" id="Event Description" name="desc"/>
           </div>
-            
-
-            
               <label class="col-md-2 control-label" for="Event date">Date</label>
-
            <div class="col-md-4 ">
         <input type="text" required class="form-control" id="Event Date" name="date"/>
           </div>
-            
-           
-             
-
         <label class="col-md-2 control-label" for="Event time">Time</label>
-
            <div class="col-md-4 ">
         <input type="text" required class="form-control" id="Event Time" name="time"/>
           </div>
             </div>
              </div>
-          
-            
-      
          <div class="col-md-6 col-md-offset-2">
            <button type="Create"class="btn btn-success"><li><i class="fa-li fa fa-spinner fa-spin"></i>CREATE</button>
             </div>
               </div>
-
-               
            </form>
-      
-
  <div class="container well">
       <div class="row">
          <div class="panel panel-default">
           <div class="panel-heading"><b>UPDATE EVENT</b></div>
           <form id="Events-form" method="post" class="form-horizontal" action="/update">
-          
              <label class="col-md-2 control-label" for="Event id">Id</label>
-
            <div class="col-md-4 ">
         <input type="text" required class="form-control" id="Event id" name="id"/>
           </div>
-
-
            <label class="col-md-2 control-label" for="Event Title">Title</label>
-
            <div class="col-md-4 ">
         <input type="text" required class="form-control" id="Event Title" name="title"/>
           </div>
-           
-          
-
               <label class="col-md-2 control-label" for="Event venue">Venue</label>
-
            <div class="col-md-4 ">
         <input type="text" required class="form-control" id="Event venue" name="venue"/>
           </div>
-                               
-          
               <label class="col-md-2 control-label" for="Event Description">Description</label>
-
            <div class="col-md-4 ">
         <input type="text" required class="form-control" id="Event Description" name="desc"/>
           </div>
-            
-
-            
               <label class="col-md-2 control-label" for="Event date">Date</label>
-
            <div class="col-md-4 ">
         <input type="text" required class="form-control" id="Event Date" name="date"/>
           </div>
-            
-           
-             
-
         <label class="col-md-2 control-label" for="Event time">Time</label>
-
            <div class="col-md-4 ">
         <input type="text" required class="form-control" id="Event Time" name="time"/>
           </div>
             </div>
              </div>
-          
-            
-      
          <div class="col-md-6 col-md-offset-2">
            <button type="Create"class="btn btn-primary btn-warning"><i class="fa fa-info-circle"></i>UPDATE</button>
             </div>
               </div>
-              
            </form>
-      
-
 <div class="container well">
       <div class="row">
          <div class="panel panel-default">
           <div class="panel-heading"><b>DELETE EVENT</b></div>
           <form id="Events-form" method="post" class="form-horizontal" action="/delete">
-          
              <label class="col-md-2 control-label" for="Event id">Id</label>
-
            <div class="col-md-4 ">
         <input type="text" required class="form-control" id="Event id" name="id"/>
           </div>
-
   </div>
  </div>
          <div class="col-md-6 col-md-offset-2">
            <button type="Create"class="btn btn-primary btn-danger"><i class="fa fa-trash"></i>DELETE</button>
             </div>
               </div>
-                         </form>
+            </form>
      </div>
-     </div> 
+     </div>
      </div>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" ></script>
-
 </body>
 </html>
