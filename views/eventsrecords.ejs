@@ -19,7 +19,7 @@
         #update{width: 100px;}
     </style>
     <style>
-        body { padding-top:30px; 
+        body { padding-top:0px; 
           word-wrap:break-word;
           background: #C0C0C0 !important;
              }
@@ -28,21 +28,23 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     
  </head>
+ <body>
+    <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Welcome | SwahiliBox Events</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="/adminsignup"><span class="glyphicon glyphicon-user"></span>Sign Up other admin</a></li>
+      <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    </ul>
+  </div>
+</nav>
  <div class="">
    <div class="container well">
     
  <body ng-app="mainApp" ng-controller="myController">
 
-  <div class="page-header">
-     <marquee><h2>Welcome | SwahiliBox Events </h2></marquee>
-   </div>
-   
-<div class="page-header text-right">
-    <a href="/signup" class="btn btn-default btn-md">Sign Up other admin</a>
-    <a href="/logout" class="btn btn-default btn-md">Logout</a>
-    </div>
-    
-  
        <script type="text/javascript">
             var app = angular.module("mainApp", []);
             app.controller("myController", function($scope, $http){
@@ -191,25 +193,15 @@
 
   </div>
  </div>
-          
-            
-      
          <div class="col-md-6 col-md-offset-2">
            <button type="Create"class="btn btn-primary btn-danger"><i class="fa fa-trash"></i>DELETE</button>
             </div>
               </div>
                          </form>
-          
      </div>
      </div> 
-</div>
-     
-
+     </div>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" ></script>
 
 </body>
-
-
-
-
 </html>
