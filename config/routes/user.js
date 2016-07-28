@@ -11,18 +11,23 @@ module.exports = function(app,passport){
     next();
   });
 
+  app.get('/signup', function(req, res){
+    res.render('signup', {
+        message: req.flash('signupMessage') 
+    });
+  });
   //register user
-  app.post('/register',function(req,res){
+  app.post('/signup',function(req,res){
 
     var newUser             = new User();
 
-    newUser.local.firstname = req.body.firstname;
-    newUser.local.surname   = req.body.surname;
+    newUser.local.name = req.body.name;
+    //newUser.local.surname   = req.body.surname;
     newUser.local.email     = req.body.email;
-    newUser.local.username  = req.body.username;
+    //newUser.local.username  = req.body.username;
     newUser.local.password  = req.body.password;
 
-    User.findOne({ 'local.username': newUser.local.username }, function(err, user) {
+    User.findOne({ 'local.name': newUser.local.name }, function(err, user) {
       if (err)
         return err;
 
@@ -33,8 +38,7 @@ module.exports = function(app,passport){
       else{
         User.createUser(newUser,function(err,user){
           if (err) throw err;
-          console.log(user);
-          res.send(user);
+         res.render('login', {message: req.flash('loginMessage')});
         });
       }
     });
@@ -42,13 +46,15 @@ module.exports = function(app,passport){
 
   app.get('/login', function(req, res){
     res.render('login', {
-        message: req.flash('loginMessage') 
+      message: req.flash('loginMessage')
     });
   });
 
+  
+
   app.post('/login',
     passport.authenticate('user-login',{
-        successRedirect:'/userdata',
+        successRedirect:'/index',
         failureRedirect:'/login',
         failureFlash:    true 
   }));
