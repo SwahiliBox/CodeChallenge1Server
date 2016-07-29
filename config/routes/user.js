@@ -73,8 +73,8 @@ passport.serializeUser(function(user, done) {
 
   app.post('/login',
     passport.authenticate('local',{
-        successRedirect:'/',
-        failureRedirect:'/',
+        successRedirect:'/insert',
+        failureRedirect:'/insert',
         failureFlash:    true 
   }));
 
