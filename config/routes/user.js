@@ -82,6 +82,11 @@ passport.serializeUser(function(user, done) {
         failureFlash:    true 
   }));
 
+  app.get('/logout', function(req, res){
+  req.logout();
+  res.redirect('/');
+});
+
   //GOOGLE ROUTES
   //route for google authentication and login
   app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));

@@ -1,4 +1,5 @@
 var express= require('express');
+var app              = express();
 var router=express.Router();
 var cors   = require('cors');
 var Events = require('../../app/models/event');
@@ -22,16 +23,13 @@ app.get('/events', function(req, res){
 });
 
 //Crud Page.
-/*app.get('/eventsrecords', adminLoggedIn,function(req,res){
-  res.sendFile('eventsrecords.html', {'root': 'views'});
-});*/
-
 app.get('/insert',function(req,res){
- res.render('eventsrecords');
-  });
+  //res.sendFile('eventsrecords.html', {'root': 'views'});
+  res.render('eventsrecords');
+});
 
 //send events to frontend
-app.get('/event',adminLoggedIn, function(req, res){
+app.get('/event', function(req, res){
   Event.find({}, function(err, event){
     if(err)
       res.send(err);
@@ -66,7 +64,7 @@ app.post('/delete', function(req, res){
   Events.remove({ _id: req.body.id}, function(err, event){
     if(err)
       res.send(err);
-    Event.find({}, function(err, event){
+    Events.find({}, function(err, event){
       if(err)
         res.send(err);
       //res.redirect('eventsrecords.html');
@@ -87,7 +85,7 @@ app.post('/update', function(req, res){
   Events.update({_id : req.body.id}, {$set: terms}, function(error, event){
     //if(err)
     //res.send(err);
-    Event.find({}, function(err, event){
+    Events.find({}, function(err, event){
 
       if(err) res.send(err);
 
@@ -99,9 +97,19 @@ app.post('/update', function(req, res){
 });
 };
 
-function adminLoggedIn(req, res, next) {
+function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()){
     return next();
   }
-  res.redirect('/adminlogin');
+  res.redirect('/login');
 }
+
+ app.get('/logout', function(req, res){
+    req.logout();
+
+    req.flash('success_msg', 'You are logged out');
+
+    res.redirect('/users/login');
+  });
+
+//module.exports=router;
