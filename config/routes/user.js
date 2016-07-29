@@ -25,9 +25,7 @@ module.exports = function(app,passport){
     var newUser             = new User();
 
     newUser.local.name = req.body.name;
-    //newUser.local.surname   = req.body.surname;
     newUser.local.email     = req.body.email;
-    //newUser.local.username  = req.body.username;
     newUser.local.password  = req.body.password;
 
     User.findOne({ 'local.name': newUser.local.name }, function(err, user) {
@@ -72,8 +70,6 @@ passport.serializeUser(function(user, done) {
       message: req.flash('loginMessage')
     });
   });
-
-  
 
   app.post('/login',
     passport.authenticate('local',{
