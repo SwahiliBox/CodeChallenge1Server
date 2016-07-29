@@ -30,7 +30,9 @@ var userSchema = mongoose.Schema({
       token: String,
       email: String,
       name: String
-    }
+    },
+
+    role: { type  :  Schema.Types.ObjectId, ref :  'Role' },
 });
 module.exports = mongoose.model('User',userSchema);
 
