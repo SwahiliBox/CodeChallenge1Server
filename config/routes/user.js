@@ -41,6 +41,8 @@ var LocalStrategy = require('passport-local');
 
   //Register user
   app.post('/signup', function(req, res){
+    var firstname=req.body.firstname;
+    var surname=req.body.surname;
      var username=req.body.username;
      var email=req.body.email;
      var password=req.body.password;
@@ -56,6 +58,8 @@ var LocalStrategy = require('passport-local');
      } else {
          console.log('You have no register errors');
             var newUser=new User({
+              'local.firstname': firstname,
+              'local.surname': surname,
               'local.username': username,
               'local.email': email,
               'local.password': password
