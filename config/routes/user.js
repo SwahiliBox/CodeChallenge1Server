@@ -45,15 +45,23 @@ module.exports = function(app,passport){
     });
   });
 
- passport.use(new LocalStrategy(
-  function(username, password, done) {
-  User.getUserByUsername(username, function(err, user){
+ /*passport.use(new LocalStrategy(
+  function(email, password, done) {
+  User.getUserByUsername(email, function(err, user){
     if(err) throw err;
     if(!user){
       return done(null,false,{message:'Unknown user'});
     }
     });
-  }));
+  }));*/
+ passport.use(new LocalStrategy({
+   EmailField: 'email',
+    passwordField: 'password'
+  },
+  function(email, password, done) {
+    // ...
+  }
+));
 
 passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -74,7 +82,7 @@ passport.serializeUser(function(user, done) {
   app.post('/login',
     passport.authenticate('local',{
         successRedirect:'/insert',
-        failureRedirect:'/insert',
+        failureRedirect:'/login',
         failureFlash:    true 
   }));
 
