@@ -31,6 +31,7 @@ mongoose.connect(configDB.url);
 //require passport for authentication
 require('./config/passport.js')(passport);
 
+
 //use required modules
 app.use(morgan('dev'));
 app.use(methodOverride());
@@ -43,9 +44,9 @@ app.use(session({secret:'anystringoftext',
       saveUninitialized:true,
       resave:false
 }));
-/* 
+/*
    this middleware is used to make the user object accessible
-   throughout all our routes 
+   throughout all our routes
 */
 app.use(function(req, res, next){
   res.locals.user = req.user;
@@ -62,7 +63,7 @@ app.use(function(req, res, next) {
 
 require('./config/passport')(passport);
 
-app.set('view engine', 'html'); 
+app.set('view engine', 'html');
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 

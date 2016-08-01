@@ -34,27 +34,35 @@ var userSchema = mongoose.Schema({
 
     role: { type  :  Schema.Types.ObjectId, ref :  'Role' },
 });
-module.exports = mongoose.model('User',userSchema);
+
+userSchema.methods.validPassword = function(password) {
+     return bcrypt.compareSync(password, this.local.password);
+ };
+
+var User = module.exports = mongoose.model('User',userSchema);
 
 module.exports.createUser = function(newUser,callback){
   bcrypt.genSalt(10,function(err,salt){
     if(err) throw err;
     bcrypt.hash(newUser.local.password,salt,function(err,hash){
       newUser.local.password = hash;
-      newUser.local.save(callback); 
+      newUser.local.save(callback);
     });
   });
 };
-module.exports.getUserByUsername = function(username,callback){
-  var query = {username: username};
+
+module.exports.getUserByUsername = function(username, callback){
+  var query = {'local.username': username};
   User.findOne(query,callback);
 };
+
 module.exports.getUserById = function(id,callback){
   User.findById(id,callback);
 };
-module.exports.comparePassword = function(candidatePassword,hash,callback){
-  bcrypt.compare(candidatePassword,hash,function(err,isMatch){
+
+module.exports.comparePassword = function(candidatePassword, hash, callback){
+  bcrypt.compare(candidatePassword, hash, function(err, isMatch){
     if(err) throw err;
-    callback(null,isMatch);
+    callback(null, isMatch);
   });
 };
