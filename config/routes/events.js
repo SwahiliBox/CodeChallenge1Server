@@ -23,7 +23,7 @@ app.get('/events', function(req, res){
 });
 
 //Crud Page.
-app.get('/insert',function(req,res){
+app.get('/insert', isLoggedIn, function(req,res){
   //res.sendFile('eventsrecords.html', {'root': 'views'});
   res.render('eventsrecords');
 });
