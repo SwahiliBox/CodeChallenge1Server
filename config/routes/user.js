@@ -2,10 +2,10 @@ var express= require('express');
 var router=express.Router();
 var cors   = require('cors');
 var User   = require('../../app/models/user');
+var passport = require('passport');
 var LocalStrategy = require('passport-local');
-//var app = require('express')
 
-module.exports = function(app,passport){
+ module.exports = function(app,passport){
   app.use(cors());
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -14,48 +14,68 @@ module.exports = function(app,passport){
     next();
   });
 
-  app.get('/signup', function(req, res){
+  app.get('/signup', function(req,res){
     res.render('signup', {
-        message: req.flash('signupMessage') 
-    });
-  });
-  //register user
-  app.post('/signup',function(req,res){
-
-    var newUser             = new User();
-
-    newUser.local.name = req.body.name;
-    newUser.local.email     = req.body.email;
-    newUser.local.password  = req.body.password;
-
-    User.findOne({ 'local.name': newUser.local.name }, function(err, user) {
-      if (err)
-        return err;
-
-      if (user) {
-        // if a user is found, prevent sign up
-        res.send('1');
-      }
-      else{
-        User.createUser(newUser,function(err,user){
-          if (err) throw err;
-         res.render('login', {message: req.flash('loginMessage')});
-        });
-      }
-    });
+       message: req.flash('signupMessage')
+     });
   });
 
- passport.use(new LocalStrategy(
-  function(username, password, done) {
-  User.getUserByUsername(username, function(err, user){
-    if(err) throw err;
-    if(!user){
-      return done(null,false,{message:'Unknown user'});
-    }
-    });
+  //Register user
+  app.post('/signup', function(req, res){
+     var username=req.body.username;
+     var email=req.body.email;
+     var password=req.body.password;
+
+   User.getUserByUsername(username, function(err, user, done){
+     var message = 'That username is already taken';
+     if(err) throw err;
+
+     if(user){
+     res.render('signup', {
+       message: message
+     });
+     } else {
+         console.log('You have no register errors');
+            var newUser=new User({
+              'local.username': username,
+              'local.email': email,
+              'local.password': password
+            });
+            User.createUser(newUser,function(err, user){
+              if (err) throw err;
+              console.log(user);
+            });
+            var message = 'you are registered and now can login';
+            res.render('login', {
+              message: message
+            });
+          };
+       });
+   });
+
+  passport.use(new LocalStrategy({
+      usernameField : 'email',
+      passwordField : 'password',
+      passReqToCallback : true
+    },
+
+    function(req, email, password, done) {
+      User.findOne({ 'local.email' :  email }, function(err, user) {
+            // if there are any errors, return the error before anything else
+          if (err)
+            return done(err);
+            // if no user is found, return the message
+          if (!user)
+            return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
+            // if the user is found but the password is wrong
+          if (!user.validPassword(password))
+            return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
+            // all is great, return successful user
+            return done(null, user);
+     });
   }));
 
-passport.serializeUser(function(user, done) {
+  passport.serializeUser(function(user, done) {
     done(null, user.id);
   });
 
@@ -72,16 +92,16 @@ passport.serializeUser(function(user, done) {
   });
 
   app.post('/login',
-    passport.authenticate('local',{
-        successRedirect:'/insert',
-        failureRedirect:'/insert',
-        failureFlash:    true 
-  }));
+  passport.authenticate('local', {successRedirect:'/insert',failureRedirect:'/login',failureFlash: true}),
+    function(req, res) {
+      res.redirect('/');
+  });
+
 
   app.get('/logout', function(req, res){
-  req.logout();
-  res.redirect('/');
-});
+    req.logout();
+    res.redirect('/');
+  });
 
   //GOOGLE ROUTES
   //route for google authentication and login
@@ -120,11 +140,11 @@ passport.serializeUser(function(user, done) {
   app.get('/proffacebook', isLoggedIn, function(req, res) {
     res.send( req.user );
   });
-  };
+ };
 
   function isLoggedIn(req, res, next) {
     if(req.isAuthenticated()){
       return next();
     }
     res.send('1');
-}
+  }

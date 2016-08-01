@@ -8,19 +8,22 @@
         <h2>Signup Now</h2>
       </div>
     </div>
-        <% if (message.length > 0) { %> 
+        <% if (message.length > 0) { %>
     <div class="row">
+      <div class="large-12 columns">
       <div data-alert class="alert-box warning ">
         <%= message %>
         <a href="#" class="close">&times;</a>
       </div>
+     </div>
     </div>
     <% } %>
+
     <form action="/signup" method="post">
         <div class="row">
         <div class="large-12 columns">
           <label for="name"> Username</label>
-            <input class="form-control" id="name" type="text" name="name" placeholder="username">
+            <input class="form-control" id="username" type="text" name="username" placeholder="username">
         </div>
         </div>
         <div class="row">
