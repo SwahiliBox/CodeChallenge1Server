@@ -29,7 +29,7 @@ app.get('/insert', isLoggedIn, function(req,res){
 });
 
 //send events to frontend
-app.get('/event', function(req, res){
+app.get('/event', isLoggedIn, function(req, res){
   Event.find({}, function(err, event){
     if(err)
       res.send(err);
