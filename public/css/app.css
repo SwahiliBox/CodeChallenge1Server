@@ -161,7 +161,7 @@ header {
       font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 1.3em; }
   .call-to-action .button, .promotion .promote .button {
-    border-radius: 0;
+    border-radius: 5%;
     background-color: transparent;
     border: 1px solid #fff;
     color: #fff;
@@ -170,9 +170,9 @@ header {
     -webkit-transition: color 0.2s ease-in-out, background 0.2s ease-in-out;
     transition: color 0.2s ease-in-out, background 0.2s ease-in-out; }
     .call-to-action .button:hover, .promotion .promote .button:hover {
-      background-color: #f47920;
+      background-color: #43AC6A;
       padding: 15px 45px;
-      border-color: #f47920; }
+      border-color: #ffffff; }
     .call-to-action .button.cta, .promotion .promote .button.cta {
       text-transform: uppercase;
       font-family: 'LatoWeb', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
