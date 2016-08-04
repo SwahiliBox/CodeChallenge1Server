@@ -4,6 +4,7 @@ node_modules/*
 public/bower_components
 public/css/.sass-cache
 public/css/app.css.map
+public/css/dashboard.css.map
 npm-debug.log
 config/my-passport.js
 .sass-cache
