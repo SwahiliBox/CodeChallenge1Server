@@ -1,0 +1,9 @@
+$(document).ready(function(){
+  $(".show-search").click(function(){
+    $(".search-form").css("margin-top","-60px");
+    $(".search-input").focus();
+  });
+  $(".close-search").click(function(){
+    $(".search-form").css("margin-top","-120px");
+  });
+});
