@@ -319,12 +319,12 @@ footer {
       float: right;
       margin-top: 25px; }
     footer .footer-top .button {
-      border-radius: 0;
-      background-color: #f47920;
+      border-radius: 2%;
+      background-color: #008cba;
       color: #fff;
       border: 1px solid transparent; }
       footer .footer-top .button:hover {
-        background-color: #000;
+        background-color: #43AC6A;;
         border: 1px solid #fff; }
     footer .footer-top .footer-top-container {
       line-height: 100px; }
