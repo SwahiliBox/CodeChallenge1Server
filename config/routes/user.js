@@ -68,11 +68,11 @@ var LocalStrategy = require('passport-local');
               if (err) throw err;
               console.log(user);
             });
-            var message = 'you are registered and now can login';
+            message = 'you are registered and now can login';
             res.render('login', {
               message: message
             });
-          };
+          }
        });
    });
 
