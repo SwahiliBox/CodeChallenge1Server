@@ -1,8 +1,8 @@
-var express = require('express');
-var app     = express();
-var router  = express.Router();
-var cors    = require('cors');
-var Events  = require('../../app/models/event');
+var express    = require('express');
+var app        = express();
+var router     = express.Router();
+var cors       = require('cors');
+var Events     = require('../../app/models/event');
 
 module.exports = function(app,passport){
   app.use(cors());
