@@ -31,8 +31,6 @@ var userSchema = mongoose.Schema({
       email: String,
       name: String
     },
-
-    role: { type  :  Schema.Types.ObjectId, ref :  'Role' },
 });
 
 userSchema.methods.validPassword = function(password) {
