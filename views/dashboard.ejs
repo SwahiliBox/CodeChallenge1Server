@@ -1,0 +1,33 @@
+<!--include dashboar masthead-->
+<%  include dashboard/dashboard-mast %>
+</head>
+<body>
+  <!--search form starts -->
+  <% include dashboard/dashboard-search %>  
+  <!--search form ends -->
+
+  <!--top toolbar-->
+  <% include dashboard/dashboard-navigation %>
+  <!--top toolbar ends -->
+
+  <!--content section container starts -->
+  <div class="content-section-container" data-equalizer>
+    <div class="row collapse">
+    <!--section sidebar-->
+    <% include dashboard/dashboard-sidebar %>
+    <!--section sidebar ends -->
+    
+    <!--section main starts -->
+    <div class="page-inner large-10 small-12 columns" data-equalizer-watch>
+      <% include dashboard/dashboard-breadcrumbs %>
+      <div id="main-wrapper">
+        <%-body %>
+      </div><!-- Main Wrapper -->
+    </div>
+    <!--section main ends -->
+    </div>
+  </div>
+<%  include dashboard/dashboard-scripts %>
+</body>
+</html>
+
