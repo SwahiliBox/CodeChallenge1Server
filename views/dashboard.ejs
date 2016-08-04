@@ -1,0 +1,316 @@
+<!--include dashboar masthead-->
+<%  include partials/dashboard-mast %>
+</head>
+<body>
+  <!--search form starts -->
+  <form class="search-form" action="#" method="GET">
+    <div class="input-group">
+      <input type="text" name="search" class="form-control search-input" placeholder="Search...">
+      <span class="input-group-btn">
+        <button class="btn btn-default close-search" type="button"><i class="fa fa-times"></i></button>
+      </span>
+    </div><!-- Input Group -->
+  </form>
+  <!--search form ends -->
+
+  <!--top toolbar-->
+  <div class="contain-to-grid-sticky row collapse  fixed">
+    <nav class="top-bar" data-topbar role="navigation">
+      <div class="large-2 columns title-container">
+        <ul class="title-area">
+          <li class="name">
+            <h1><a href="#">Dashboard</a></h1>
+          </li>
+          <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+        </ul>
+      </div>
+      <div class="large-10 columns">
+<section class="top-bar-section">
+        <ul class="left">
+          <li>		
+            <a href="#" class="sidebar-toggle"><i class="fa fa-bars"></i></a>
+          </li>
+          <li>
+            <a href="#cd-nav" class="cd-nav-trigger"><i class="fa fa-diamond"></i></a>
+          </li>
+          <li>		
+            <a href="#" class="toggle-fullscreen"><i class="fa fa-expand"></i></a>
+          </li>
+          <li>
+            <a href="#" class="dropdown-toggle" >
+              <i class="fa fa-cogs"></i>
+            </a>
+          </li>
+        </ul>
+        <ul class="right">
+          <li><a href="#" class="show-search"><i class="fa fa-search"></i></a></li>
+          <li class="has-dropdown">
+            <a href="#"><i class="fa fa-envelope"></i><span class="badge badge-success pull-right">4</span></a>
+            <ul class="dropdown drop-container">
+              <li><p class="title">You have 4 new  messages !</p></li>
+              <li class="sender-details">
+                <ul class="unstyled">
+                  <li>
+                    <a href="#">
+                      <div class="msg-img"><div class="online on"></div><img class="img-circle" src="../images/zach2.jpg" alt=""></div>
+                        <p class="msg-name">Sandra Smith</p>
+                        <p class="msg-text">Hey ! I'm working on your project</p>
+                        <p class="msg-time">3 minutes ago</p>
+                      </a>
+                    </li>
+                    <li>
+                      <a href="#">
+                        <div class="msg-img"><div class="online on"></div><img class="img-circle" src="../images/zach2.jpg" alt=""></div>
+                          <p class="msg-name">Sandra Smith</p>
+                          <p class="msg-text">Hey ! I'm working on your project</p>
+                          <p class="msg-time">3 minutes ago</p>
+                        </a>
+                      </li>
+                      <li>
+                        <a href="#">
+                          <div class="msg-img"><div class="online on"></div><img class="img-circle" src="../images/zach2.jpg" alt=""></div>
+                            <p class="msg-name">Sandra Smith</p>
+                            <p class="msg-text">Hey ! I'm working on your project</p>
+                            <p class="msg-time">3 minutes ago</p>
+                          </a>
+                        </li>
+                        <li>
+                          <a href="#">
+                            <div class="msg-img"><div class="online on"></div><img class="img-circle" src="../images/zach2.jpg" alt=""></div>
+                              <p class="msg-name">Sandra Smith</p>
+                              <p class="msg-text">Hey ! I'm working on your project</p>
+                              <p class="msg-time">3 minutes ago</p>
+                            </a>
+                          </li><li>
+                        <a href="#">
+                          <div class="msg-img"><div class="online on"></div><img class="img-circle" src="../images/zach2.jpg" alt=""></div>
+                            <p class="msg-name">Sandra Smith</p>
+                            <p class="msg-text">Hey ! I'm working on your project</p>
+                            <p class="msg-time">3 minutes ago</p>
+                          </a>
+                        </li><li>
+                        <a href="#">
+                          <div class="msg-img"><div class="online on"></div><img class="img-circle" src="../images/zach2.jpg" alt=""></div>
+                            <p class="msg-name">Sandra Smith</p>
+                            <p class="msg-text">Hey ! I'm working on your project</p>
+                            <p class="msg-time">3 minutes ago</p>
+                          </a>
+                        </li><li>
+                        <a href="#">
+                          <div class="msg-img"><div class="online on"></div><img class="img-circle" src="../images/zach2.jpg" alt=""></div>
+                            <p class="msg-name">Sandra Smith</p>
+                            <p class="msg-text">Hey ! I'm working on your project</p>
+                            <p class="msg-time">3 minutes ago</p>
+                          </a>
+                        </li>
+                    </ul>
+              </li>
+            </ul>
+          </li>
+          <li><a href="#"><i class="fa fa-bell"></i><span class="badge badge-success pull-right">4</span></a></li>
+          <li>
+            <a href="#" data-toggle="dropdown">
+              <span class="user-name">Zach<i class="fa fa-angle-down"></i></span>
+              <img class="img-circle avatar" src="../images/zach2.jpg" width="40" height="40" alt="">
+              </a>
+            </li>
+            <li> <a href="#" class="log-out"> <span><i class="fa fa-sign-out m-r-xs"></i>Log Out</span> </a> </li>
+          </ul>
+        </section>
+      </div>
+      </nav>
+    </div>
+  <!--top toolbar ends -->
+
+  <!--content section container starts -->
+  <div class="content-section-container" data-equalizer>
+    <div class="row collapse">
+    <!--section sidebar-->
+    <section class="section-sidebar sidebar large-2 small-12 columns" data-equalizer-watch>
+      <div style="position: relative; overflow: hidden; width: auto; height: 100%;">
+        <div class="page-sidebar-inner slimscroll" style="overflow: hidden; width: auto; height: 100%;">
+          <div class="sidebar-header">
+            <div class="sidebar-profile">
+              <a href="#" id="profile-menu-link">
+                <div class="sidebar-profile-image">
+                  <img src="../images/zach2.jpg" class="img-circle img-responsive" alt="">
+                  </div>
+                  <div class="sidebar-profile-details">
+                    <span>Mtabe<br><small>Admin</small></span>
+                  </div>
+                </a>
+              </div>
+            </div>
+            <ul class="menu accordion-menu">
+              <li class="active">
+                <a href="index.html">
+                  <span class="menu-icon icon icon-home"></span>
+                  <p>Dashboard</p>
+                </a>
+              </li>
+              <li><a href="#">
+                  <span class="menu-icon icon icon-user"></span>
+                  <p>Profile</p>
+                </a>
+              </li>
+              <li class="droplink">
+                <a href="#">
+                  <span class="menu-icon icon icon-envelope"></span>
+                  <p>Mailbox</p>
+                  <span class="arrow"></span>
+                </a>
+                <ul class="sub-menu" style="display: none;">
+                  <li><a href="inbox.html">Inbox</a></li>
+                  <li><a href="inbox-alt.html">Inbox Alt</a></li>
+                  <li><a href="message-view.html">View Message</a></li>
+                  <li><a href="message-view-alt.html">View Message Alt</a></li>
+                  <li><a href="compose.html">Compose</a></li>
+                  <li><a href="compose-alt.html">Compose Alt</a></li>
+                </ul>
+              </li>
+              <li class="droplink"><a href="#"><span class="menu-icon icon icon-briefcase"></span><p>UI Kits</p><span class="arrow"></span></a>
+                <ul class="sub-menu" style="display: none;">
+                  <li><a href="ui-alerts.html">Alerts</a></li>
+                  <li><a href="ui-buttons.html">Buttons</a></li>
+                  <li><a href="ui-icons.html">Icons</a></li>
+                  <li><a href="ui-typography.html">Typography</a></li>
+                  <li><a href="ui-notifications.html">Notifications</a></li>
+                  <li><a href="ui-grid.html">Grid</a></li>
+                  <li><a href="ui-tabs-accordions.html">Tabs &amp; Accordions</a></li>
+                  <li><a href="ui-modals.html">Modals</a></li>
+                  <li><a href="ui-panels.html">Panels</a></li>
+                  <li><a href="ui-progress.html">Progress Bars</a></li>
+                  <li><a href="ui-sliders.html">Sliders</a></li>
+                  <li><a href="ui-nestable.html">Nestable</a></li>
+                  <li><a href="ui-tree-view.html">Tree View</a></li>
+                </ul>
+              </li>
+              <li class="droplink"><a href="#"><span class="menu-icon icon icon-grid"></span><p>Layouts</p><span class="arrow"></span></a>
+                <ul class="sub-menu" style="display: none;">
+                  <li><a href="layout-blank.html">Blank Page</a></li>
+                  <li><a href="layout-boxed.html">Boxed Page</a></li>
+                  <li><a href="layout-horizontal-menu.html">Horizontal Menu</a></li>
+                  <li><a href="layout-horizontal-menu-boxed.html">Boxed &amp; Horizontal Menu</a></li>
+                  <li><a href="layout-horizontal-menu-minimal.html">Horizontal Menu Minimal</a></li>
+                  <li><a href="layout-fixed-sidebar.html">Fixed Sidebar</a></li>
+                  <li><a href="layout-static-header.html">Static Header</a></li>
+                  <li><a href="layout-collapsed-sidebar.html">Collapsed Sidebar</a></li>
+                  <li><a href="layout-compact-menu.html">Compact Menu</a></li>
+                  <li><a href="layout-hover-menu.html">Hover Menu</a></li>
+                </ul>
+              </li>
+              <li class="droplink"><a href="#"><span class="menu-icon icon icon-list"></span><p>Tables</p><span class="arrow"></span></a>
+                <ul class="sub-menu" style="display: none;">
+                  <li><a href="table-static.html">Static Tables</a></li>
+                  <li><a href="table-responsive.html">Responsive Tables</a></li>
+                  <li><a href="table-data.html">Data Tables</a></li>
+                </ul>
+              </li>
+              <li class="droplink"><a href="#"><span class="menu-icon icon icon-note"></span><p>Forms</p><span class="arrow"></span></a>
+                <ul class="sub-menu" style="display: none;">
+                  <li><a href="form-elements.html">Form Elements</a></li>
+                  <li><a href="form-wizard.html">Form Wizard</a></li>
+                  <li><a href="form-upload.html">File Upload</a></li>
+                  <li><a href="form-image-crop.html">Image Crop</a></li>
+                  <li><a href="form-image-zoom.html">Image Zoom</a></li>
+                  <li><a href="form-select2.html">Select2</a></li>
+                  <li><a href="form-x-editable.html">X-editable</a></li>
+                </ul>
+              </li>
+              <li class="droplink"><a href="#"><span class="menu-icon icon
+                      icon-chart"></span><p>Charts</p><span class="arrow"></span></a>
+                <ul class="sub-menu" style="display: none;">
+                  <li><a href="charts-sparkline.html">Sparkline</a></li>
+                  <li><a href="charts-rickshaw.html">Rickshaw</a></li>
+                  <li><a href="charts-morris.html">Morris</a></li>
+                  <li><a href="charts-flotchart.html">Flotchart</a></li>
+                  <li><a href="charts-chartjs.html">Chart.js</a></li>
+                </ul>
+              </li>
+              <li class="droplink"><a href="#"><span class="menu-icon icon icon-login"></span><p>Login</p><span class="arrow"></span></a>
+                <ul class="sub-menu" style="display: none;">
+                  <li><a href="login.html">Login Form</a></li>
+                  <li><a href="login-alt.html">Login Alt</a></li>
+                  <li><a href="register.html">Register Form</a></li>
+                  <li><a href="register-alt.html">Register Alt</a></li>
+                  <li><a href="forgot.html">Forgot Password</a></li>
+                  <li><a href="lock-screen.html">Lock Screen</a></li>
+                </ul>
+              </li>
+              <li class="droplink"><a href="#"><span class="menu-icon icon
+                      icon-location-pin"></span><p>Maps</p><span class="arrow"></span></a>
+                <ul class="sub-menu" style="display: none;">
+                  <li><a href="maps-google.html">Google Maps</a></li>
+                  <li><a href="maps-vector.html">Vector Maps</a></li>
+                </ul>
+              </li>
+              <li class="droplink"><a href="#"><span class="menu-icon icon icon-gift"></span><p>Extra</p><span class="arrow"></span></a>
+                <ul class="sub-menu" style="display: none;">
+                  <li><a href="404.html">404 Page</a></li>
+                  <li><a href="500.html">500 Page</a></li>
+                  <li><a href="invoice.html">Invoice</a></li>
+                  <li><a href="calendar.html">Calendar</a></li>
+                  <li><a href="faq.html">FAQ</a></li>
+                  <li><a href="todo.html">Todo</a></li>
+                  <li><a href="pricing-tables.html">Pricing Tables</a></li>
+                  <li><a href="shop.html">Shop</a></li>
+                  <li><a href="gallery.html">Gallery</a></li>
+                  <li><a href="timeline.html">Timeline</a></li>
+                  <li><a href="search.html">Search Results</a></li>
+                  <li><a href="coming-soon.html">Coming Soon</a></li>
+                  <li><a href="contact.html">Contact</a></li>
+                </ul>
+              </li>
+              <li class="droplink"><a href="#"><span class="menu-icon icon
+                      icon-energy"></span><p>Levels</p><span class="arrow"></span></a>
+                <ul class="sub-menu" style="display: none;">
+                  <li class="droplink"><a href="#"><p>Level 1.1</p><span class="arrow"></span></a>
+                    <ul class="sub-menu" style="display: none;">
+                      <li class="droplink"><a href="#"><p>Level 2.1</p><span class="arrow"></span></a>
+                        <ul class="sub-menu" style="display: none;">
+                          <li><a href="#">Level 3.1</a></li>
+                        </ul>
+                      </li>
+                      <li><a href="#">Level 2.2</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#">Level 1.2</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div><div class="slimScrollBar" style="width: 7px; position: absolute; top: 0px; opacity: 0.3; display: none; border-radius: 0px; z-index: 99; right: 0px; height: 1080px; background: rgb(204, 204, 204);"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; opacity: 0.2; z-index: 90; right: 0px; background: rgb(51, 51, 51);"></div></div>
+    </section>
+    <!--section sidebar ends -->
+    
+    <!--section main starts -->
+    <div class="page-inner large-10 small-12 columns" data-equalizer-watch>
+      <div class="page-title">
+        <h3>Dashboard</h3>
+        <div class="page-breadcrumb">
+          <nav class="breadcrumbs" role="menubar" aria-label="breadcrumbs">
+            <li role="menuitem"><a href="#">Home</a></li>
+            <li role="menuitem"><a href="#">Dashboard</a></li>
+          </nav>
+        </div>
+      </div>
+      <div id="main-wrapper">
+        <%-body%>
+      </div><!-- Main Wrapper -->
+    </div>
+    <!--section main ends -->
+  
+    </div>
+  </div>
+  <!--content section container ends -->
+<script src="bower_components/foundation/js/vendor/modernizr.js"></script>
+<script src="bower_components/foundation/js/vendor/jquery.js"></script>
+<script src="bower_components/foundation/js/foundation.min.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.alert.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.equalizer.js"></script>
+<script src="js/search.js"></script>
+<script>
+  $(document).foundation();
+</script>
+</body>
+</html>
+
