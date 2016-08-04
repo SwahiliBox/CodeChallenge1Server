@@ -118,9 +118,9 @@ var LocalStrategy = require('passport-local');
   });
 
   app.post('/login',
-  passport.authenticate('local', {successRedirect:'/insert',failureRedirect:'/login',failureFlash: true}),
+  passport.authenticate('local', {successRedirect:'/admin',failureRedirect:'/login',failureFlash: true}),
     function(req, res) {
-      res.redirect('/');
+      res.redirect('/admin');
   });
 
   app.get('/logout', function(req, res){

@@ -24,6 +24,10 @@ app.get('/secure', function(req, res){
   res.render('secure');
 });
 
+app.get('/admin', function(req, res){
+  res.render('admin/index');
+});
+
 //Send file crud.html
 app.get('/crud', function(request, response){
   response.sendFile('crud.html', {'root': 'views'});
