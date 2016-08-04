@@ -1,11 +1,11 @@
-var express= require('express');
-var router=express.Router();
-var cors   = require('cors');
-var User   = require('../../app/models/user');
-var passport = require('passport');
+var express       = require('express');
+var router        = express.Router();
+var cors          = require('cors');
+var User          = require('../../app/models/user');
+var passport      = require('passport');
 var LocalStrategy = require('passport-local');
 
- module.exports = function(app,passport){
+ module.exports   = function(app,passport){
   app.use(cors());
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -16,7 +16,8 @@ var LocalStrategy = require('passport-local');
 
   app.get('/signup', function(req,res){
     res.render('signup', {
-       message: req.flash('signupMessage')
+       message: req.flash('signupMessage'),
+       title: "Sign Up"
      });
   });
 
@@ -111,7 +112,8 @@ var LocalStrategy = require('passport-local');
 
   app.get('/login', function(req, res){
     res.render('login', {
-      message: req.flash('loginMessage')
+      message: req.flash('loginMessage'),
+      title: "Login Page"
     });
   });
 

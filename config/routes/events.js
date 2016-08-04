@@ -1,8 +1,8 @@
-var express= require('express');
-var app              = express();
-var router=express.Router();
-var cors   = require('cors');
-var Events = require('../../app/models/event');
+var express = require('express');
+var app     = express();
+var router  = express.Router();
+var cors    = require('cors');
+var Events  = require('../../app/models/event');
 
 module.exports = function(app,passport){
   app.use(cors());
@@ -25,7 +25,9 @@ app.get('/events', function(req, res){
 //Crud Page.
 app.get('/insert', isLoggedIn, function(req,res){
   //res.sendFile('eventsrecords.html', {'root': 'views'});
-  res.render('eventsrecords');
+  res.render('eventsrecords', {
+      title: "Insert"
+  });
 });
 
 //send events to frontend
