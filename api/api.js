@@ -16,4 +16,11 @@ router.get('/create-events', function(req, res){
   }
 });
 
+router.get('/events', function(req, res, err){
+  Event.find({}, function(error, events){
+    if(error) res.send(error);
+    res.json(events);
+  });
+});
+
 module.exports = router;
