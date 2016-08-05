@@ -1,43 +1,43 @@
 var mongoose   = require('mongoose');
 var bcrypt     = require('bcryptjs');
-var userSchema = mongoose.Schema({
-    local:{
-      username:{
-        type: String,
-        index: true
-      },
-      password:{
-        type: String
-      },
-      email:{
-        type: String
-      },
-      firstname:{
-        type: String
-      },
-      surname:{
-        type: String
-      }
+var crypto     = require('crypto');
+var Schema     = mongoose.Schema;
+
+var UserSchema = Schema({
+    local:  {
+      username: { type: String, index: true },
+      password: { type: String },
+      email:    { type: String },
+      firstname:{ type: String },
+      surname:  { type: String },
+      picture:  { type: String, default: '' }
     },
     facebook:{
-      id: String,
-      token: String,
-      email: String,
-      name: String
+      id:     String,
+      token:  String,
+      email:  String,
+      name:   String
     },
     google: {
-      id: String,
-      token: String,
-      email: String,
-      name: String
-    },
+      id:     String,
+      token:  String,
+      email:  String,
+      name:   String
+    } 
 });
 
-userSchema.methods.validPassword = function(password) {
-     return bcrypt.compareSync(password, this.local.password);
- };
+UserSchema.methods.validPassword = function(password) {
+  return bcrypt.compareSync(password, this.local.password);
+};
 
-var User = module.exports = mongoose.model('User',userSchema);
+UserSchema.methods.gravatar = function(size){
+  if (!this.size) size = 200;
+  if (!this.local.email) return 'https://gravatar.com/avatar/?s' + size + '$d=retro';
+  var md5 = crypto.createHash('md5').update(this.local.email).digest('hex');
+  return 'https://gravatar.com/avatar/' + md5 + '?s=' + size + '&d=retro';
+};
+
+var User = module.exports = mongoose.model('User',UserSchema);
 
 module.exports.createUser = function(newUser,callback){
   bcrypt.genSalt(10,function(err,salt){
@@ -50,8 +50,7 @@ module.exports.createUser = function(newUser,callback){
 };
 
 module.exports.getUserByUsername = function(username, callback){
-  var query = {'local.username': username};
-  User.findOne(query,callback);
+  User.findOne(username,callback);
 };
 
 module.exports.getUserById = function(id,callback){
