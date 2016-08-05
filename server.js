@@ -84,6 +84,9 @@ require('./config/routes/rsvp')(app, passport);
 require('./config/routes/user')(app, passport);
 require('./config/routes/events')(app, passport);
 require('./config/routes/main')(app, passport);
+var apiRoutes      = require('./api/api');
+
+app.use('/api', apiRoutes);
 
 app.listen(port);
 console.log('Server running on localhost: port ' + port);

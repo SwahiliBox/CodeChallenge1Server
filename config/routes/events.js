@@ -16,9 +16,10 @@ module.exports = function(app,passport){
 //send events to frontend
 app.get('/events', function(req, res){
   Events.find({}, function(error, events){
-    if(error)
-      res.send(error);
-    res.json(events);
+    if(error) res.send(error);
+    res.render('events',{
+        events: events 
+    });
   });
 });
 
@@ -26,7 +27,8 @@ app.get('/events', function(req, res){
 app.get('/insert', isLoggedIn, function(req,res){
   //res.sendFile('eventsrecords.html', {'root': 'views'});
   res.render('eventsrecords', {
-      title: "Insert"
+      title: "Insert",
+      page:   "events"
   });
 });
 
