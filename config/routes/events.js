@@ -17,7 +17,9 @@ module.exports = function(app,passport){
 app.get('/events', function(req, res){
   Events.find({}, function(error, events){
     if(error) res.send(error);
-    res.json(events);
+    res.render('events',{
+        events: events 
+    });
   });
 });
 
