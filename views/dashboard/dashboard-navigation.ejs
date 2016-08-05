@@ -98,11 +98,11 @@
                         <li><a href="#"><i class="fa fa-bell"></i><span class="badge badge-success pull-right">4</span></a></li>
                         <li>
                           <a href="#" data-toggle="dropdown">
-                            <span class="user-name">Zach<i class="fa fa-angle-down"></i></span>
-                            <img class="img-circle avatar" src="../images/user.png" width="40" height="40" alt="">
+                            <span class="user-name"><strong>Welcome <%= user.local.username %></strong></span>
+                            <img class="img-circle avatar" src="<%= user.local.picture %>" width="40" height="40" alt="">
                             </a>
                           </li>
-                          <li> <a href="#" class="log-out"> <span><i class="fa fa-sign-out m-r-xs"></i>Log Out</span> </a> </li>
+                          <li> <a href="/logout" class="log-out"> <span><i class="fa fa-sign-out m-r-xs"></i>Log Out</span> </a> </li>
                         </ul>
                       </section>
                     </div>
