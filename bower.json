@@ -24,6 +24,7 @@
     "foundation": "~5.5.3",
     "simple-line-icons": "~2.3.2",
     "lato": "~0.3.0",
-    "font-awesome": "~4.6.3" 
+    "font-awesome": "~4.6.3",
+    "jquery-ui": "~1.12.0"
   }
 }
