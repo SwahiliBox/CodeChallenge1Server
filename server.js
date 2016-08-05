@@ -22,11 +22,11 @@ var session          = require('express-session');
 var methodOverride   = require('method-override');
 var flash            = require('connect-flash');
 var cors             = require('cors');
-var mongostore       = require('connect-mongo')(session);
+var MongoStore       = require('connect-mongo')(session);
 var rsvp             = require('./app/models/rsvp');
 
 //connect to mongo database
-var configDB         = require('./config/database.js');
+var configDB         = require('./config/database');
 mongoose.connect(configDB.url);
 //require passport for authentication
 require('./config/passport.js')(passport);
@@ -35,23 +35,20 @@ require('./config/passport.js')(passport);
 //use required modules
 app.use(morgan('dev'));
 app.use(methodOverride());
-/* app.use(express.static(path.join(__dirname, 'views'))); */
+
 app.use(express.static(__dirname + '/public'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
 app.use(bodyParser.urlencoded({extended: false}));
+
 app.use(cookieParser());
-app.use(session({secret:'anystringoftext',
-      saveUninitialized:true,
-      resave:false
+
+app.use(session({
+   resave:              true,
+   saveUninitialized:   true,
+   secret:              configDB.secret,
+   store:               new MongoStore({ url: configDB.url, autoReconnect: true }) 
 }));
-/*
-   this middleware is used to make the user object accessible
-   throughout all our routes
-*/
-app.use(function(req, res, next){
-  res.locals.user = req.user;
-  next();
-});
+
 
 app.use(cors());
 
@@ -72,6 +69,16 @@ app.use(passport.initialize());
 
 app.use(passport.session());
 app.use(flash());
+
+/*
+   this middleware is used to make the user object accessible
+   throughout the whole request / response cycle and it has to be 
+   defined after app.use(passport.session()) otherwise it won't work
+*/
+app.use(function(req, res, next){
+  res.locals.user = req.user;
+  next();
+});
 
 require('./config/routes/rsvp')(app, passport);
 require('./config/routes/user')(app, passport);

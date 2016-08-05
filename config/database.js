@@ -1,3 +1,4 @@
 module.exports = {
-  'url': 'mongodb://localhost/nodetrials'
+  'url': 'mongodb://localhost/nodetrials',
+  'secret': 'anystringoftext'
 };
