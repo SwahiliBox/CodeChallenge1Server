@@ -5,33 +5,34 @@
         <div class="sidebar-profile">
           <a href="#" id="profile-menu-link">
             <div class="sidebar-profile-image">
-              <img src="../images/user.png" class="img-circle img-responsive" alt="">
+              <img src="<%= user.local.picture %>" class="img-circle img-responsive" alt="">
               </div>
               <div class="sidebar-profile-details">
-                <span>Mtabe<br><small>Admin</small></span>
+                <span><%= user.local.username %><br><small>Admin</small></span>
               </div>
             </a>
           </div>
         </div>
         <ul class="menu accordion-menu">
-          <li class="active">
-            <a href="index.html">
+        <li <% if (page === 'dashboard') { %>class="active" <% } %> >
+            <a href="/admin">
               <span class="menu-icon icon icon-home"></span>
               <p>Dashboard</p>
             </a>
           </li>
-          <li><a href="#">
+        <li <% if (page === 'profile') { %>class="active" <% } %> >
+            <a href="#">
               <span class="menu-icon icon icon-user"></span>
               <p>Profile</p>
             </a>
           </li>
-          <li>
+        <li <% if (page === 'events') { %>class="active" <% } %> >
             <a href="#">
               <span class="menu-icon icon icon-calendar"></span>
               <p>Events</p>
             </a>
           </li>
-          <li>
+        <li <% if (page === 'mailbox') { %>class="active" <% } %> >
             <a href="#">
               <span class="menu-icon icon icon-envelope"></span>
               <p>Mailbox</p>
