@@ -5,7 +5,7 @@ var User          = require('../../app/models/user');
 var passport      = require('passport');
 var LocalStrategy = require('passport-local');
 
- module.exports   = function(app,passport){
+module.exports    = function(app,passport){
   app.use(cors());
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -16,89 +16,74 @@ var LocalStrategy = require('passport-local');
 
   app.get('/signup', function(req,res){
     res.render('signup', {
-       message: req.flash('signupMessage'),
-       title: "Sign Up"
-     });
-  });
-
-
- /*passport.use(new LocalStrategy(
-  function(email, password, done) {
-  User.getUserByUsername(email, function(err, user){
-    if(err) throw err;
-    if(!user){
-      return done(null,false,{message:'Unknown user'});
-    }
+        message: req.flash('signupMessage'),
+        title: "Sign Up"
     });
-  }));
- passport.use(new LocalStrategy({
-   EmailField: 'email',
-    passwordField: 'password'
-  },
-  function(email, password, done) {
-    // ...
-  }
-));*/
+  });
 
   //Register user
   app.post('/signup', function(req, res){
-    var firstname=req.body.firstname;
-    var surname=req.body.surname;
-     var username=req.body.username;
-     var email=req.body.email;
-     var password=req.body.password;
+    var user             = new User();
+    user.local.firstname = req.body.firstname;
+    user.local.surname   = req.body.surname;
+    user.local.username  = req.body.username;
+    user.local.email     = req.body.email;
+    user.local.password  = req.body.password;
+    user.local.picture   = user.gravatar();
 
-   User.getUserByUsername(username, function(err, user, done){
-     var message = 'That username is already taken';
-     if(err) throw err;
+    User.getUserByUsername({username: req.body.username}, function(err, foundUser, done){
+      var message = 'That username is already taken';
+      if(err) throw err;
 
-     if(user){
-     res.render('signup', {
-       message: message
-     });
-     } else {
-         console.log('You have no register errors');
-            var newUser=new User({
-              'local.firstname': firstname,
-              'local.surname': surname,
-              'local.username': username,
-              'local.email': email,
-              'local.password': password
-            });
-            User.createUser(newUser,function(err, user){
-              if (err) throw err;
-              console.log(user);
-            });
-            message = 'you are registered and now can login';
-            res.render('login', {
-              message: message
-            });
-          }
-       });
-   });
+      if(foundUser){
+        res.render('signup', {
+            message: message
+        });
+      } else {
+        console.log('You have no register errors');
+        User.createUser(user,function(err, user){
+          if (err) throw err;
+
+          req.login(user, function(err){
+            if (!err){
+              res.redirect('/admin');
+            } else{
+              console.log("there was an error ", err);
+            }
+          });
+        });
+      }
+    });
+  });
 
   passport.use(new LocalStrategy({
-      usernameField : 'email',
-      passwordField : 'password',
-      passReqToCallback : true
-    },
+        usernameField : 'email',
+        passwordField : 'password',
+        passReqToCallback : true
+  },
 
-    function(req, email, password, done) {
-      User.findOne({ 'local.email' :  email }, function(err, user) {
-            // if there are any errors, return the error before anything else
-          if (err)
-            return done(err);
-            // if no user is found, return the message
-          if (!user)
-            return done(null, false, req.flash('loginMessage', 'No user found.')); // req.flash is the way to set flashdata using connect-flash
-            // if the user is found but the password is wrong
-          if (!user.validPassword(password))
-            return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); // create the loginMessage and save it to session as flashdata
-            // all is great, return successful user
-            return done(null, user);
-     });
+  function(req, email, password, done) {
+    User.findOne({ 'local.email' :  email }, function(err, user) {
+
+      // if there are any errors, return the error before anything else
+      if (err)
+        return done(err);
+
+      // if no user is found, return the message
+      if (!user)
+      // req.flash is the way to set flashdata using connect-flash
+        return done(null, false, req.flash('loginMessage', 'No user found.')); 
+
+      // if the user is found but the password is wrong
+      if (!user.validPassword(password))
+
+      // create the loginMessage and save it to session as flashdata
+        return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); 
+
+      // all is great, return successful user
+      return done(null, user);
+    });
   }));
-
 
   passport.serializeUser(function(user, done) {
     done(null, user.id);
@@ -112,13 +97,13 @@ var LocalStrategy = require('passport-local');
 
   app.get('/login', function(req, res){
     res.render('login', {
-      message: req.flash('loginMessage'),
-      title: "Login Page"
+        message: req.flash('loginMessage'),
+        title: "Login Page"
     });
   });
 
   app.post('/login',
-  passport.authenticate('local', {successRedirect:'/admin',failureRedirect:'/login',failureFlash: true}),
+    passport.authenticate('local', {successRedirect:'/admin',failureRedirect:'/login',failureFlash: true}),
     function(req, res) {
       res.redirect('/admin');
   });
@@ -165,7 +150,7 @@ var LocalStrategy = require('passport-local');
   app.get('/proffacebook', isLoggedIn, function(req, res) {
     res.send( req.user );
   });
- };
+  };
 
   function isLoggedIn(req, res, next) {
     if(req.isAuthenticated()){
