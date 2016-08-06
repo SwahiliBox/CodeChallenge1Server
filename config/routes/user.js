@@ -10,7 +10,6 @@ module.exports    = function(app,passport){
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    console.log("This should be working");
     next();
   });
 
@@ -103,14 +102,26 @@ module.exports    = function(app,passport){
   });
 
   app.post('/login',
-    passport.authenticate('local', {successRedirect:'/admin',failureRedirect:'/login',failureFlash: true}),
+    passport.authenticate('local', { failureRedirect:'/login',failureFlash: true }),
     function(req, res) {
-      res.redirect('/admin');
+      /* 
+       either redirect the user back to the resource he/she was trying to access
+       or redirect to admin page after successful login, this means if i was trying 
+       to access /insert and was instead redirected to /login because it is a protected
+       route, then after i login, redirect me back to /insert not /admin as it was before 
+      */
+      res.redirect(req.session.returnTo || '/admin');
+      delete req.session.returnTo;
   });
 
   app.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
+    /* 
+     since we're using friendly forwarding (see req.sessio.returnTo) when we 
+     logout the redirect to path will stick around so we need to clear it 
+    */
+    req.session.destroy();
   });
 
   //GOOGLE ROUTES
@@ -150,11 +161,11 @@ module.exports    = function(app,passport){
   app.get('/proffacebook', isLoggedIn, function(req, res) {
     res.send( req.user );
   });
-  };
+};
 
-  function isLoggedIn(req, res, next) {
-    if(req.isAuthenticated()){
-      return next();
-    }
-    res.send('1');
+function isLoggedIn(req, res, next) {
+  if(req.isAuthenticated()){
+    return next();
   }
+  res.send('1');
+}
