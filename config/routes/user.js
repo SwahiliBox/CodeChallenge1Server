@@ -22,13 +22,13 @@ module.exports    = function(app,passport){
 
   //Register user
   app.post('/signup', function(req, res){
-    var user             = new User();
-    user.local.firstname = req.body.firstname;
-    user.local.surname   = req.body.surname;
-    user.local.username  = req.body.username;
-    user.local.email     = req.body.email;
-    user.local.password  = req.body.password;
-    user.local.picture   = user.gravatar();
+    var user             =  new User();
+    user.local.firstname =  req.body.firstname;
+    user.local.surname   =  req.body.surname;
+    user.local.username  =  req.body.username;
+    user.local.email     =  req.body.email;
+    user.local.password  =  req.body.password;
+    user.local.picture   =  user.gravatar();
 
     User.getUserByUsername({username: req.body.username}, function(err, foundUser, done){
       var message = 'That username is already taken';
@@ -119,7 +119,8 @@ module.exports    = function(app,passport){
     res.redirect('/');
     /* 
      since we're using friendly forwarding (see req.sessio.returnTo) when we 
-     logout the redirect to path will stick around so we need to clear it 
+     logout the (req.session.returnTo variable will still be around, 
+     so we need to destroy it 
     */
     req.session.destroy();
   });
