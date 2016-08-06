@@ -2,7 +2,7 @@ var express    = require('express');
 var app        = express();
 var router     = express.Router();
 var cors       = require('cors');
-var Events     = require('../../app/models/event');
+var Event     = require('../../app/models/event');
 
 module.exports = function(app,passport){
   app.use(cors());
@@ -13,11 +13,13 @@ module.exports = function(app,passport){
   });
 
   //send events to frontend
-  app.get('/events', function(req, res){
-    Events.find({}, function(error, events){
+  app.get('/events', isLoggedIn, function(req, res){
+    Event.find({}, function(error, events){
       if(error) res.send(error);
-      res.render('events',{
-          events: events 
+      res.render('events/index',{
+          events: events,
+          page: 'events', 
+          title: 'Manage Events'
       });
     });
   });
@@ -41,7 +43,7 @@ module.exports = function(app,passport){
 
   //insert values into mongo db
   app.post('/insert', function(req, res){
-    Events.create({
+    Event.create({
         title: req.body.title,
         venue: req.body.venue,
         date:  req.body.date,
@@ -52,7 +54,7 @@ module.exports = function(app,passport){
       if(err)
         res.send(err);
 
-      Events.find({}, function(err, event){
+      Event.find({}, function(err, event){
         if(err)
           res.send(err);
         //res.redirect('eventsrecords.html');
@@ -63,10 +65,10 @@ module.exports = function(app,passport){
 
   //Deleting events data from collection.
   app.post('/delete', function(req, res){
-    Events.remove({ _id: req.body.id}, function(err, event){
+    Event.remove({ _id: req.body.id}, function(err, event){
       if(err)
         res.send(err);
-      Events.find({}, function(err, event){
+      Event.find({}, function(err, event){
         if(err)
           res.send(err);
         //res.redirect('eventsrecords.html');
@@ -84,10 +86,10 @@ module.exports = function(app,passport){
       desc:  req.body.desc,
       time:  req.body.time
     };
-    Events.update({_id : req.body.id}, {$set: terms}, function(error, event){
+    Event.update({_id : req.body.id}, {$set: terms}, function(error, event){
       //if(err)
       //res.send(err);
-      Events.find({}, function(err, event){
+      Event.find({}, function(err, event){
 
         if(err) res.send(err);
 
