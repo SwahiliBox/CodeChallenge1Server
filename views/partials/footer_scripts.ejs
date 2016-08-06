@@ -1,6 +1,7 @@
 <script src="bower_components/foundation/js/vendor/jquery.js"></script>
 <script src="bower_components/foundation/js/foundation.min.js"></script>
 <script src="bower_components/foundation/js/foundation/foundation.alert.js"></script>
+<script src="bower_components/foundation/js/foundation/foundation.equalizer.js"></script>
 <script src="js/nav.js"></script>
 <script>
   $(document).foundation({
@@ -12,6 +13,10 @@
         timer: false,
         bullets: false,
         swipe: true
+      }, 
+      equalizer : {
+        // Specify if Equalizer should make elements equal height once they become stacked.
+        equalize_on_stack: true
       }
   });
 </script>

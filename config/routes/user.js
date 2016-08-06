@@ -10,7 +10,6 @@ module.exports    = function(app,passport){
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    console.log("This should be working");
     next();
   });
 
@@ -23,13 +22,13 @@ module.exports    = function(app,passport){
 
   //Register user
   app.post('/signup', function(req, res){
-    var user             = new User();
-    user.local.firstname = req.body.firstname;
-    user.local.surname   = req.body.surname;
-    user.local.username  = req.body.username;
-    user.local.email     = req.body.email;
-    user.local.password  = req.body.password;
-    user.local.picture   = user.gravatar();
+    var user             =  new User();
+    user.local.firstname =  req.body.firstname;
+    user.local.surname   =  req.body.surname;
+    user.local.username  =  req.body.username;
+    user.local.email     =  req.body.email;
+    user.local.password  =  req.body.password;
+    user.local.picture   =  user.gravatar();
 
     User.getUserByUsername({username: req.body.username}, function(err, foundUser, done){
       var message = 'That username is already taken';
@@ -103,14 +102,34 @@ module.exports    = function(app,passport){
   });
 
   app.post('/login',
-    passport.authenticate('local', {successRedirect:'/admin',failureRedirect:'/login',failureFlash: true}),
+    passport.authenticate('local', { failureRedirect:'/login',failureFlash: true }),
     function(req, res) {
-      res.redirect('/admin');
+      /* 
+       either redirect the user back to the resource he/she was trying to access
+       or redirect to admin page after successful login, this means if i was trying 
+       to access /insert and was instead redirected to /login because it is a protected
+       route, then after i login, redirect me back to /insert not /admin as it was before 
+      */
+      res.redirect(req.session.returnTo || '/admin');
+      delete req.session.returnTo;
   });
 
   app.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
+    /* 
+     since we're using friendly forwarding (see req.sessio.returnTo) when we 
+     logout the (req.session.returnTo variable will still be around, 
+     so we need to destroy it 
+    */
+    req.session.destroy();
+  });
+
+  app.get('/profile', isCorrectUser, function(req, res){
+    res.render('login', {
+        message: req.flash('loginMessage'),
+        title: "Profile"
+    });
   });
 
   //GOOGLE ROUTES
@@ -150,11 +169,24 @@ module.exports    = function(app,passport){
   app.get('/proffacebook', isLoggedIn, function(req, res) {
     res.send( req.user );
   });
-  };
+};
 
-  function isLoggedIn(req, res, next) {
-    if(req.isAuthenticated()){
-      return next();
-    }
-    res.send('1');
+function isLoggedIn(req, res, next) {
+  if(req.isAuthenticated()){
+    return next();
   }
+  req.session.returnTo = req.path; 
+  res.redirect('/login');
+}
+
+function isCorrectUser(req, res, next) {
+  if (isLoggedIn()){
+    /* 
+       this middleware will check if the user currently trying to 
+       access the resource is the correct user (i.e only resource owners or admins)
+       WIP  = Work In Progress just return next() for the time being, implementation
+       coming up 
+    */
+    return next();
+  }
+}
