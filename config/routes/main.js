@@ -1,9 +1,12 @@
-var express= require('express');
-var router=express.Router();
-var cors   = require('cors');
+var express    =  require('express');
+var router     =  express.Router();
+var cors       =  require('cors');
+var Event      =  require('../../app/models/event');
 
-module.exports = function(app,passport){
+module.exports =  function(app,passport){
+
   app.use(cors());
+
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -16,23 +19,34 @@ module.exports = function(app,passport){
   });
 
   /* home route  */
-app.get('/', function(req, res){
-  res.render('index');
-});
-
-app.get('/secure', function(req, res){
-  res.render('secure');
-});
-
-app.get('/admin', function(req, res){
-  res.render('admin/index', {
-      title: 'Dashboard Home',
-      page: 'dashboard'
+  app.get('/', function(req, res){
+    var events = {};
+    Event.find({}, function(error, events){
+      if(error) res.send(error);
+      res.render('index',{
+          events: events 
+      });
+      console.log(events);
+    });
   });
-});
 
-//Send file crud.html
-app.get('/crud', function(request, response){
-  response.sendFile('crud.html', {'root': 'views'});
-});
+  app.get('/admin', isLoggedIn, function(req, res){
+    res.render('admin/index', {
+        title: 'Dashboard Home',
+        page: 'dashboard'
+    });
+  });
+
+  //Send file crud.html
+  app.get('/crud', function(request, response){
+    response.sendFile('crud.html', {'root': 'views'});
+  });
 };
+
+function isLoggedIn(req, res, next) {
+  if(req.isAuthenticated()){
+    return next();
+  }
+  req.session.returnTo = req.path; 
+  res.redirect('/login');
+}
