@@ -560,7 +560,7 @@ footer {
  * secure panel section & sign up forms
  * -----------------------------------------------------*/
 .secure-panel {
-  background: #22272d; }
+  background: rgba(31, 81, 139, 0.9); }
   .secure-panel .container {
     display: -webkit-box;
     display: -webkit-flex;
