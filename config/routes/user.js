@@ -177,3 +177,15 @@ function isLoggedIn(req, res, next) {
   req.session.returnTo = req.path; 
   res.redirect('/login');
 }
+
+function isCorrectUser(req, res, next) {
+  if (isLoggedIn()){
+    /* 
+       this middleware will check if the user currently trying to 
+       access the resource is the correct user (i.e only resource owners or admins)
+       WIP  = Work In Progress just return next() for the time being, implementation
+       coming up 
+    */
+    return next();
+  }
+}
