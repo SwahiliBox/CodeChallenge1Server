@@ -124,6 +124,13 @@ module.exports    = function(app,passport){
     req.session.destroy();
   });
 
+  app.get('/profile', isCorrectUser, function(req, res){
+    res.render('login', {
+        message: req.flash('loginMessage'),
+        title: "Profile"
+    });
+  });
+
   //GOOGLE ROUTES
   //route for google authentication and login
   app.get('/auth/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
@@ -167,5 +174,6 @@ function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()){
     return next();
   }
-  res.send('1');
+  req.session.returnTo = req.path; 
+  res.redirect('/login');
 }
