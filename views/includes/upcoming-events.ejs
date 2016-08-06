@@ -1,0 +1,18 @@
+<div class="upcoming">
+  <div class="row">
+    <ul class="large-block-grid-3 medium-block-grid-3 small-block-grid-1" data-equalizer>
+      <% events.forEach(function(event){ %>
+      <li>
+        <div class="event-container" data-equalizer-watch>
+          <div class="event icon-box bg add_bg_hover">
+            <div class="eventsicon">
+              <i class="fa fa-heart-o"></i>
+            </div><div class="event-content">
+              <h2 class="title"><%= event.title %></h2><p><%= event.desc %>.[...] </p></div>
+          </div>
+        </div>
+      </li>
+      <% }); %>
+    </ul>
+  </div>
+</div>
