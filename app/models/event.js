@@ -5,6 +5,7 @@ var Schema      = mongoose.Schema;
 //Create a Schema model to hold your events data.
 var eventSchema = Schema({
     meta: {
+
       title: String,
       venue: String,
       desc:  String,
