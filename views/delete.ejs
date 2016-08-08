@@ -1,0 +1,35 @@
+<% layout('dashboard') %>
+<div class="container well">
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading"><b>DELETE EVENT</b></div>
+      <form id="Events-form" method="post" class="form-horizontal" action="/delete">
+        <div class="row">
+         <div class="large-12 columns">
+           <div data-alert class="alert-box warning ">
+            Are you sure you want to delete this event?.Please confirm the title if you are.
+           </div>
+          </div>
+        </div>
+        <!-- <label class="col-md-2 control-label" for="Event id">Title</label> -->
+        <div class="col-md-4 ">
+          <input type="text" required class="form-control" id="Event Title" placeholder="Title here" name="title"/>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-md-offset-2">
+      <button type="Create"class="btn btn-primary btn-danger btn-circle"><i class="fa fa-trash"></i>DELETE</button>
+    </div>
+  </div>
+
+    <script type="text/javascript">
+         var app = angular.module("mainApp", []);
+         app.controller("myController", function($scope, $http){
+             $http.get("/events")
+             .then(function(response){
+                 console.log(response);
+                 $scope.events = response.data;
+             });
+         });
+     </script>
+     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js" ></script>
