@@ -99,7 +99,8 @@ module.exports = function(app,passport){
   //Deleting events data from collection.
  app.post('/delete', function(req, res){
   var title=req.body.title;
-  var message = 'Event doesnt exist';
+  var message="";
+   message = 'Event doesnt exist';
   Event.getEventByTitle(title, function(err, event, done){
     if(err) throw err;
     if(event){
@@ -143,7 +144,7 @@ module.exports = function(app,passport){
         });
        });
      } else {
-       var message = 'Event doesnt exist';
+       message = 'Event doesnt exist';
        console.log('event doesnt exist');
        res.render('update', {message: message, title: "Update", page: "update"});
      }
