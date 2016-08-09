@@ -95,7 +95,8 @@ module.exports = function(app,passport){
   //Deleting events data from collection.
  app.post('/delete', function(req, res){
   var title=req.body.title;
-  var message = 'Event doesnt exist';
+  var message="";
+   message = 'Event doesnt exist';
   Event.getEventByTitle(title, function(err, event, done){
     if(err) throw err;
     if(event){
@@ -111,8 +112,8 @@ module.exports = function(app,passport){
       });
     } else {
       console.log('no such event');
-        res.render('delete', {title: "Delete", page: "delete" })
-      };
+        res.render('delete', {title: "Delete", page: "delete" });
+      }
     });
  });
 
@@ -129,7 +130,7 @@ module.exports = function(app,passport){
    Event.getEventByTitle(title, function(err, event, done){
      if(err) throw err;
      if(event){
-       var message = 'Event updated';
+       message = 'Event updated';
        console.log('Event updated');
         Event.update({'meta.title' : req.body.title}, {$set: terms}, function(error, event){
         Event.find({}, function(err, event){
@@ -140,10 +141,10 @@ module.exports = function(app,passport){
         });
        });
      } else {
-       var message = 'Event doesnt exist';
+       message = 'Event doesnt exist';
        console.log('event doesnt exist');
        res.render('update', {title: "Update", page: "update"});
-     };
+     }
      });
    });
 };
