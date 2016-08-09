@@ -18,4 +18,4 @@ var Event = module.exports = mongoose.model('Event',eventSchema);
 module.exports.getEventByTitle = function(title, callback){
   var query = {'meta.title': title};
   Event.findOne(query,callback);
-}
+};
