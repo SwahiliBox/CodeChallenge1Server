@@ -48,7 +48,9 @@ module.exports = function(app,passport){
 
   //get update page
   app.get('/update', isLoggedIn, function(req, res){
+    var message = '';
     res.render('update', {
+      message: message,
       title: "update",
       page:   "update"
     });
@@ -56,7 +58,9 @@ module.exports = function(app,passport){
 
  //get delete page
   app.get('/delete', isLoggedIn, function(req, res){
+    var message ="";
       res.render('delete', {
+        message: message,
         title: "Delete",
         page:   "delete"
       });
@@ -112,7 +116,7 @@ module.exports = function(app,passport){
       });
     } else {
       console.log('no such event');
-        res.render('delete', {title: "Delete", page: "delete" });
+        res.render('delete', {message: message, title: "Delete", page: "delete" });
       }
     });
  });
@@ -130,7 +134,6 @@ module.exports = function(app,passport){
    Event.getEventByTitle(title, function(err, event, done){
      if(err) throw err;
      if(event){
-       message = 'Event updated';
        console.log('Event updated');
         Event.update({'meta.title' : req.body.title}, {$set: terms}, function(error, event){
         Event.find({}, function(err, event){
@@ -143,7 +146,7 @@ module.exports = function(app,passport){
      } else {
        message = 'Event doesnt exist';
        console.log('event doesnt exist');
-       res.render('update', {title: "Update", page: "update"});
+       res.render('update', {message: message, title: "Update", page: "update"});
      }
      });
    });

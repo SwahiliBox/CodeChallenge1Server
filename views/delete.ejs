@@ -1,26 +1,27 @@
 <% layout('dashboard') %>
  <form id="Events-form" method="post" class="form-horizontal" action="/delete"
   <div class="row">
-  <div class="small-8 columns">
-        <div data-alert class="alert-box warning ">
-            Are you sure you want to delete this event?.Please confirm the title if you are.
-           </div>
 
-        <div class="row">
-        <div class="small-3 columns">
-        <label for="Event Title">Title</label>
-        </div>
-         <div class="small-9 columns">
-          <input type="text" required class="form-control" id="EventTitle" name="title"/>
-        </div>
-        </div>
+  <div class="small-8 columns">
+    <div data-alert class="alert-box warning ">
+        Are you sure you want to delete this event?.Please confirm the title if you are.
+    </div>
+
+  <div class="row">
+   <div class="small-3 columns">
+    <label for="Event Title">Title</label>
+  </div>
+  <div class="small-9 columns">
+    <input type="text" required class="form-control" id="EventTitle" name="title"/>
+  </div>
+  </div>
 
  <div class="row">
   <div class="large-6 small-12 columns">
       <button type="Create"class="button danger small radius">DELETE</button>
    </div>
-   </div>
-   </div>
+  </div>
+  </div>
   </form>
 
   <script type="text/javascript">
