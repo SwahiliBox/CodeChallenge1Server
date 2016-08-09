@@ -1,99 +1,52 @@
 <% layout('dashboard') %>
 <div class="row">
+  <div class="col-md-6 col-md-offset-2">
+    <a href="/event">Create New Event</a>
+      <!-- <button type="Create"class="btn btn-success"><li><i class="fa-li fa fa-spinner fa-spin"></i></button> -->
+      </div>
   <div class="large-12 medium-12 columns">
     <div class="panel panel-white">
       <div class="panel-heading">
         <h4 class="panel-title">Our Events</h4>
       </div>
       <div class="panel-body">
-        <div class="table-responsive project-stats">  
+        <div class="table-responsive project-stats">
           <table style="width: 100%">
             <thead>
               <tr>
                 <th>#</th>
-                <th>Project</th>
+                <th>Title</th>
+                <th>Venue</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Description</th>
                 <th>Status</th>
-                <th>Manager</th>
-                <th>Progress</th>
+                <th>Options</th>
               </tr>
             </thead>
             <tbody>
+
+              <%for(i=0; i<events.length; i++) { %>
               <tr>
-                <th scope="row">452</th>
-                <td>Mailbox Template</td>
+                <th scope="row"><%= [i+1] %></th>
+                <td><%= events[i].meta.title %></td>
+                <td><%= events[i].meta.venue %></td>
+                <td><%= events[i].meta.date %></td>
+                <td><%= events[i].meta.time %></td>
+                <td><%= events[i].meta.desc %></td>
                 <td><span class="label label-info">Pending</span></td>
-                <td>David Green</td>
+
                 <td>
                   <a class="button" data-dropdown="autoCloseExample" aria-controls="autoCloseExample"
                       aria-expanded="false">Action &raquo;</a>
                   <ul id="autoCloseExample" class="f-dropdown" data-dropdown-content tabindex="-1" aria-hidden="true" aria-autoclose="false" tabindex="-1">
-                    <li><a href="#">Action</a></li>
-                    <li><a href="#">Another Action</a></li>
-                    <li><a href="#">Yet another</a></li>
+                    <li><a href="/update">Update</a></li>
+                    <li><a href="delete">Delete</a></li>
                   </ul>
 
                 </td>
               </tr>
-              <tr>
-                <th scope="row">327</th>
-                <td>Wordpress Theme</td>
-                <td><span class="label label-primary">In Progress</span></td>
-                <td>Sandra Smith</td>
-                <td>
-                  <div class="progress progress-sm">
-                    <div class="progress-bar progress-bar-primary" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">226</th>
-                <td>Modern Admin Template</td>
-                <td><span class="label label-success">Finished</span></td>
-                <td>Chritopher Palmer</td>
-                <td>
-                  <div class="progress progress-sm">
-                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">178</th>
-                <td>eCommerce template</td>
-                <td><span class="label label-danger">Canceled</span></td>
-                <td>Amily Lee</td>
-                <td>
-                  <div class="progress progress-sm">
-                    <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style="width: 20%">
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">157</th>
-                <td>Website PSD</td>
-                <td><span class="label label-info">Testing</span></td>
-                <td>Nick Doe</td>
-                <td>
-                  <div class="progress progress-sm">
-                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <tr>
-                <th scope="row">157</th>
-                <td>Fronted Theme</td>
-                <td><span class="label label-warning">Waiting</span></td>
-                <td>David Green</td>
-                <td>
-                  <div class="progress progress-sm">
-                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 70%">
-                    </div>
-                  </div>
-                </td>
-              </tr>
+              <% } %>
             </tbody>
           </table>
         </div>
