@@ -6,11 +6,21 @@
       <form id="Events-form" method="post" class="form-horizontal" action="/update">
         <div class="row">
          <div class="large-12 columns">
+           <% if ( message.length > 0 ) { %>
+           <div data-alert class="alert-box warning ">
+             <%= message %>
+           </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="row">
+         <div class="large-12 columns">
            <div data-alert class="alert-box warning ">
             Are you sure you want to update this event?.Please confirm the title if you are.
            </div>
           </div>
-        </div
+        </div>
+
         <label class="col-md-2 control-label" for="Event Title">Title</label>
         <div class="col-md-4 ">
           <input type="text" required class="form-control" id="Event Title" placeholder="Title here" name="title"/>
