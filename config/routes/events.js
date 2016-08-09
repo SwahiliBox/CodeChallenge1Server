@@ -16,9 +16,23 @@ module.exports = function(app,passport){
   app.get('/events', isLoggedIn, function(req, res){
     Event.find({}, function(error, events){
       if(error) res.send(error);
+      console.log(events);
       res.render('events/index',{
           events: events,
-          page: 'events', 
+          page: 'events',
+          title: 'Manage Events'
+      });
+    });
+  });
+
+  //send events to admin page
+  app.get('/admin', isLoggedIn, function(req, res){
+    Event.find({}, function(error, events){
+      if(error) res.send(error);
+      console.log(events);
+      res.render('admin',{
+          events: events,
+          page: 'admin',
           title: 'Manage Events'
       });
     });
@@ -26,10 +40,30 @@ module.exports = function(app,passport){
 
   //Crud Page.
   app.get('/insert', isLoggedIn, function(req,res){
-    res.render('eventsrecords', {
+    res.render('event', {
         title: "Insert",
         page:   "events"
     });
+  });
+
+  //get update page
+  app.get('/update', isLoggedIn, function(req, res){
+    var message = '';
+    res.render('update', {
+      message: message,
+      title: "update",
+      page:   "update"
+    });
+  });
+
+ //get delete page
+  app.get('/delete', isLoggedIn, function(req, res){
+    var message ="";
+      res.render('delete', {
+        message: message,
+        title: "Delete",
+        page:   "delete"
+      });
   });
 
   //send events to frontend
@@ -37,18 +71,18 @@ module.exports = function(app,passport){
     Event.find({}, function(err, event){
       if(err)
         res.send(err);
-      res.json(event);
+        res.render('event', {event: event, title: "Event", page: "event"});
     });
   });
 
   //insert values into mongo db
   app.post('/insert', function(req, res){
     Event.create({
-        title: req.body.title,
-        venue: req.body.venue,
-        date:  req.body.date,
-        time:  req.body.time,
-        desc:  req.body.desc
+      'meta.title': req.body.title,
+      'meta.venue': req.body.venue,
+      'meta.date':  req.body.date,
+      'meta.time':  req.body.time,
+      'meta.desc':  req.body.desc
     },
     function(err, event){
       if(err)
@@ -57,55 +91,76 @@ module.exports = function(app,passport){
       Event.find({}, function(err, event){
         if(err)
           res.send(err);
-        //res.redirect('eventsrecords.html');
-        res.render('eventsrecords');
+        res.redirect('events');
       });
     });
   });
 
   //Deleting events data from collection.
-  app.post('/delete', function(req, res){
-    Event.remove({ _id: req.body.id}, function(err, event){
-      if(err)
-        res.send(err);
-      Event.find({}, function(err, event){
+ app.post('/delete', function(req, res){
+  var title=req.body.title;
+  var message="";
+   message = 'Event doesnt exist';
+  Event.getEventByTitle(title, function(err, event, done){
+    if(err) throw err;
+    if(event){
+      console.log('event deleted');
+      Event.remove({ 'meta.title': req.body.title}, function(err, event){
         if(err)
           res.send(err);
-        //res.redirect('eventsrecords.html');
-        res.render('eventsrecords');
+        Event.find({}, function(err, event){
+          if(err)
+            res.send(err);
+           res.redirect('events');
+        });
       });
+    } else {
+      console.log('no such event');
+        res.render('delete', {message: message, title: "Delete", page: "delete" });
+      }
     });
-  });
+ });
 
-  //Updating events data in collection.
-  app.post('/update', function(req, res){
-    var terms = {
-      title: req.body.title,
-      venue: req.body.venue,
-      date:  req.body.date,
-      desc:  req.body.desc,
-      time:  req.body.time
-    };
-    Event.update({_id : req.body.id}, {$set: terms}, function(error, event){
-      //if(err)
-      //res.send(err);
-      Event.find({}, function(err, event){
+ //Updating events data in collection.
+ app.post('/update', function(req, res){
+   var terms = {
+     'meta.title': req.body.title,
+     'meta.venue': req.body.venue,
+     'meta.date':  req.body.date,
+     'meta.desc':  req.body.desc,
+     'meta.time':  req.body.time
+   };
+ var title = req.body.title;
+   Event.getEventByTitle(title, function(err, event, done){
+     if(err) throw err;
+     if(event){
+       console.log('Event updated');
+        Event.update({'meta.title' : req.body.title}, {$set: terms}, function(error, event){
+        Event.find({}, function(err, event){
+         if(err) res.send(err);
 
-        if(err) res.send(err);
-
-        console.log(terms);
-        //res.redirect('eventsrecords.html');
-        res.render('eventsrecords');
-      });
-    });
-  });
+         console.log(terms);
+         res.redirect('events');
+        });
+       });
+     } else {
+       message = 'Event doesnt exist';
+       console.log('event doesnt exist');
+       res.render('update', {message: message, title: "Update", page: "update"});
+     }
+     });
+   });
 };
 
 function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()){
     return next();
   }
-  req.session.returnTo = req.path; 
   res.redirect('/login');
 }
 
+ app.get('/logout', function(req, res){
+    req.logout();
+    req.flash('success_msg', 'You are logged out');
+    res.redirect('/users/login');
+  });

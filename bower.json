@@ -25,6 +25,8 @@
     "simple-line-icons": "~2.3.2",
     "lato": "~0.3.0",
     "font-awesome": "~4.6.3",
-    "jquery-ui": "~1.12.0"
+    "jquery-ui": "~1.12.0",
+    "bootstrap": "^3.3.7",
+    "jquery-timepicker-wvega": "^1.3.5"
   }
 }
