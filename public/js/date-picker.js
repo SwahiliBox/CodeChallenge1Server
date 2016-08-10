@@ -6,4 +6,4 @@ $(function() {
 
 $(function() {
   $('#EventTime').timepicker();
-})
+});
