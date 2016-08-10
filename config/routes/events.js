@@ -16,7 +16,6 @@ module.exports = function(app,passport){
   app.get('/events', isLoggedIn, function(req, res){
     Event.find({}, function(error, events){
       if(error) res.send(error);
-      console.log(events);
       res.render('events/index',{
           events: events,
           page: 'events',
@@ -29,7 +28,6 @@ module.exports = function(app,passport){
   app.get('/admin', isLoggedIn, function(req, res){
     Event.find({}, function(error, events){
       if(error) res.send(error);
-      console.log(events);
       res.render('admin',{
           events: events,
           page: 'admin',
