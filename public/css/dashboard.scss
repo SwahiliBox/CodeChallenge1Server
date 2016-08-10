@@ -356,7 +356,7 @@ input.form-control.input-rounded {
  * sidebar styling section
  * -----------------------------------------------------*/
 .section-sidebar{
-  /*padding-top: 60px;*/
+  min-height: 100vh;
   display: block;
   z-index: 998;
   float: left;

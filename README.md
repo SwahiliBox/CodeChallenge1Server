@@ -14,30 +14,30 @@ It will also allow SwahiliBox to keep tabs on the numbers attending these meetin
 
 ### Installing
 
-A step by step series of examples that tell you have to get a development env running for Linux
+A step by step series of examples that tell you how to get a development env running for Linux
 
 To get your local copy git clone `https://github.com/SwahiliBox/CodeChallenge1Server.git`
 
 *cd* into the project root and run ```npm run dev```
 
 example server.js code
-```
-var express = require("express");
+```javascript 
+  var express = require("express");
 
-var app = express();
+  var app = express();
 
-app.get("/", function  (req, res) {
-	// body...Print out
-	res.send("Hello Everyone");
-});
+  app.get("/", function  (req, res) {
+    // body...Print out
+    res.send("Hello Everyone");
+  });
 
-var server = app.listen(3000, function  () {
-	// body...
-	var host = server.address().address;
-	var port = server.address().port;
+  var server = app.listen(3000, function  () {
+    // body...
+    var host = server.address().address;
+    var port = server.address().port;
 
-	console.log("Server is Running at :%s on port %s", host , port);
-});
+    console.log("Server is Running at :%s on port %s", host , port);
+  });
 ```
 
 `Output:Server is Running at ::: on port 3000`
