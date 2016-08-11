@@ -1,10 +1,10 @@
-var express    = require('express');
-var app        = express();
-var router     = express.Router();
-var cors       = require('cors');
-var Event     = require('../../app/models/event');
+var express    =  require('express');
+var app        =  express();
+var router     =  express.Router();
+var cors       =  require('cors');
+var Event      =  require('../../app/models/event');
 
-module.exports = function(app,passport){
+module.exports =  function(app,passport){
   app.use(cors());
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
@@ -16,7 +16,6 @@ module.exports = function(app,passport){
   app.get('/events', isLoggedIn, function(req, res){
     Event.find({}, function(error, events){
       if(error) res.send(error);
-      console.log(events);
       res.render('events/index',{
           events: events,
           page: 'events',
@@ -29,7 +28,6 @@ module.exports = function(app,passport){
   app.get('/admin', isLoggedIn, function(req, res){
     Event.find({}, function(error, events){
       if(error) res.send(error);
-      console.log(events);
       res.render('admin',{
           events: events,
           page: 'admin',
@@ -76,13 +74,14 @@ module.exports = function(app,passport){
   });
 
   //insert values into mongo db
+  //got rid of the meta array
   app.post('/insert', function(req, res){
     Event.create({
-      'meta.title': req.body.title,
-      'meta.venue': req.body.venue,
-      'meta.date':  req.body.date,
-      'meta.time':  req.body.time,
-      'meta.desc':  req.body.desc
+      'title': req.body.title,
+      'venue': req.body.venue,
+      'date':  req.body.date,
+      'time':  req.body.time,
+      'desc':  req.body.desc
     },
     function(err, event){
       if(err)
@@ -105,7 +104,7 @@ module.exports = function(app,passport){
     if(err) throw err;
     if(event){
       console.log('event deleted');
-      Event.remove({ 'meta.title': req.body.title}, function(err, event){
+      Event.remove({ 'title': req.body.title}, function(err, event){
         if(err)
           res.send(err);
         Event.find({}, function(err, event){
@@ -124,18 +123,18 @@ module.exports = function(app,passport){
  //Updating events data in collection.
  app.post('/update', function(req, res){
    var terms = {
-     'meta.title': req.body.title,
-     'meta.venue': req.body.venue,
-     'meta.date':  req.body.date,
-     'meta.desc':  req.body.desc,
-     'meta.time':  req.body.time
+     'title': req.body.title,
+     'venue': req.body.venue,
+     'date':  req.body.date,
+     'desc':  req.body.desc,
+     'time':  req.body.time
    };
  var title = req.body.title;
    Event.getEventByTitle(title, function(err, event, done){
      if(err) throw err;
      if(event){
        console.log('Event updated');
-        Event.update({'meta.title' : req.body.title}, {$set: terms}, function(error, event){
+        Event.update({'title' : req.body.title}, {$set: terms}, function(error, event){
         Event.find({}, function(err, event){
          if(err) res.send(err);
 
@@ -156,6 +155,7 @@ function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()){
     return next();
   }
+  req.session.returnTo = req.path;
   res.redirect('/login');
 }
 
