@@ -31,12 +31,14 @@
 
                     <%for(i=0; i<events.length; i++) { %>
                     <tr>
+                      <!-- got rid of array meta;not neccessary -->
+                      <!-- removed the meta array -->
                       <th scope="row"><%= [i+1] %></th>
-                      <td><%= events[i].meta.title %></td>
-                      <td><%= events[i].meta.venue %></td>
-                      <td><%= events[i].meta.date %></td>
-                      <td><%= events[i].meta.time %></td>
-                      <td><%= events[i].meta.desc %></td>
+                      <td><%= events[i].title %></td>
+                      <td><%= events[i].venue %></td>
+                      <td><%= events[i].date %></td>
+                      <td><%= events[i].time %></td>
+                      <td><%= events[i].desc %></td>
                       <td><span class="label label-info">Pending</span></td>
 
                     </tr>
