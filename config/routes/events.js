@@ -1,10 +1,10 @@
-var express    = require('express');
-var app        = express();
-var router     = express.Router();
-var cors       = require('cors');
-var Event     = require('../../app/models/event');
+var express    =  require('express');
+var app        =  express();
+var router     =  express.Router();
+var cors       =  require('cors');
+var Event      =  require('../../app/models/event');
 
-module.exports = function(app,passport){
+module.exports =  function(app,passport){
   app.use(cors());
   app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*");
