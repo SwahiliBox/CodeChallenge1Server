@@ -54,15 +54,6 @@ module.exports =  function(app,passport){
     });
   });
 
- //get delete page
-  app.get('/delete', isLoggedIn, function(req, res){
-    var message ="";
-      res.render('delete', {
-        message: message,
-        title: "Delete",
-        page:   "delete"
-      });
-  });
 
   //send events to frontend
   app.get('/event', isLoggedIn, function(req, res){
@@ -95,30 +86,18 @@ module.exports =  function(app,passport){
     });
   });
 
-  //Deleting events data from collection.
- app.post('/delete', function(req, res){
-  var title=req.body.title;
-  var message="";
-   message = 'Event doesnt exist';
-  Event.getEventByTitle(title, function(err, event, done){
-    if(err) throw err;
-    if(event){
-      console.log('event deleted');
-      Event.remove({ 'title': req.body.title}, function(err, event){
-        if(err)
-          res.send(err);
-        Event.find({}, function(err, event){
-          if(err)
-            res.send(err);
-           res.redirect('events');
-        });
-      });
-    } else {
-      console.log('no such event');
-        res.render('delete', {message: message, title: "Delete", page: "delete" });
-      }
-    });
- });
+   //deleting an event by id route
+   app.get('/delete/:event_id', function(req, res) {
+      Event.remove({
+          _id : req.params.event_id
+      }, function(err, events) {
+          if (err)
+              res.send(err);
+          console.log('event deleted');
+
+            res.redirect('/events');
+          });
+});
 
  //Updating events data in collection.
  app.post('/update', function(req, res){
