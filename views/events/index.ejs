@@ -1,9 +1,8 @@
 <% layout('dashboard') %>
 <div class="row">
-  <div class="col-md-6 col-md-offset-2">
-    <a href="/event">Create New Event</a>
-      <!-- <button type="Create"class="btn btn-success"><li><i class="fa-li fa fa-spinner fa-spin"></i></button> -->
-      </div>
+<div class="large-6 large-offset-6 columns">
+<a class="large button success right" href="/events/new">Create Event</a>
+</div>
   <div class="large-12 medium-12 columns">
     <div class="panel panel-white">
       <div class="panel-heading">
@@ -25,30 +24,21 @@
               </tr>
             </thead>
             <tbody>
-
-              <%for(i=0; i<events.length; i++) { %>
+              <% events.forEach(function(event, index){ %>
               <tr>
-                <!-- got rid of the array meta here.reason;unnecessary -->
-                <!-- remove meta array -->
-                <th scope="row"><%= [i+1] %></th>
-                <td><%= events[i].title %></td>
-                <td><%= events[i].venue %></td>
-                <td><%= events[i].date %></td>
-                <td><%= events[i].time %></td>
-                <td><%= events[i].desc %></td>
+                <th scope="row"><%= index + 1 %></th>
+                <td><%= event.title %></td>
+                <td><%= event.venue %></td>
+                <td><%= event.date %></td>
+                <td><%= event.time %></td>
+                <td><%= event.desc %></td>
                 <td><span class="label label-info">Pending</span></td>
-
                 <td>
-                  <a class="button" data-dropdown="autoCloseExample" aria-controls="autoCloseExample"
-                      aria-expanded="false">Action &raquo;</a>
-                  <ul id="autoCloseExample" class="f-dropdown" data-dropdown-content tabindex="-1" aria-hidden="true" aria-autoclose="false" tabindex="-1">
-                    <li><a href="/update/<%= events[i]._id %>">Update</a></li>
-                    <li><a href="/delete/<%= events[i]._id %>">Delete</a></li>
-                  </ul>
-
+                  <li><a href="/events/edit/<%= event._id %>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
+                  <li><a href="/events/delete/<%= event._id %>"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></li>
                 </td>
               </tr>
-              <% } %>
+              <%});%>
             </tbody>
           </table>
         </div>
