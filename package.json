@@ -2,7 +2,7 @@
   "name": "code",
   "version": "1.0.0",
   "description": "simple authentication system",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec",
     "start": "npm install && bower install && rm -rf .tmp/ && nodemon server.js -L",
