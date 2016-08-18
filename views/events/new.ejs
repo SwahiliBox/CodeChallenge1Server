@@ -1,8 +1,7 @@
 <% layout('dashboard') %>
- <form id="Events-form" method="post" class="form-horizontal" action="/insert">
+ <form id="Events-form" method="post" class="form-horizontal" action="/events/create">
   <div class="row">
    <div class="small-8 columns small-offset-1">
-
      <div class="row">
         <div class="small-3 columns">
         <label for="Event Title">Title</label>
@@ -26,7 +25,7 @@
         <label for="Event Description">Description</label>
          </div>
          <div class="small-9 columns">
-          <input type="text" required class="form-control" id="Event Description" name="desc"/>
+          <textarea cols="42" rows="5" required class="form-control" id="Event Description" name="desc" ></textarea>
         </div>
         </div>
 
@@ -49,8 +48,8 @@
     </div>
    
    <div class="row">
-    <div class="large-6 small-12 columns large-offset-4 ">
-      <button type="Create"class="button success small radius" "button center"><li>CREATE</button>
+    <div class="large-6 large-offset-6 small-12 columns ">
+      <button class="large button success right">Create Event </button>
       </div>
       </div>
     </div>
