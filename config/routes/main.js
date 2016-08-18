@@ -30,10 +30,15 @@ module.exports =  function(app,passport){
     });
   });
 
+  //send events to admin page
   app.get('/admin', isLoggedIn, function(req, res){
-    res.render('admin/index', {
-        title: 'Dashboard Home',
-        page: 'dashboard'
+    Event.find({}, function(error, events){
+      if(error) res.send(error);
+      res.render('admin/index', {
+          title  : 'Dashboard Home',
+          page   : 'dashboard',
+          events : events
+      });
     });
   });
 

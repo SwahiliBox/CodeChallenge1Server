@@ -38,7 +38,6 @@ app.use(methodOverride());
 
 app.use(express.static(__dirname + '/public'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
-app.use('/update',  express.static(__dirname + '/public'));//enable the update route access bower components as it loads the update form
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(cookieParser());

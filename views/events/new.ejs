@@ -1,0 +1,57 @@
+<% layout('dashboard') %>
+ <form id="Events-form" method="post" class="form-horizontal" action="/events/create">
+  <div class="row">
+   <div class="small-8 columns small-offset-1">
+     <div class="row">
+        <div class="small-3 columns">
+        <label for="Event Title">Title</label>
+        </div>
+         <div class="small-9 columns">
+          <input type="text" required class="form-control" id="Event Title" name="title"/>
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="small-3 columns">
+      <label for="Event Venue">Venue</label>
+        </div>
+         <div class="small-9 columns">
+          <input type="text" required class="form-control" id="Event venue" name="venue"/>
+        </div>
+         </div>
+
+        <div class="row">
+        <div class="small-3 columns">
+        <label for="Event Description">Description</label>
+         </div>
+         <div class="small-9 columns">
+          <textarea cols="42" rows="5" required class="form-control" id="Event Description" name="desc" ></textarea>
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="small-3 columns">
+       <label for="Event Date">Date</label>
+        </div>
+          <div class="small-9 columns">
+          <input type="text" required class="form-control" id="EventDate" name="date"/>
+        </div>
+        </div>
+
+        <div class="row">
+        <div class="small-3 columns">
+ <label for="Event Time">Time</label>
+        </div>
+         <div class="small-9 columns">
+          <input type="text" required class="form-control" id="EventTime" name="time"/>
+        </div>
+    </div>
+   
+   <div class="row">
+    <div class="large-6 large-offset-6 small-12 columns ">
+      <button class="large button success right">Create Event </button>
+      </div>
+      </div>
+    </div>
+  </form>
+   
