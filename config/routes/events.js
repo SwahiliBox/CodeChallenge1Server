@@ -32,20 +32,6 @@ module.exports =  function(app,passport){
     });
   });
 
-  //get update page
-  app.get('/events/edit/:event_id', isLoggedIn, function(req, res){
-    Event.findOne({ _id : req.params.event_id }, function (err, events){
-      if(err) return err;
-      var message = '';
-      res.render('events/edit', {
-          events: events,
-          id : req.params.event_id,
-          message: message,
-          title: "update",
-          page:   "update"
-      });
-    });
-  });
 
 
   //send events to frontend
@@ -59,7 +45,7 @@ module.exports =  function(app,passport){
 
   //insert values into mongo db
   //got rid of the meta array
-  app.post('/events/new', function(req, res){
+  app.post('/events/create', function(req, res){
     Event.create({
         'title': req.body.title,
         'venue': req.body.venue,
@@ -74,7 +60,7 @@ module.exports =  function(app,passport){
       Event.find({}, function(err, event){
         if(err)
           res.send(err);
-        res.redirect('events');
+        res.redirect('/admin/events');
       });
     });
   });
@@ -92,41 +78,48 @@ module.exports =  function(app,passport){
     });
   });
 
-  //Updating events data in collection.
-  app.post('/events/edit', function(req, res){
-    var id = req.body.id;
-    var changedtitle = req.body.title;
-    var changedvenue = req.body.venue;
-    var changeddate =  req.body.date;
-    var changeddesc =  req.body.desc;
-    var changedtime =  req.body.time;
-
-    Event.findOne({_id : id}, function(err, events){
-      Event.update({
-          title : changedtitle,
-          venue : changedvenue,
-          date : changeddate,
-          desc : changeddesc,
-          time : changedtime
-      }, function(error, event){
-        console.log('Event updated');
-        console.log(events);
-        res.redirect('/events');
+  //get edit page
+  app.get('/events/edit/:event_id', isLoggedIn, function(req, res){
+    Event.findOne({ _id : req.params.event_id }, function (err, event){
+      if(err) return err;
+      var message = '';
+      res.render('events/edit', {
+          event   : event,
+          message : message,
+          title   : "update",
+          page    : "update"
       });
     });
   });
-  };
 
-  function isLoggedIn(req, res, next) {
-    if(req.isAuthenticated()){
-      return next();
-    }
-    req.session.returnTo = req.path;
-    res.redirect('/login');
-  }
-
-  app.get('/logout', function(req, res){
-    req.logout();
-    req.flash('success_msg', 'You are logged out');
-    res.redirect('/users/login');
+  //Updating events data in collection.
+  app.post('/events/update/', function(req, res, next){
+    Event.findOne({_id: req.body.id}, function(err, event){
+      if (err) return next(err);
+      if (req.body.title) event.title =  req.body.title;
+      if (req.body.venue) event.venue =  req.body.venue;
+      if (req.body.desc) event.desc   =  req.body.desc;
+      if (req.body.date) event.date   =  req.body.date;
+      if (req.body.time) event.time   =  req.body.time;
+      event.save(function(err){
+        if (err) return next(err);
+        req.flash('message', 'Event successfully updated');
+        res.redirect('/admin/events');
+      });
+    });
   });
+};
+
+function isLoggedIn(req, res, next) {
+  if(req.isAuthenticated()){
+    return next();
+  }
+  req.session.returnTo = req.path;
+  res.redirect('/login');
+}
+
+app.get('/logout', function(req, res){
+  req.logout();
+  req.flash('success_msg', 'You are logged out');
+  res.redirect('/users/login');
+});
