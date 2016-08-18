@@ -24,15 +24,13 @@ module.exports =  function(app,passport){
     });
   });
 
-  //Crud Page.
+  // GET request for fetching the form for creating new event 
   app.get('/events/new', isLoggedIn, function(req,res){
     res.render('events/new', {
         title : "Create Event",
         page  : "events"
     });
   });
-
-
 
   //send events to frontend
   app.get('/event', isLoggedIn, function(req, res){
@@ -43,8 +41,7 @@ module.exports =  function(app,passport){
     });
   });
 
-  //insert values into mongo db
-  //got rid of the meta array
+  // POST restful route for creating events 
   app.post('/events/create', function(req, res){
     Event.create({
         'title': req.body.title,
@@ -87,7 +84,7 @@ module.exports =  function(app,passport){
           event   : event,
           message : message,
           title   : "update",
-          page    : "update"
+          page    : "events"
       });
     });
   });
