@@ -42,30 +42,37 @@ module.exports =  function(app,passport){
   });
 
   // POST restful route for creating events 
-  app.post('/events/create', function(req, res){
-    Event.create({
-        'title': req.body.title,
-        'venue': req.body.venue,
-        'date':  req.body.date,
-        'time':  req.body.time,
-        'desc':  req.body.desc
-    },
-    function(err, event){
-      if(err)
-        res.send(err);
+  app.post('/events/create', function(req, res, next){
+    /* create a new instance of event  */
+    var event             = new Event();
 
-      Event.find({}, function(err, event){
-        if(err)
-          res.send(err);
-        res.redirect('/admin/events');
-      });
+    event.title          =  req.body.title;
+    event.venue          =  req.body.venue;
+    event.date           =  req.body.date;
+    event.time           =  req.body.time;
+    event.desc           =  req.body.desc;
+    event.slug           =  event.slugify(req.body.title);
+
+    console.log("event at this stage", event);
+
+    Event.findOne({slug: event.slug}, function(err, foundEvent){
+      if (foundEvent){
+        req.flash('errors', 'Event Already already exists');
+        return res.redirect('/admin/events');
+      } else{
+        event.save(function(err, event){
+          if (err) return next(err);
+          res.redirect('/admin/events');
+          console.log("saved event ", event);
+        });
+      }
     });
   });
 
-  //deleting an event by id route
-  app.get('/events/delete/:event_id', function(req, res) {
+  //deleting an event by slug route
+  app.get('/events/delete/:slug',  function(req, res) {
     Event.remove({
-        _id : req.params.event_id
+        slug : req.params.slug 
     }, function(err, events) {
       if (err)
         res.send(err);
@@ -76,8 +83,8 @@ module.exports =  function(app,passport){
   });
 
   //get edit page
-  app.get('/events/edit/:event_id', isLoggedIn, function(req, res){
-    Event.findOne({ _id : req.params.event_id }, function (err, event){
+  app.get('/events/edit/:slug', isLoggedIn, function(req, res){
+    Event.findOne({ slug : req.params.slug }, function (err, event){
       if(err) return err;
       var message = '';
       res.render('events/edit', {
@@ -91,7 +98,7 @@ module.exports =  function(app,passport){
 
   //Updating events data in collection.
   app.post('/events/update/', function(req, res, next){
-    Event.findOne({_id: req.body.id}, function(err, event){
+    Event.findOne({slug: req.body.slug}, function(err, event){
       if (err) return next(err);
       if (req.body.title) event.title =  req.body.title;
       if (req.body.venue) event.venue =  req.body.venue;
