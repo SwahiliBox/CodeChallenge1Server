@@ -38,6 +38,7 @@ app.use(methodOverride());
 
 app.use(express.static(__dirname + '/public'));
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
+app.use('/update',  express.static(__dirname + '/public'));//enable the update route access bower components as it loads the update form
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(cookieParser());
@@ -46,7 +47,7 @@ app.use(session({
    resave:              true,
    saveUninitialized:   true,
    secret:              configDB.secret,
-   store:               new MongoStore({ url: configDB.url, autoReconnect: true }) 
+   store:               new MongoStore({ url: configDB.url, autoReconnect: true })
 }));
 
 
@@ -72,7 +73,7 @@ app.use(flash());
 
 /*
    this middleware is used to make the user object accessible
-   throughout the whole request / response cycle and it has to be 
+   throughout the whole request / response cycle and it has to be
    defined after app.use(passport.session()) otherwise it won't work
 */
 app.use(function(req, res, next){

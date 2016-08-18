@@ -45,12 +45,17 @@ module.exports =  function(app,passport){
   });
 
   //get update page
-  app.get('/update', isLoggedIn, function(req, res){
-    var message = '';
-    res.render('update', {
-      message: message,
-      title: "update",
-      page:   "update"
+  app.get('/update/:event_id', isLoggedIn, function(req, res){
+    Event.findOne({ _id : req.params.event_id }, function (err, events){
+      if(err) return err;
+      var message = '';
+      res.render('update', {
+         events: events,
+         id : req.params.event_id,
+        message: message,
+        title: "update",
+        page:   "update"
+      });
     });
   });
 
@@ -101,33 +106,27 @@ module.exports =  function(app,passport){
 
  //Updating events data in collection.
  app.post('/update', function(req, res){
-   var terms = {
-     'title': req.body.title,
-     'venue': req.body.venue,
-     'date':  req.body.date,
-     'desc':  req.body.desc,
-     'time':  req.body.time
-   };
- var title = req.body.title;
-   Event.getEventByTitle(title, function(err, event, done){
-     if(err) throw err;
-     if(event){
-       console.log('Event updated');
-        Event.update({'title' : req.body.title}, {$set: terms}, function(error, event){
-        Event.find({}, function(err, event){
-         if(err) res.send(err);
+        var id = req.body.id;
+        var changedtitle = req.body.title;
+        var changedvenue = req.body.venue;
+        var changeddate =  req.body.date;
+        var changeddesc =  req.body.desc;
+        var changedtime =  req.body.time;
 
-         console.log(terms);
-         res.redirect('events');
+        Event.findOne({_id : id}, function(err, events){
+           Event.update({
+             title : changedtitle,
+             venue : changedvenue,
+             date : changeddate,
+             desc : changeddesc,
+             time : changedtime
+           }, function(error, event){
+            console.log('Event updated');
+            console.log(events);
+            res.redirect('/events');
+           });
+          });
         });
-       });
-     } else {
-       message = 'Event doesnt exist';
-       console.log('event doesnt exist');
-       res.render('update', {message: message, title: "Update", page: "update"});
-     }
-     });
-   });
 };
 
 function isLoggedIn(req, res, next) {
