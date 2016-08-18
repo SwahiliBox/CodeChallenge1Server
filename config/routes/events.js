@@ -71,7 +71,7 @@ module.exports =  function(app,passport){
         res.send(err);
       console.log('event deleted');
 
-      res.redirect('/events');
+      res.redirect('/admin/events');
     });
   });
 
