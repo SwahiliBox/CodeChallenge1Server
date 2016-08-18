@@ -13,15 +13,15 @@ module.exports    = function(app,passport){
     next();
   });
 
-  app.get('/signup', function(req,res){
-    res.render('signup', {
+  app.get('/user/new', function(req,res){
+    res.render('users/new', {
         message: req.flash('signupMessage'),
         title: "Sign Up"
     });
   });
 
   //Register user
-  app.post('/signup', function(req, res){
+  app.post('/users/create', function(req, res){
     var user             =  new User();
     user.local.firstname =  req.body.firstname;
     user.local.surname   =  req.body.surname;
@@ -35,7 +35,7 @@ module.exports    = function(app,passport){
       if(err) throw err;
 
       if(foundUser){
-        res.render('signup', {
+        res.render('users/new', {
             message: message
         });
       } else {
@@ -95,7 +95,7 @@ module.exports    = function(app,passport){
   });
 
   app.get('/login', function(req, res){
-    res.render('login', {
+    res.render('session/new', {
         message: req.flash('loginMessage'),
         title: "Login Page"
     });
