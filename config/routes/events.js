@@ -112,11 +112,11 @@ function isLoggedIn(req, res, next) {
     return next();
   }
   req.session.returnTo = req.path;
-  res.redirect('/login');
+  res.redirect('/session/new');
 }
 
 app.get('/logout', function(req, res){
   req.logout();
   req.flash('success_msg', 'You are logged out');
-  res.redirect('/users/login');
+  res.redirect('/');
 });
