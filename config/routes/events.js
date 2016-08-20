@@ -44,14 +44,14 @@ module.exports =  function(app,passport){
   // POST restful route for creating events 
   app.post('/events/create', function(req, res, next){
     /* create a new instance of event  */
-    var event             = new Event();
+    var event   =  new Event();
 
-    event.title          =  req.body.title;
-    event.venue          =  req.body.venue;
-    event.date           =  req.body.date;
-    event.time           =  req.body.time;
-    event.desc           =  req.body.desc;
-    event.slug           =  event.slugify(req.body.title);
+    event.title =  req.body.title;
+    event.venue =  req.body.venue;
+    event.date  =  req.body.date;
+    event.time  =  req.body.time;
+    event.desc  =  req.body.desc;
+    event.slug  =  event.slugify(req.body.title);
 
     console.log("event at this stage", event);
 
