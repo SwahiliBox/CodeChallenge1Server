@@ -1,0 +1,16 @@
+<% if (messages.error){ %>
+  <div data-alert class="alert-box alert radius">
+    <%= messages.error %>
+    <a href="#" class="close">&times;</a>
+  </div>
+<% } else if (messages.info){ %>
+  <div data-alert class="alert-box warning radius">
+    <%= messages.info %>
+    <a href="#" class="close">&times;</a>
+  </div>
+<% } else if (messages.success){ %>
+  <div data-alert class="alert-box success radius">
+    <%= messages.success %>
+    <a href="#" class="close">&times;</a>
+  </div>
+<% } %>
