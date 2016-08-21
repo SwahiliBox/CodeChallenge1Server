@@ -1,8 +1,21 @@
 <% layout('dashboard') %>
-<div class="row">
-<div class="large-6 large-offset-6 columns">
-<a class="large button success right" href="/events/new">Create Event</a>
+
+<div class="dashboard-top-section">
+  <div class="row">
+    <div class="large-6 columns">
+      <!-- flash messages section -->
+      <% include ../partials/flash.ejs %>
+      <!-- flash messages section ends -->
+    </div>
+    <div class="large-6 columns">
+      <!-- Create event button section -->
+      <a class="large button success right " href="/events/new">Create Event</a>
+      <!-- create event button section ends -->
+    </div>
+  </div>
 </div>
+
+<div class="row">
   <div class="large-12 medium-12 columns">
     <div class="panel panel-white">
       <div class="panel-heading">
@@ -34,8 +47,10 @@
                 <td><%= event.desc %></td>
                 <td><span class="label label-info">Pending</span></td>
                 <td>
-                  <li><a href="/events/edit/<%= event.slug %>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</a></li>
-                  <li><a href="/events/delete/<%= event.slug %>"><i class="fa fa-trash" aria-hidden="true"></i> Delete</a></li>
+                  <ul class="options">
+                    <li><a href="/events/edit/<%= event.slug %>" title="Edit"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> </a></li>
+                    <li><a href="/events/delete/<%= event.slug %>" title="Delete"><i class="fa fa-trash" aria-hidden="true"></i></a></li>
+                  </ul>
                 </td>
               </tr>
               <%});%>
