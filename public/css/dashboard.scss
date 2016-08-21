@@ -635,3 +635,13 @@ input.form-control.input-rounded {
   -moz-box-shadow: none;
   box-shadow: none;
 }
+
+ul.options{
+  margin: 0;
+  padding: 0;
+  li{
+    list-style: none;
+    display: inline;
+    padding: 0 0.2em 0 0;
+  }
+}

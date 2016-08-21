@@ -57,7 +57,7 @@ module.exports =  function(app,passport){
 
     Event.findOne({slug: event.slug}, function(err, foundEvent){
       if (foundEvent){
-        req.flash('errors', 'Event Already already exists');
+        req.flash('error', 'Event Already already exists');
         return res.redirect('/admin/events');
       } else{
         event.save(function(err, event){
@@ -107,7 +107,7 @@ module.exports =  function(app,passport){
       if (req.body.time) event.time   =  req.body.time;
       event.save(function(err){
         if (err) return next(err);
-        req.flash('message', 'Event successfully updated');
+        req.flash('success', 'Event successfully updated');
         res.redirect('/admin/events');
       });
     });
@@ -124,6 +124,6 @@ function isLoggedIn(req, res, next) {
 
 app.get('/logout', function(req, res){
   req.logout();
-  req.flash('success_msg', 'You are logged out');
+  req.flash('success', 'You are logged out');
   res.redirect('/');
 });

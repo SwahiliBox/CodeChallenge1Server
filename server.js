@@ -76,7 +76,8 @@ app.use(flash());
    defined after app.use(passport.session()) otherwise it won't work
 */
 app.use(function(req, res, next){
-  res.locals.user = req.user;
+  res.locals.user     =  req.user;
+  res.locals.messages =  req.flash();
   next();
 });
 
