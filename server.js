@@ -5,7 +5,6 @@ var port             = process.env.PORT || 3000;
 
 //initialize required modules for the app
 var passport         = require('passport');
-var session          = require('express-session');
 var bodyparser       = require('body-parser');
 var morgan           = require('morgan');
 var path             = require('path');
@@ -49,7 +48,6 @@ app.use(session({
    store:               new MongoStore({ url: configDB.url, autoReconnect: true })
 }));
 
-
 app.use(cors());
 
 app.use(function(req, res, next) {
@@ -64,7 +62,6 @@ app.set('view engine', 'html');
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
 
-app.use(passport.initialize());
 app.use(passport.initialize());
 
 app.use(passport.session());
