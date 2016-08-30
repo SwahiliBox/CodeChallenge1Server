@@ -11,7 +11,7 @@ module.exports = {
       if(error) res.send(error);
       res.render('events/index',{
           events: events,
-          page: 'admin',
+          page: 'dashboard',
           title: 'Admin Panel'
       });
     });
