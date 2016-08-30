@@ -1,13 +1,12 @@
 var express       =  require('express');
-var app           =  express();
 var router        =  express.Router();
-var cors          =  require('cors');
 
 var eventRoutes   =  require('./events');
 var userRoutes    =  require('./user');
 var sessionRoutes =  require('./session');
 var adminRoutes   =  require('./admin');
 var homeRoutes    =  require('./home');
+var rsvpRoutes    =  require('./rsvp');
 
 /*
  * @isLoggedIn function checks to see if user is 
@@ -31,14 +30,13 @@ router.get('/admin', isLoggedIn, adminRoutes.index);
 /* 
  * event routes 
 */
-router.get('/events',                                eventRoutes.index);
-router.get('/admin/events',                          eventRoutes.index);
+router.get('/admin/events',               isLoggedIn,  eventRoutes.index);
 router.get('/admin/events/edit/:slug',    isLoggedIn,  eventRoutes.edit);
 router.get('/admin/events/new',           isLoggedIn,  eventRoutes.new);
-router.get('/admin/events/:id',           isLoggedIn,  eventRoutes.show);
-router.get('/admin/events/delete/:id',    isLoggedIn,  eventRoutes.delete);
+router.get('/admin/events/:slug',         isLoggedIn,  eventRoutes.show);
+router.get('/admin/events/delete/:slug',  isLoggedIn,  eventRoutes.delete);
 router.post('/admin/events/',             isLoggedIn,  eventRoutes.create);
-router.post('/admin/events/update/:id',   isLoggedIn,  eventRoutes.update);
+router.post('/admin/events/update/:slug', isLoggedIn,  eventRoutes.update);
 
 /*
  * @user routes
@@ -52,5 +50,11 @@ router.post('/users/create',    userRoutes.create);
 router.get('/login',           sessionRoutes.new);
 router.post('/session/create', sessionRoutes.create);
 router.get('/logout',          sessionRoutes.delete);
+
+/*
+ * @rsvp routes
+*/
+router.get('/rsvps',  rsvpRoutes.index);
+router.post('/rsvps', rsvpRoutes.create);
 
 module.exports = router;
