@@ -13,7 +13,7 @@ module.exports    = function(app,passport){
     next();
   });
 
-  app.get('/user/new', function(req,res){
+  app.get('/signup', function(req,res){
     res.render('users/new', {
         message: req.flash('signupMessage'),
         title: "Sign Up"
@@ -71,13 +71,13 @@ module.exports    = function(app,passport){
       // if no user is found, return the message
       if (!user)
       // req.flash is the way to set flashdata using connect-flash
-        return done(null, false, req.flash('loginMessage', 'No user found.')); 
+        return done(null, false, req.flash('loginMessage', 'No user found.'));
 
       // if the user is found but the password is wrong
       if (!user.validPassword(password))
 
       // create the loginMessage and save it to session as flashdata
-        return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.')); 
+        return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
 
       // all is great, return successful user
       return done(null, user);
@@ -104,11 +104,11 @@ module.exports    = function(app,passport){
   app.post('/login',
     passport.authenticate('local', { failureRedirect:'/login',failureFlash: true }),
     function(req, res) {
-      /* 
+      /*
        either redirect the user back to the resource he/she was trying to access
-       or redirect to admin page after successful login, this means if i was trying 
+       or redirect to admin page after successful login, this means if i was trying
        to access /insert and was instead redirected to /login because it is a protected
-       route, then after i login, redirect me back to /insert not /admin as it was before 
+       route, then after i login, redirect me back to /insert not /admin as it was before
       */
       res.redirect(req.session.returnTo || '/admin');
       delete req.session.returnTo;
@@ -117,10 +117,10 @@ module.exports    = function(app,passport){
   app.get('/logout', function(req, res){
     req.logout();
     res.redirect('/');
-    /* 
-     since we're using friendly forwarding (see req.sessio.returnTo) when we 
-     logout the (req.session.returnTo variable will still be around, 
-     so we need to destroy it 
+    /*
+     since we're using friendly forwarding (see req.sessio.returnTo) when we
+     logout the (req.session.returnTo variable will still be around,
+     so we need to destroy it
     */
     req.session.destroy();
   });
@@ -175,17 +175,17 @@ function isLoggedIn(req, res, next) {
   if(req.isAuthenticated()){
     return next();
   }
-  req.session.returnTo = req.path; 
+  req.session.returnTo = req.path;
   res.redirect('/login');
 }
 
 function isCorrectUser(req, res, next) {
   if (isLoggedIn()){
-    /* 
-       this middleware will check if the user currently trying to 
+    /*
+       this middleware will check if the user currently trying to
        access the resource is the correct user (i.e only resource owners or admins)
        WIP  = Work In Progress just return next() for the time being, implementation
-       coming up 
+       coming up
     */
     return next();
   }
