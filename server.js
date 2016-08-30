@@ -4,32 +4,31 @@ var app              = express();
 var port             = process.env.PORT || 3000;
 
 //initialize required modules for the app
-var passport         = require('passport');
-var bodyparser       = require('body-parser');
-var morgan           = require('morgan');
-var path             = require('path');
-var mongoose         = require('mongoose');
-var ejs              = require('ejs');
-var engine           = require('ejs-mate');
-var mongodb          = require('mongodb');
-var exphbs           = require('express-handlebars');
-var expressvalidator = require('express-validator');
-var morgan           = require('morgan');
-var cookieParser     = require('cookie-parser');
-var bodyParser       = require('body-parser');
-var session          = require('express-session');
-var methodOverride   = require('method-override');
-var flash            = require('connect-flash');
-var cors             = require('cors');
-var MongoStore       = require('connect-mongo')(session);
-var rsvp             = require('./app/models/rsvp');
+var passport         =  require('passport');
+var bodyparser       =  require('body-parser');
+var morgan           =  require('morgan');
+var path             =  require('path');
+var mongoose         =  require('mongoose');
+var ejs              =  require('ejs');
+var engine           =  require('ejs-mate');
+var mongodb          =  require('mongodb');
+var exphbs           =  require('express-handlebars');
+var expressvalidator =  require('express-validator');
+var morgan           =  require('morgan');
+var cookieParser     =  require('cookie-parser');
+var bodyParser       =  require('body-parser');
+var session          =  require('express-session');
+var methodOverride   =  require('method-override');
+var flash            =  require('connect-flash');
+var cors             =  require('cors');
+var MongoStore       =  require('connect-mongo')(session);
+var rsvp             =  require('./app/models/rsvp');
+var apiRoutes        =  require('./api/api');
+var routes           =  require('./config/routes/index');
 
 //connect to mongo database
 var configDB         = require('./config/database');
 mongoose.connect(configDB.url);
-//require passport for authentication
-require('./config/passport.js')(passport);
-
 
 //use required modules
 app.use(morgan('dev'));
@@ -56,14 +55,12 @@ app.use(function(req, res, next) {
   next();
 });
 
-require('./config/passport')(passport);
-
 app.set('view engine', 'html');
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
+require('./config/passport');
 
 app.use(passport.initialize());
-
 app.use(passport.session());
 app.use(flash());
 
@@ -78,13 +75,19 @@ app.use(function(req, res, next){
   next();
 });
 
-require('./config/routes/rsvp')(app, passport);
-require('./config/routes/user')(app, passport);
-require('./config/routes/events')(app, passport);
-require('./config/routes/main')(app, passport);
-var apiRoutes      = require('./api/api');
 
-app.use('/api', apiRoutes);
+app.use(function(req, res, next) {
+  app.use(cors());
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
+/*
+ * @start using our route middlewares
+*/
+app.use('/api',       apiRoutes);
+app.use(routes);
 
 app.listen(port);
 console.log('Server running on localhost: port ' + port);
