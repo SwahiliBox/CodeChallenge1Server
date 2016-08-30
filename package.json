@@ -44,11 +44,11 @@
     "passport-google-token": "^0.1.2",
     "passport-http": "^0.3.0",
     "passport-local": "^1.0.0",
+    "faker": "^3.1.0",
     "path": "^0.12.7",
     "xoauth2": "^1.1.0"
   },
   "devDependencies": {
-    "faker": "^3.1.0",
     "grunt": "^1.0.1",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-sass": "^1.0.0",
