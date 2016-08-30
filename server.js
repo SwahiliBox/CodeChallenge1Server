@@ -1,9 +1,6 @@
-var express          = require('express');
-var nodemailer       = require('nodemailer');
-var app              = express();
-var port             = process.env.PORT || 3000;
-
-//initialize required modules for the app
+var express          =  require('express');
+var app              =  express();
+var port             =  process.env.PORT || 3000;
 var passport         =  require('passport');
 var bodyparser       =  require('body-parser');
 var morgan           =  require('morgan');
@@ -22,13 +19,13 @@ var methodOverride   =  require('method-override');
 var flash            =  require('connect-flash');
 var cors             =  require('cors');
 var MongoStore       =  require('connect-mongo')(session);
-var rsvp             =  require('./app/models/rsvp');
-var apiRoutes        =  require('./api/api');
-var routes           =  require('./config/routes/index');
 
 //connect to mongo database
 var configDB         = require('./config/database');
 mongoose.connect(configDB.url);
+//require passport for authentication
+require('./config/passport.js')(passport);
+
 
 //use required modules
 app.use(morgan('dev'));
@@ -41,14 +38,13 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
 app.use(session({
-   resave:              true,
-   saveUninitialized:   true,
-   secret:              configDB.secret,
-   store:               new MongoStore({ url: configDB.url, autoReconnect: true })
+   resave            : true,
+   saveUninitialized : true,
+   secret            : configDB.secret,
+   store             : new MongoStore({ url : configDB.url, autoReconnect : true })
 }));
 
 app.use(cors());
-
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -58,9 +54,9 @@ app.use(function(req, res, next) {
 app.set('view engine', 'html');
 app.engine('ejs', engine);
 app.set('view engine', 'ejs');
-require('./config/passport');
 
 app.use(passport.initialize());
+
 app.use(passport.session());
 app.use(flash());
 
@@ -75,18 +71,9 @@ app.use(function(req, res, next){
   next();
 });
 
-
-app.use(function(req, res, next) {
-  app.use(cors());
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
-
-/*
- * @start using our route middlewares
-*/
-app.use('/api',       apiRoutes);
+var routes = require('./config/routes/index');
+var apiRoutes =  require('./api/api');
+app.use('/api', apiRoutes);
 app.use(routes);
 
 app.listen(port);
