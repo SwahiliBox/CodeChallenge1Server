@@ -3,7 +3,6 @@ var LocalStrategy    = require('passport-local').Strategy;
 var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var configAuth       = require('./auth');
-
 var User             = require('../app/models/user');
 var Admin            = require('../app/models/admin');
 
@@ -51,27 +50,43 @@ module.exports       = function(passport) {
     }
   };
 
-  passport.use('user-login', new LocalStrategy(
-      function(username, password, done) {
-        var criteria = {$or: [{'local.username' : username}, {'local.email': username}]};
-        User.findOne(criteria, function(err,user){
-          if(err) throw err;
-          if(!user){
-            return done(null,false,{message:'User does not exist in our database'});
-          }
-          User.comparePassword(password,user.local.password,function(err,isMatch){
-            if(err) throw err;
+passport.use('user-login', new LocalStrategy({
+  usernameField: 'email',
+  passwordField: 'password',
+  passReqToCallback: true
+}, 
+function(req, email, password, done){
+  User.findOne({ "local.email": email }, function(err, user){
+    /* 
+       there's an error trying to look for user 
+       maybe database connection or something else 
+       */
+    if (err) return done(err);
 
-            if(isMatch){
-              console.log(user);
-              return done(null,user);
-            }
-            if(!isMatch){
-              return done(null,false,{message:'invalid password'});
-            }
-          });
-        });
-  }));
+    /* 
+       we are able to access the database but the 
+       user we're looking for is not in our database 
+       */
+    if (!user) {
+        console.log("can't find user with email ", email); 
+        return done(null, false, req.flash('message', ' No user has been found'));
+    }
+
+    /* 
+       we found the user who wants to acces our system 
+       but for some reason, password provided is wrong 
+       */
+    if (!user.comparePassword) {
+        return done(null, false, req.flash('message', 'Oops! wrong password'));
+    }
+
+    /* 
+       all is well, we found the user and all the information 
+       provided is correct 
+       */
+    return done(null, user);
+  });
+}));
 
   passport.use(new GoogleStrategy({
         clientID:     configAuth.googleAuth.clientID,
@@ -112,11 +127,11 @@ module.exports       = function(passport) {
   }));
 
   passport.use(new FacebookStrategy({
-    // pull in our app id and secret from our auth.js file
-    clientID:         configAuth.facebookAuth.clientID,
-    clientSecret:     configAuth.facebookAuth.clientSecret,
-    callbackURL:      configAuth.facebookAuth.callbackURL,
-    profileFields:    [ 'email', 'name' ]
+        // pull in our app id and secret from our auth.js file
+        clientID      : configAuth.facebookAuth.clientID,
+        clientSecret  : configAuth.facebookAuth.clientSecret,
+        callbackURL   : configAuth.facebookAuth.callbackURL,
+        profileFields : [ 'email', 'name' ]
   },
   //facebook sends back token to profile
   function(token,refreshToken,profile,done){
@@ -147,9 +162,9 @@ module.exports       = function(passport) {
   }));
 
   passport.use('admin-signup', new LocalStrategy({
-        usernameField:      'email',
-        passwordField:      'password',
-        passReqToCallback:  true
+        usernameField     : 'email',
+        passwordField     : 'password',
+        passReqToCallback : true
   },
   function(req, email, password, done) {
     process.nextTick(function() {
@@ -173,9 +188,9 @@ module.exports       = function(passport) {
   }));
 
   passport.use('admin-login', new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'password',
-        passReqToCallback: true
+        usernameField     : 'email',
+        passwordField     : 'password',
+        passReqToCallback : true
   },
   function(req, email, password, done) {
     Admin.findOne({ 'local.email':  email }, function(err, admin) {
@@ -189,17 +204,17 @@ module.exports       = function(passport) {
       return done(null, admin);
     });
   }));
-  };
+};
 
-  function generateRefreshToken(req, res, next) {
-    if (req.query.permanent === 'true') {
-      req.token.refreshToken = req.user.clientId.toString() + '.' + crypto.randomBytes(
-        40).toString('hex');
-      db.client.storeToken({
-          id: req.user.clientId,
-          refreshToken: req.token.refreshToken
-      }, next);
-    } else {
-      next();
-    }
+function generateRefreshToken(req, res, next) {
+  if (req.query.permanent === 'true') {
+    req.token.refreshToken = req.user.clientId.toString() + '.' + crypto.randomBytes(
+      40).toString('hex');
+    db.client.storeToken({
+        id: req.user.clientId,
+        refreshToken: req.token.refreshToken
+    }, next);
+  } else {
+    next();
   }
+}
