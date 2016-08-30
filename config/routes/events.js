@@ -26,8 +26,8 @@ module.exports = {
           event : event,
           title : "Event",
           page  : "event"
-      })
-    })
+      });
+    });
   },
 
   create : function(req, res, next){
