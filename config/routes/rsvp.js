@@ -1,7 +1,7 @@
 var Rsvp       =  require('../../app/models/rsvp');
 
 module.exports =  {
-  index: function(req, res){
+  index : function(req, res){
     Rsvp.find({}, function(err, rsvps){
       if(err) res.send(err);
       res.json(rsvps);

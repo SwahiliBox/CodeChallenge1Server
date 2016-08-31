@@ -10,8 +10,8 @@ module.exports = {
     Event.find({}, function(error, events){
       if(error) res.send(error);
       res.render('index',{
-          events: events,
-          title: 'Home'
+          events : events,
+          title  : 'Home'
       });
     });
   }

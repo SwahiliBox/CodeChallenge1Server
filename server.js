@@ -22,7 +22,7 @@ var MongoStore       =  require('connect-mongo')(session);
 
 //connect to mongo database
 var configDB         = require('./config/database');
-mongoose.connect(configDB.url);
+mongoose.connect(configDB.development.url);
 //require passport for authentication
 require('./config/passport.js')(passport);
 
@@ -40,8 +40,8 @@ app.use(cookieParser());
 app.use(session({
    resave            : true,
    saveUninitialized : true,
-   secret            : configDB.secret,
-   store             : new MongoStore({ url : configDB.url, autoReconnect : true })
+   secret            : configDB.development.secret,
+   store             : new MongoStore({ url : configDB.development.url, autoReconnect : true })
 }));
 
 app.use(cors());
@@ -77,4 +77,4 @@ app.use('/api', apiRoutes);
 app.use(routes);
 
 app.listen(port);
-console.log('Server running on localhost: port ' + port);
+console.log(app.get('env') + ' Server running on localhost: port ' + port);

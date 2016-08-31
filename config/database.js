@@ -1,4 +1,13 @@
 module.exports = {
-  'url': 'mongodb://localhost/nodetrials',
-  'secret': 'anystringoftext'
+
+  'development' : {
+    'url'       : 'mongodb://localhost/nodetrials',
+    'secret'    : 'anystringoftext'
+  },
+
+  'production' : {
+    'url'       : 'mongolaburl',
+    'secret'    : 'anystringoftext'
+  }
+
 };

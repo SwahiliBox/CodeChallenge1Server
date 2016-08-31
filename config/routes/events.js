@@ -5,9 +5,9 @@ module.exports = {
     Event.find({}, function(error, events){
       if(error) res.send(error);
       res.render('events/index',{
-          events: events,
-          page: 'events',
-          title: 'Manage Events'
+          events : events,
+          page   : 'events',
+          title  : 'Manage Events'
       });
     });
   },
@@ -19,7 +19,7 @@ module.exports = {
     });
   },
 
-  show: function(req, res){
+  show : function(req, res){
     Event.find({}, function(err, event){
       if (err) res.send(err);
       res.render('event', {
@@ -57,7 +57,7 @@ module.exports = {
     });
   },
 
-  delete: function(req, res){
+  delete : function(req, res){
     Event.remove({
         slug : req.params.slug 
     }, function(err, events) {
@@ -68,7 +68,7 @@ module.exports = {
     });
   },
 
-  edit: function(req, res){
+  edit : function(req, res){
     Event.findOne({ slug : req.params.slug }, function (err, event){
       if(err) return err;
       var message = '';
@@ -81,8 +81,8 @@ module.exports = {
     });
   },
 
-  update: function(req, res, next){
-    Event.findOne({slug: req.body.slug}, function(err, event){
+  update : function(req, res, next){
+    Event.findOne({slug : req.body.slug}, function(err, event){
       if (err) return next(err);
       if (req.body.title) event.title =  req.body.title;
       if (req.body.venue) event.venue =  req.body.venue;
