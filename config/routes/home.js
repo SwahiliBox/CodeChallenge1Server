@@ -3,7 +3,7 @@
  * TODO: come up with other routes
 */
 
-var Event = require('../../app/models/event');
+var Event =  require('../../app/models/event');
 
 module.exports = {
   index : function(req, res){
