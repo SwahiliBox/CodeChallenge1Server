@@ -21,8 +21,8 @@ var cors             =  require('cors');
 var MongoStore       =  require('connect-mongo')(session);
 
 //connect to mongo database
-var configDB         = require('./config/database');
-mongoose.connect(configDB.development.url);
+var configDB         = require('./config/settings');
+mongoose.connect(configDB.getDB(process.env));
 //require passport for authentication
 require('./config/passport.js')(passport);
 
@@ -40,8 +40,8 @@ app.use(cookieParser());
 app.use(session({
    resave            : true,
    saveUninitialized : true,
-   secret            : configDB.development.secret,
-   store             : new MongoStore({ url : configDB.development.url, autoReconnect : true })
+   secret            : configDB.getSecret(process.env),
+   store             : new MongoStore({ url : configDB.getDB(process.env), autoReconnect : true })
 }));
 
 app.use(cors());
