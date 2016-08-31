@@ -1,12 +1,12 @@
 module.exports = {
 
   'development' : {
-    'url'       : 'mongodb://localhost/nodetrials',
+    'url'       : 'mongodb://zechtz:action2012@ds019076.mlab.com:19076/sbevents',
     'secret'    : 'anystringoftext'
   },
 
   'production' : {
-    'url'       : 'mongolaburl',
+    'url'       : "mongodb://zechtz:action2012@ds019076.mlab.com:19076/sbevents",
     'secret'    : 'anystringoftext'
   }
 
