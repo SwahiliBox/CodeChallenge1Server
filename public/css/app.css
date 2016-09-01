@@ -609,6 +609,15 @@ footer {
       float: right; }
     .secure-panel .signup-form h2, .secure-panel .edit-profile-form h2 {
       font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif; }
+    @media screen and (max-width: 1024px) {
+      .secure-panel .signup-form, .secure-panel .edit-profile-form {
+        width: 60%; } }
+    @media screen and (max-width: 768px) {
+      .secure-panel .signup-form, .secure-panel .edit-profile-form {
+        width: 80%; } }
+    @media screen and (max-width: 420px) {
+      .secure-panel .signup-form, .secure-panel .edit-profile-form {
+        width: 94%; } }
   .secure-panel .row {
     max-width: 100%; }
 

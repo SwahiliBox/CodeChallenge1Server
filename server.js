@@ -19,10 +19,16 @@ var methodOverride   =  require('method-override');
 var flash            =  require('connect-flash');
 var cors             =  require('cors');
 var MongoStore       =  require('connect-mongo')(session);
+var dotenv           =  require('dotenv');
+
+dotenv.load();
+var env              =  process.env.NODE_ENV;
+
+ongoStore       =  require('connect-mongo')(session);
 
 //connect to mongo database
-var configDB         = require('./config/database');
-mongoose.connect(configDB.url);
+var configDB         = require('./config/settings');
+mongoose.connect(configDB.getDB(process.env));
 //require passport for authentication
 require('./config/passport.js')(passport);
 
@@ -40,8 +46,8 @@ app.use(cookieParser());
 app.use(session({
    resave            : true,
    saveUninitialized : true,
-   secret            : configDB.secret,
-   store             : new MongoStore({ url : configDB.url, autoReconnect : true })
+   secret            : configDB.getSecret(process.env),
+   store             : new MongoStore({ url : configDB.getDB(process.env), autoReconnect : true })
 }));
 
 app.use(cors());
@@ -71,10 +77,11 @@ app.use(function(req, res, next){
   next();
 });
 
-var routes = require('./config/routes/index');
+var routes    =  require('./config/routes/index');
 var apiRoutes =  require('./api/api');
+
 app.use('/api', apiRoutes);
 app.use(routes);
 
 app.listen(port);
-console.log('Server running on localhost: port ' + port);
+console.log(app.get('env') + ' Server running on localhost: port ' + port);

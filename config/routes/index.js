@@ -1,6 +1,5 @@
 var express       =  require('express');
 var router        =  express.Router();
-
 var eventRoutes   =  require('./events');
 var userRoutes    =  require('./user');
 var sessionRoutes =  require('./session');
@@ -26,6 +25,7 @@ function isLoggedIn(req, res, next) {
 */
 router.get('/', homeRoutes.index);
 router.get('/admin', isLoggedIn, adminRoutes.index);
+router.get('/api/events', homeRoutes.index);
 
 /* 
  * event routes 
