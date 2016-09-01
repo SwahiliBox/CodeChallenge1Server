@@ -40,7 +40,30 @@ example server.js code
   });
 ```
 
-`Output:Server is Running at ::: on port 3000`
+`Output:production server Running on localhost: port 3000`
+
+### Deploying to heroku.
+
+After you have created you app on heroku, make sure you add config vars MONGOLAB_URI with value matching
+your real mongolab database credentials, the value shoud be in the following format 
+
+`"mongodb://<yourusername>:<yourpasswor><@urltomongolabdatabase>:<port#>/<databasename>"`
+
+Then rename the .env.sample file to .env and edit the value of the MONGOLAB_URI  to match
+the one you have set on heroku
+
+Now you will be able to just deploy your code by just typing the command
+
+```git push heroku master``` 
+
+Assuming that you followed the instructions on heroku on how to link your heroku app repository to your
+project
+
+If you get any error, use the heroku logs command to see what error you're getting and fix it
+`heroku logs -a 'name_of_your_app' -t
+
+NOTE: the -t flag is for tail, meaning it will keep on display the logs as things happen within your 
+heroku app.
 
 ### Contributing
 
