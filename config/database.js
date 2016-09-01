@@ -11,7 +11,7 @@ module.exports = {
   },
 
   'production' : {
-    'url'       : process.env.MONGOLAB_URI, 
+    'url'       : process.env.MONGOLAB_URI,
     'secret'    : 'anystringoftext'
   }
 };

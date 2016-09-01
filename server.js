@@ -71,8 +71,9 @@ app.use(function(req, res, next){
   next();
 });
 
-var routes = require('./config/routes/index');
+var routes    =  require('./config/routes/index');
 var apiRoutes =  require('./api/api');
+
 app.use('/api', apiRoutes);
 app.use(routes);
 
