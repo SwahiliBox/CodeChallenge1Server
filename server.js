@@ -29,7 +29,6 @@ mongoose.connect(configDB.getDB(process.env));
 //require passport for authentication
 require('./config/passport.js')(passport);
 
-
 //use required modules
 app.use(morgan('dev'));
 app.use(methodOverride());
