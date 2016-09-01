@@ -22,9 +22,6 @@ var MongoStore       =  require('connect-mongo')(session);
 var dotenv           =  require('dotenv');
 
 dotenv.load();
-var env              =  process.env.NODE_ENV;
-
-ongoStore       =  require('connect-mongo')(session);
 
 //connect to mongo database
 var configDB         = require('./config/settings');
