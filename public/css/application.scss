@@ -745,6 +745,15 @@ footer{
     h2{
         font-family: 'LatoWebThin', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
+    @media screen and (max-width: 1024px){
+      width: 60%;
+    }
+    @media screen and (max-width: 768px){
+      width: 80%;
+    }
+    @media screen and (max-width: 420px){
+      width: 94%;
+    }
   }
   .row{
     max-width: 100%;

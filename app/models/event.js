@@ -28,4 +28,3 @@ EventSchema.methods.slugify =  function(text) {
 }; 
 
 module.exports = mongoose.model('Event', EventSchema);
-

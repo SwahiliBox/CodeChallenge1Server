@@ -5,9 +5,9 @@
   "main": "server.js",
   "scripts": {
     "test": "./node_modules/.bin/mocha --reporter spec",
-    "start": "npm install && bower install && rm -rf .tmp/ && nodemon server.js -L",
-    "predev": "grunt",
-    "dev": "npm install && bower install && rm -rf .tmp/ & nodedev server & grunt watch"
+    "start": "npm install && bower install && rm -rf .tmp/ && nodemon -e css,html,js server.js -L",
+    "predev": "./bin/grunt",
+    "dev": "npm install && bower install && rm -rf .tmp/ & ./bin/nodedev server & ./bin/grunt watch"
   },
   "author": "rodgers",
   "license": "ISC",
@@ -21,11 +21,15 @@
     "connect-mongo": "^1.2.0",
     "cookie-parser": "^1.4.3",
     "cors": "^2.7.1",
+    "dotenv": "^2.0.0",
     "ejs": "^2.4.2",
+    "ejs-mate": "^2.3.0",
     "express": "^4.13.4",
     "express-handlebars": "^3.0.0",
     "express-session": "^1.13.0",
     "express-validator": "^2.20.8",
+    "faker": "^3.1.0",
+    "grunt": "^1.0.1",
     "jsonwebtoken": "^7.0.0",
     "method-override": "^2.3.6",
     "mocha": "^2.5.3",
@@ -43,12 +47,9 @@
     "passport-http": "^0.3.0",
     "passport-local": "^1.0.0",
     "path": "^0.12.7",
-    "xoauth2": "^1.1.0",
-    "grunt": "^1.0.1",
-    "ejs-mate": "^2.3.0"
+    "xoauth2": "^1.1.0"
   },
   "devDependencies": {
-    "faker": "^3.1.0",
     "grunt": "^1.0.1",
     "grunt-contrib-jshint": "^1.0.0",
     "grunt-contrib-sass": "^1.0.0",
