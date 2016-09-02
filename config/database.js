@@ -1,5 +1,4 @@
 module.exports = {
-
   'development' : {
     'url'       : 'mongodb://localhost/nodetrials',
     'secret'    : 'anystringoftext'

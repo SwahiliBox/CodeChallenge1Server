@@ -1,7 +1,7 @@
-var envs =  require('./database');
-var keys =  Object.keys(envs);
+var envs       =  require('./database');
+var keys       =  Object.keys(envs);
 
-module.exports = {
+module.exports =  {
 
   getDB : function(environment){
     for(var i = 0; i < keys.length; i++){

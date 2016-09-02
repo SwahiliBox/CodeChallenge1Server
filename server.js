@@ -80,4 +80,5 @@ app.use('/api', apiRoutes);
 app.use(routes);
 
 app.listen(port);
+console.log("connected to mongo ", configDB.getDB(process.env));
 console.log(app.get('env') + ' Server running on localhost: port ' + port);
