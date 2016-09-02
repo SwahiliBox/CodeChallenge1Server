@@ -7,7 +7,7 @@
     "test": "./node_modules/.bin/mocha --reporter spec",
     "start": "npm install && bower install && rm -rf .tmp/ && nodemon -e css,html,js server.js -L",
     "predev": "./bin/grunt",
-    "dev": "npm install && bower install && rm -rf .tmp/ & ./bin/nodedev & ./bin/grunt watch"
+    "dev": "npm install && bower install && rm -rf .tmp/ & ./bin/nodedev server & ./bin/grunt watch"
   },
   "author": "rodgers",
   "license": "ISC",
