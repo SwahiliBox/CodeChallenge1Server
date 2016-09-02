@@ -1,16 +1,19 @@
-module.exports = {
-  'development' : {
+module.exports = [
+  {
+    'environment': 'development',
     'url'       : 'mongodb://localhost/nodetrials',
     'secret'    : 'anystringoftext'
   },
 
-  'test' : {
-    'url'       : 'mongodb://localhost/nodetrials-test',
+  {
+    'environment': 'production',
+    'url'       : process.env.MONGOLAB_URI,
     'secret'    : 'anystringoftext'
   },
 
-  'production' : {
-    'url'       : process.env.MONGOLAB_URI,
+  {
+    'environment': 'test',
+    'url'       : 'mongodb://localhost/nodetrials',
     'secret'    : 'anystringoftext'
   }
-};
+];

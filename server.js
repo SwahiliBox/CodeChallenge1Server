@@ -20,12 +20,14 @@ var flash            =  require('connect-flash');
 var cors             =  require('cors');
 var MongoStore       =  require('connect-mongo')(session);
 var dotenv           =  require('dotenv');
+var env              =  process.env.NODE_ENV || 'development';
+
 
 dotenv.load();
 
 //connect to mongo database
 var configDB         = require('./config/settings');
-mongoose.connect(configDB.getDB(process.env));
+mongoose.connect(configDB.getDB(env));
 //require passport for authentication
 require('./config/passport.js')(passport);
 
@@ -42,8 +44,8 @@ app.use(cookieParser());
 app.use(session({
    resave            : true,
    saveUninitialized : true,
-   secret            : configDB.getSecret(process.env),
-   store             : new MongoStore({ url : configDB.getDB(process.env), autoReconnect : true })
+   secret            : configDB.getSecret(env),
+   store             : new MongoStore({ url : configDB.getDB(env), autoReconnect : true })
 }));
 
 app.use(cors());
@@ -80,5 +82,5 @@ app.use('/api', apiRoutes);
 app.use(routes);
 
 app.listen(port);
-console.log("connected to mongo ", configDB.getDB(process.env));
-console.log(app.get('env') + ' Server running on localhost: port ' + port);
+console.log("connected to mongo ", configDB.getDB(env));
+console.log(env + ' Server running on localhost: port ' + port);
