@@ -1,16 +1,16 @@
 <% layout('secure-forms') %>
 <div class="signup-form">
 <div class="wrapper">
-  <div class="row">
+  <div class="row collapse">
     <div class="large-12 columns">
-    <div class="row">
+    <div class="row collapse">
       <div class="large-12 columns">
         <h2>Login </h2>
       </div>
     </div>
 
     <% if (message.length > 0) { %>
-    <div class="row">
+    <div class="row collapse">
     <div class="large-12 columns">
       <div data-alert class="alert-box warning ">
         <%= message %>
@@ -21,19 +21,19 @@
     <% } %>
   
     <form action="/session/create" method="post">
-        <div class="row">
+        <div class="row collapse">
           <div class="large-12 columns">
             <label for="email">Email Address</label>
               <input class="form-control" id="email" type="email" name="email" placeholder="email address">
           </div>
         </div>
-        <div class="row">
+        <div class="row collapse">
           <div class="large-12 columns">
             <label for="password">Password </label>
               <input class="form-control" id="password" type="password" name="password" placeholder="password">
           </div>
         </div>
-        <div class="row">
+        <div class="row collapse">
           <div class="large-6 small-12 columns">
             <button type="submit" class="button success radius">Login</button>
           </div>
