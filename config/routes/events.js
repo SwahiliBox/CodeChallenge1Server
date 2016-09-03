@@ -82,7 +82,7 @@ module.exports = {
   },
 
   update : function(req, res, next){
-    Event.findOne({slug : req.body.slug}, function(err, event){
+    Event.findOne({slug : req.params.slug}, function(err, event){
       if (err) return next(err);
       if (req.body.title) event.title =  req.body.title;
       if (req.body.venue) event.venue =  req.body.venue;

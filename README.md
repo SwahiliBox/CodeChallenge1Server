@@ -18,6 +18,10 @@ A step by step series of examples that tell you how to get a development env run
 
 To get your local copy git clone `https://github.com/SwahiliBox/CodeChallenge1Server.git`
 
+Make sure you have ruby installed. The project's css files are written in sass and have to 
+be compiled into css, If you don't want to go through all the process of installing Ruby you
+can just install ruby-sass by typing `sudo apt-get install ruby-sass`
+
 *cd* into the project root and run ```npm run dev```
 
 example server.js code
