@@ -7,7 +7,8 @@ var RsvpSchema =  Schema( {
     lastname:     { type: String },
     phonenumber:  { type: String },
     eventname:    { type: String },  
-    date_created: { type: Date,  default: Date.now }
+    date_created: { type: Date,  default: Date.now },
+    RsvpBy:		  { type:mongoose.Schema.Types.ObjectId,ref: 'User'}
 });
 
 //create a model to use the schema
