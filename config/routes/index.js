@@ -37,6 +37,7 @@ router.get('/admin/events/:slug',         isLoggedIn,  eventRoutes.show);
 router.get('/admin/events/delete/:slug',  isLoggedIn,  eventRoutes.delete);
 router.post('/admin/events/',             isLoggedIn,  eventRoutes.create);
 router.post('/admin/events/update/:slug', isLoggedIn,  eventRoutes.update);
+router.get('/events',                     isLoggedIn,  eventRoutes.get);
 
 /*
  * @user routes
@@ -50,7 +51,7 @@ router.post('/users/create',    userRoutes.create);
 router.get('/login',           sessionRoutes.new);
 router.post('/session/create', sessionRoutes.create);
 router.get('/logout',          sessionRoutes.delete);
-
+router.post('/usercreate',     sessionRoutes.usercreate); 
 /*
  * @rsvp routes
 */
