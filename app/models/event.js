@@ -1,6 +1,7 @@
 //Schema for events display to users
 var mongoose    = require('mongoose');
 var Schema      = mongoose.Schema;
+var User       = require('../../app/models/user');
 
 //Create a Schema model to hold your events data.
 //got rid of the meta array
@@ -10,7 +11,8 @@ var EventSchema = new Schema({
     desc  : String,
     slug  : {type : String, default : ""},
     date  : {type : Date},
-    time  : String
+    time  : String,
+    user  : [{type: Schema.Types.ObjectId, ref:User}]
 });
 
 EventSchema.methods.getEventByTitle = function(title, callback){
