@@ -4,7 +4,6 @@ var GoogleStrategy   = require('passport-google-oauth').OAuth2Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var configAuth       = require('./auth');
 var User             = require('../app/models/user');
-var Admin            = require('../app/models/admin');
 
 module.exports       = function(passport) {
   passport.serializeUser(function(user, done) {
@@ -12,19 +11,11 @@ module.exports       = function(passport) {
   });
 
   passport.deserializeUser(function(id, done){
-    Admin.findById(id, function(err, user){
-      if(err) 
-        done(err);
-      if(user){
-        done(null, user);
-      } else {
-        User.findById(id, function(err, user){
-          if(err) done(err);
-          done(null, user);
-        });
-      }
+    User.findById(id, function(err, user){
+      if(err) done(err);
+      done(null, user);
     });
-  });    
+  });
 
   function serializeClient(req, res, next) {
     if (req.query.permanent === 'true') {
@@ -160,51 +151,7 @@ function(req, email, password, done){
       });
     });
   }));
-
-  passport.use('admin-signup', new LocalStrategy({
-        usernameField     : 'email',
-        passwordField     : 'password',
-        passReqToCallback : true
-  },
-  function(req, email, password, done) {
-    process.nextTick(function() {
-      Admin.findOne({ 'local.email':  email }, function(err, admin) {
-        if (err) return done(err);
-        if (admin) {
-          return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-        }
-        else {
-          var newUser            = new Admin();
-          newUser.local.email    = email;
-          newUser.local.password = newUser.generateHash(password);
-          newUser.save(function(err) {
-            if (err)
-              throw err;
-            return done(null, newUser);
-          });
-        }
-      });
-    });
-  }));
-
-  passport.use('admin-login', new LocalStrategy({
-        usernameField     : 'email',
-        passwordField     : 'password',
-        passReqToCallback : true
-  },
-  function(req, email, password, done) {
-    Admin.findOne({ 'local.email':  email }, function(err, admin) {
-      if (err)
-        return done(err);
-      if (!admin)
-        return done(null, false, req.flash('loginMessage', 'No user found.'));
-      if (!admin.validPassword(password))
-        return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
-      console.log(admin);
-      return done(null, admin);
-    });
-  }));
-};
+}
 
 function generateRefreshToken(req, res, next) {
   if (req.query.permanent === 'true') {
