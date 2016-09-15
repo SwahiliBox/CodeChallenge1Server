@@ -1,13 +1,12 @@
 var mongoose   = require('mongoose');
 var Schema     = mongoose.Schema;
+var User       = require('../../app/models/user');
+var Event      = require('../../app/models/event');
 
 //craete the user_event schema
 var RsvpSchema =  Schema( {
-    firstname:    { type: String },
-    lastname:     { type: String },
-    phonenumber:  { type: String },
-    eventname:    { type: String },  
-    date_created: { type: Date,  default: Date.now }
+  user_id  : [{type: Schema.Types.ObjectId, ref:User }],
+  event_id : [{type: Schema.Types.ObjectId, ref:Event}]
 });
 
 //create a model to use the schema
