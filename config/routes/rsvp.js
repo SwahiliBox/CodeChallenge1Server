@@ -10,10 +10,8 @@ module.exports =  {
 
   create : function(req, res){
     Rsvp.create({
-        firstname   : req.body.firstname,
-        lastname    : req.body.lastname,
-        phonenumber : req.body.phonenumber,
-        eventname   : req.body.eventname
+        user_id   : req.body.user_id,
+        event_id  : req.body.event_id
     }, function(error,rsvp){
       if(error) console.log(error);
       console.log(rsvp);
