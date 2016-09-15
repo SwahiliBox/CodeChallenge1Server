@@ -10,10 +10,10 @@ module.exports = {
     Event.find({}, function(error, events){
       if(error) res.send(error);
       res.render('events/index',{
-          events: events,
-          page: 'dashboard',
-          title: 'Admin Panel'
-      });
+         events: events,
+         page: 'dashboard',
+         title: 'Admin Panel'
+     });
     });
   }
 };
