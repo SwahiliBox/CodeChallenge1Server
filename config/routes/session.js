@@ -24,10 +24,23 @@ module.exports =  {
          route, then after i login, redirect me back to /insert not /admin as it was before 
          */
          req.flash('success', "Successfully logged in");
+         console.log(req.user);
          res.redirect(req.session.returnTo || '/admin');
          delete req.session.returnTo;
       });
     })(req, res, next);
+  },
+
+  //User login for the phone application
+  usercreate : function(req, res){
+    passport.authenticate('user-login', function(err,user){
+      if(err) return err;
+      if(!user){
+        console.log("not a user");
+        res.send(res.send("0"));
+      }
+      res.send(user);
+    });
   },
 
   delete : function(req, res){
