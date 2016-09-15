@@ -2,6 +2,7 @@ var mongoose   = require('mongoose');
 var bcrypt     = require('bcryptjs');
 var crypto     = require('crypto');
 var Schema     = mongoose.Schema;
+var Role       = require('../../app/models/role');
 
 var UserSchema = Schema({
     local:  {
@@ -10,7 +11,8 @@ var UserSchema = Schema({
       email:    { type: String },
       firstname:{ type: String },
       surname:  { type: String },
-      picture:  { type: String, default: '' }
+      picture:  { type: String, default: '' },
+      role:     [{type: Schema.Types.ObjectId, ref:Role }]
     },
     facebook:{
       id:     String,
