@@ -619,7 +619,8 @@ footer {
       .secure-panel .signup-form, .secure-panel .edit-profile-form {
         width: 94%; } }
   .secure-panel .row {
-    max-width: 100%; }
+    max-width: 100%;
+    margin: 0 !important; }
 
 .edit-profile-form {
   padding: 3em 0; }

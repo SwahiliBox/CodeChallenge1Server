@@ -81,7 +81,7 @@ module.exports = {
         if (err)
           res.send(err);
         console.log('event deleted');
-        res.redirect('/admin/events');
+       res.redirect('/admin/events');
       });
     },
 
