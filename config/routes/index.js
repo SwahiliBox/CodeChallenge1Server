@@ -6,6 +6,7 @@ var sessionRoutes =  require('./session');
 var adminRoutes   =  require('./admin');
 var homeRoutes    =  require('./home');
 var rsvpRoutes    =  require('./rsvp');
+var roleRoutes    =  require('./role');
 
 /*
  * @isLoggedIn function checks to see if user is 
@@ -19,6 +20,12 @@ function isLoggedIn(req, res, next) {
   req.session.returnTo = req.path;
   res.redirect('/login');
 }
+
+/*
+ * role routes to create and assign roles
+*/ 
+router.get('/roles/:role',  roleRoutes.create);
+router.get('/role/:username/:role', roleRoutes.assign);
 
 /*
  * home route and admin root route
