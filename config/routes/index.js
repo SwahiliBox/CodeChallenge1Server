@@ -7,7 +7,7 @@ var adminRoutes   =  require('./admin');
 var homeRoutes    =  require('./home');
 var rsvpRoutes    =  require('./rsvp');
 var roleRoutes    =  require('./role');
-
+var userwebRoutes    =  require('./userweb');
 /*
  * @isLoggedIn function checks to see if user is 
  * logged in if not, renders the login page
@@ -64,5 +64,8 @@ router.post('/usercreate',     sessionRoutes.usercreate);
 */
 router.get('/rsvps',  rsvpRoutes.index);
 router.post('/rsvps', rsvpRoutes.create);
-
+/*
+ * @webuser routes
+*/
+router.get('/user',    userwebRoutes.userindex);
 module.exports = router;

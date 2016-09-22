@@ -1,0 +1,15 @@
+var Event      =  require('../../app/models/event');
+var User       =  require('../../app/models/user');
+
+module.exports = {
+  userindex : function(req, res){
+    Event.find({}, function(error, events){
+      if(error) res.send(error);
+      res.render('user/userindex',{
+          events : events,
+          page   : 'userindex',
+          //title  : 'Events'
+      });
+    });
+  }
+  }
