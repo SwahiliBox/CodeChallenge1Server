@@ -95,7 +95,9 @@ body.f-topbar-fixed {
     @media only screen and (max-width: 640px) {
       .top-bar-section ul li {
         padding: 0; } }
-
+.contain-to-grid {
+   background: #315d8e;;
+}
 /* ------------------------------------------------------
  * header styling 
  * -----------------------------------------------------*/
