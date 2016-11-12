@@ -9,7 +9,7 @@ module.exports =  {
   },
 
   create : function(req, res, next){
-    passport.authenticate('user-login', function(err, user){
+        passport.authenticate('user-login', function(err, user){
       if (err) return next(err);
       if (!user) {
         console.log('user not found');
@@ -32,17 +32,16 @@ module.exports =  {
   },
 
   //User login for the phone application
-  usercreate : function(req, res){
-    var email = req.body.username;
-    var password = req.body.password;
+  usercreate : function(req, res,next){
     passport.authenticate('user-login', function(err,user){
+      console.log(user);
       if(err) return err;
       if(!user){
         console.log("not a user");
         res.send("1");
       }
       res.send(user);
-    });
+    })(req, res, next);;
   },
 
   delete : function(req, res){
