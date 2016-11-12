@@ -33,11 +33,13 @@ module.exports =  {
 
   //User login for the phone application
   usercreate : function(req, res){
+    var email = req.body.username;
+    var password = req.body.password;
     passport.authenticate('user-login', function(err,user){
       if(err) return err;
       if(!user){
         console.log("not a user");
-        res.send(res.send("0"));
+        res.send("1");
       }
       res.send(user);
     });
