@@ -151,7 +151,7 @@ function(req, email, password, done){
       });
     });
   }));
-}
+};
 
 function generateRefreshToken(req, res, next) {
   if (req.query.permanent === 'true') {

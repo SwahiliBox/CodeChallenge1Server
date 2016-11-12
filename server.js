@@ -32,7 +32,7 @@ mongoose.connect(configDB.getDB(env));
 require('./config/passport.js')(passport);
 
 //use required modules
-//app.use(morgan('dev'));
+app.use(morgan('dev'));
 app.use(methodOverride());
 
 app.use(express.static(__dirname + '/public'));

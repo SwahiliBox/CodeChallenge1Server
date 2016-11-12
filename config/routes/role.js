@@ -5,7 +5,7 @@ module.exports = {
   create : function(req, res){
     var role = new Role();
 
-    role.name = req.params.role
+    role.name = req.params.role;
 
     Role.findOne({name:role.name}, function(err, foundRole){
       if(err) return err;
@@ -46,4 +46,4 @@ module.exports = {
       }
     });
   }
-}
+};
