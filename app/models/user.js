@@ -28,10 +28,6 @@ var UserSchema = Schema({
     } 
 });
 
-/*UserSchema.methods.comparePassword = function(password){
-  return bcrypt.compareSync(password, this.password);
-};*/
-
 UserSchema.methods.gravatar = function(size){
   if (!this.size) size = 200;
   if (!this.local.email) return 'https://gravatar.com/avatar/?s' + size + '$d=retro';
