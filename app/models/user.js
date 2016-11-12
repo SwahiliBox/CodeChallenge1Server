@@ -1,5 +1,5 @@
 var mongoose   = require('mongoose');
-var bcrypt     = require('bcryptjs');
+var bcrypt     = require('bcrypt');
 var crypto     = require('crypto');
 var Schema     = mongoose.Schema;
 var Role       = require('../../app/models/role');
@@ -28,9 +28,9 @@ var UserSchema = Schema({
     } 
 });
 
-UserSchema.methods.comparePassword = function(password){
+/*UserSchema.methods.comparePassword = function(password){
   return bcrypt.compareSync(password, this.password);
-};
+};*/
 
 UserSchema.methods.gravatar = function(size){
   if (!this.size) size = 200;
@@ -60,8 +60,5 @@ module.exports.getUserById = function(id,callback){
 };
 
 module.exports.comparePassword = function(candidatePassword, hash, callback){
-  bcrypt.compare(candidatePassword, hash, function(err, isMatch){
-    if(err) throw err;
-    callback(null, isMatch);
-  });
+  bcrypt.compare(candidatePassword, hash, callback);
 };
