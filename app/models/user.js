@@ -30,12 +30,7 @@ var UserSchema = Schema({
 
 UserSchema.methods.gravatar = function(size){
   if (!this.size) size = 200;
-  if (!this.local.email) return 'https://gravatar.com/avatar/?s' + size + '$d=retro';
-  var md5 = crypto.createHash('md5').update(this.local.email).digest('hex');
-  return 'https://gravatar.com/avatar/' + md5 + '?s=' + size + '&d=retro';
-};
-
-var User = module.exports = mongoose.model('User',UserSchema);
+  if (!this.local.email) return 'https://gravatar.com/avatar/?s' + size + '$d=retro'; var md5 = crypto.createHash('md5').update(this.local.email).digest('hex'); return 'https://gravatar.com/avatar/' + md5 + '?s=' + size + '&d=retro'; }; var User = module.exports = mongoose.model('User',UserSchema);
 
 module.exports.createUser = function(newUser,callback){
   bcrypt.genSalt(10,function(err,salt){
