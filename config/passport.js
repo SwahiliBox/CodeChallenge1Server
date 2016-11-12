@@ -67,15 +67,19 @@ function(req, email, password, done){
        we found the user who wants to acces our system 
        but for some reason, password provided is wrong 
        */
-    if (!user.comparePassword) {
-        return done(null, false, req.flash('message', 'Oops! wrong password'));
-    }
+    User.comparePassword(password, user.local.password, function(err, isMatch){
+      if(err) throw(err);
 
+      if (isMatch) {
+        return done(null, user);
+      }else{
+        return done(null, false, req.flash('message', 'Oops! wrong password'));
+      }
+    });
     /* 
        all is well, we found the user and all the information 
        provided is correct 
-       */
-    return done(null, user);
+   */
   });
 }));
 
