@@ -2,6 +2,7 @@ var router   = require('express').Router();
 var faker    = require('faker');
 var Event    = require('../app/models/event');
 
+
 router.get('/create-events', function(req, res){
   for(var i     =  0; i < 30; i++){
 
