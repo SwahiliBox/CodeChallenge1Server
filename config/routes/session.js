@@ -43,7 +43,7 @@ module.exports =  {
       console.log(user);
       res.send(user);
       }
-    })(req, res, next);;
+    })(req, res, next);
   },
 
   delete : function(req, res){
