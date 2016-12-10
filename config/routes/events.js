@@ -13,6 +13,14 @@ module.exports = {
     });
   },
 
+  //responds to the phone application
+  phoneevents : function(req, res){
+    Event.find({}, function(error, events){
+      if(error) res.send(error);
+      res.send(events);
+    });
+  },
+
   new : function(req, res){
     res.render('events/new', {
         title : "Create Event",

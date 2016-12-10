@@ -45,6 +45,7 @@ router.get('/admin/events/delete/:slug',  isLoggedIn,  eventRoutes.delete);
 router.post('/admin/events/',             isLoggedIn,  eventRoutes.create);
 router.post('/admin/events/update/:slug', isLoggedIn,  eventRoutes.update);
 router.get('/events',                     isLoggedIn,  eventRoutes.get);
+router.get('/phoneevents',                eventRoutes.phoneevents);
 
 /*
  * @user routes

@@ -39,8 +39,10 @@ module.exports =  {
       if(!user){
         console.log("not a user");
         res.send("1");
-      }
+      }else{
+      console.log(user);
       res.send(user);
+      }
     })(req, res, next);;
   },
 
